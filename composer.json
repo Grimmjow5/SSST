@@ -1,0 +1,17 @@
+{
+    "name": "almacen/ssst",
+    "autoload": {
+        "psr-4": {
+            "Almacen\\Ssst\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "sebastian",
+            "email": "41399823+7sevas7@users.noreply.github.com"
+        }
+    ],
+    "require": {
+        "flightphp/core": "^3.7"
+    }
+}
