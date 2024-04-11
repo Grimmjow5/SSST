@@ -15,5 +15,10 @@ class MRiesgos {
     
     #Datos ingresados en automatico
     public $idMes;
+    public $idRegUser;
+    public $fechaRegistro;
+    public $fechaModificacion;
+    public $fechaSolucion;
+    public $idUserMod;
     
 }

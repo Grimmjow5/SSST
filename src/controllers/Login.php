@@ -58,8 +58,6 @@ class Login extends Flight{
 
             } 
     }
-    public function prueb() {
-    echo"LISto";   
-    }
+  
 
 }
