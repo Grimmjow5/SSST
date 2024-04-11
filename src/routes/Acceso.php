@@ -45,6 +45,8 @@ function __construct()
 
     Flight::route('POST /riesgos',[$riesgos,'postRiesgo']);
 
+    Flight::route('GET /cat_riesgos',[$riesgos,'getRiesgos']);
+
 
 }
 }

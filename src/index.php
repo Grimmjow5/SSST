@@ -6,7 +6,7 @@ require '../vendor/autoload.php';
 
 require_once './routes/Acceso.php';
 
-
+session_start();
 
 
 
