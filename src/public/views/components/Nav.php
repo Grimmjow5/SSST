@@ -3,7 +3,7 @@
 
     <div class="d-flex align-items-center" >
          <a class="navbar-brand" href="#">
-            <img src="public/img/logo.png" alt="" width="120" height="60" class="d-inline-block align-text-top">
+            <img src=<?="../public/img/logo.png" ?> alt="" width="120" height="60" class="d-inline-block align-text-top">
         </a>
         <button type="button" class="btn btn-outline-light text-black" id="toggle" style="height: 2rem;width: 2rem;">
                 <i class="bi bi-list h3"></i>
@@ -25,6 +25,12 @@
         <li class="my-3">
             <a href="#" class="text-black">Extintores</a>
         </li>
+    </ul>
+    <hr>
+    <ul>
+        <li>
+            <a href="/riesgos/reports" class="text-black">Resportes de Riesgos</a>
+            </li>
     </ul>
 </div>
 

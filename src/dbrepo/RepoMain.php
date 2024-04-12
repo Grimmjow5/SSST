@@ -13,17 +13,34 @@ use Exception;
 class RepoMain extends ConfigDb implements ICat_Consultas {
     
     public $table ;
-    public $row;
+    public $rowVal;
+    public $logic;
     //Es para vista seleccion de área
-    public function getAll( $status ="")
+    public function getAll( )
     {
-        $condicion = empty($status) ? " " : " WHERE {$this->row}={$status}";
-        $sql ="SELECT * FROM {$this->table}   {$condicion};";
+        $condicion = empty($this->rowVal) ? " " : "{$this->generate($this->rowVal) }";
+        $sql ="SELECT * FROM {$this->table}  {$condicion};";
         $stmt = parent::prepare($sql);
         $stmt->execute();
         return $stmt->fetchAll(parent::FETCH_ASSOC);              
     }
+    private function generate(array  $rowval):string{
+        $stringSql = "WHERE ";
+        $index =1;
+        foreach ($rowval as  $key => $value) {
+            $arrPrincipal = $value;       
+            foreach ($arrPrincipal as $idValor) {
+                if( $index == count($arrPrincipal)){
 
+                $stringSql .= " {$key} = {$idValor}";
+                }else{
+                    $stringSql .= " {$key} = {$idValor} {$this->logic}";
+                }
+                $index++;
+            }  
+        }
+        return $stringSql;
+    }
     //Insert riesgo en Db 
     public function set_model(MRiesgos $riesgo):bool{
             try{
@@ -52,8 +69,8 @@ class RepoMain extends ConfigDb implements ICat_Consultas {
 
                 if($riesgo->estatus){               
                     $this->table = "mv_riesgos";
-                    $this->row = "id";
-                    $registr = $this->getAll($riesgo->id); 
+                    $this->rowVal = array("id"=>array($riesgo->id));//
+                    $registr = $this->getAll(); 
 
                     if( ($registr['estatus'] == 1) && $riesgo->estatus == 1){
                         $riesgo->fechaSolucion  = $registr['fecha_solucion'];

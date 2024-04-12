@@ -24,11 +24,11 @@ Flight::route('GET /riesgos',[$riesgos,'index']);
 
 Flight::route('POST /riesgos',[$riesgos,'postRiesgo']);
  */
-namespace Almacen\Ssst;
+namespace Almacen\Ssst\routes;
 use Flight;
 use Almacen\Ssst\controllers\Login;
 use Almacen\Ssst\controllers\RiesgosController;
-class Acceso extends Flight{
+class Riesgos extends Flight{
     private $login;
 function __construct()
 {
@@ -40,12 +40,12 @@ function __construct()
     
     //Vista de riesgo
     $riesgos = new RiesgosController();
-
-    Flight::route('GET /riesgos',[$riesgos,'index']);
-
-    Flight::route('POST /riesgos',[$riesgos,'postRiesgo']);
-
-    Flight::route('GET /cat_riesgos',[$riesgos,'getRiesgos']);
+    //En esta ruta solo envia la vista al navegador para que el usuario ingrese los riesgos y muestre los ingresados 
+    parent::route('GET /riesgos',[$riesgos,'index']);
+    //Insert y Put de riesgos, recibe el modelo
+    parent::route('POST /riesgos',[$riesgos,'postRiesgo']);
+    //Lista de riesgos para la tabla donde se generan los reportes
+    parent::route('GET /cat_riesgos',[$riesgos,'getRiesgos']);
 
 
 }

@@ -1,16 +1,17 @@
 <?php
 
 use Almacen\Ssst\Acceso;
+use Almacen\Ssst\routes\Riesgos;
+use Almacen\Ssst\routes\ReportsRiesgos;
 
 require '../vendor/autoload.php';
 
-require_once './routes/Acceso.php';
 
 session_start();
 
 
-
-$ll = new Acceso();
+$reports = new ReportsRiesgos();
+$ll = new Riesgos();
 // Finalmente, inicia el framework.
 Flight::start();
 

@@ -8,7 +8,8 @@ use Almacen\Ssst\dbrepo\models\MRiesgos;
 
 interface ICat_Consultas{
 
-    public function getAll($status);
+ 
+    public function getAll();
     public function set_model(MRiesgos $model);
     public function put_model(MRiesgos $model):bool;
 }

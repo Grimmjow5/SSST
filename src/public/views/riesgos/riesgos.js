@@ -67,7 +67,12 @@ const toggleShow = () => {
           }
         }
       },
-      { data: "solucion" }
+      { data: "solucion", render:function(it){
+        if(it == null ){
+          return " "; 
+        }
+        return it.slice(0,30)+"....";
+      } }
     ]
   });
 
@@ -81,7 +86,7 @@ const toggleShow = () => {
 
       let dates = tabla.row('.selected').data();
       console.log(dates);
-      estatus.focus();
+      area.focus();
       await selectRow(dates);
     }
 

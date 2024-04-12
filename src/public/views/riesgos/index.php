@@ -80,13 +80,14 @@ require 'public/views/components/Nav.php';
 </div>
 
 <div class="pt-3 mt-2 mx-4">
-    <div class="bg-light p-5 shadow-lg">
+    <div class="bg-light p-4 shadow-lg">
       <!--Se mostrara la tabla de insidentes-->
-      <h4 class="my-4">Riesgos pendientes y Solucionados del Mes pasado</h4>
+      <h4 class="my-1">Riesgos pendientes y Solucionados del Mes pasado</h4>
+      <small>Solo son registros que aun no se han solucionado independiente de la fecha de creción y solo los solucionados en el mes en pasado y en curso.</small>
+
       <table id="tableRiesgos" class="display w-100" >
         <thead>
-          <tr>
-    
+          <tr>    
             <th>No. Id</th>
             <th>Descripción</th>
             <th>Fecha de Resgistro</th>
@@ -95,14 +96,26 @@ require 'public/views/components/Nav.php';
             <th>Solución</th>
           </tr>
         </thead>
-        
-     
+        <tfoot>
+           <tr>    
+            <th>No. Id</th>
+            <th>Descripción</th>
+            <th>Fecha de Resgistro</th>
+            <th>Prioridad</th>
+            <th>Estatus</th>
+            <th>Solución</th>
+          </tr>
+        </tfoot>
       </table>
     </div>
 </div>
 </div>
 <!--Es parte del body -->
 <div>
-
+<style>
+  tr{
+    cursor: pointer;
+  }
+</style>
 <?php require 'public/views/components/Footer.php'; ?>
-<script src="public/views/riesgos/riesgos.js"></script>
+<script src="../public/views/riesgos/riesgos.js"></script>

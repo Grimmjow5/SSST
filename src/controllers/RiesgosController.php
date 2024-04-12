@@ -1,30 +1,36 @@
 <?php
 
 namespace Almacen\Ssst\controllers;
+
+use Almacen\Ssst\dbrepo\Factory;
 use Flight;
 use Almacen\Ssst\dbrepo\RepoMain;
 use Almacen\Ssst\dbrepo\models\MRiesgos;
 use Almacen\Ssst\utils\ValMRiesgos;
+use DateTime;
 use Exception;
 
 class RiesgosController extends Flight{
 
     private ValMRiesgos $mriesgos;
     private MRiesgos $model;
-    private $repoRiesgos;
+    private Factory $repoRiesgos;
     public function __construct()
     {        
         $this->model = new MRiesgos();
-        $this->repoRiesgos = new RepoMain();
+
+        $this->repoRiesgos = new Factory();
+        $this->repoRiesgos->getCatalogos(new RepoMain());
         $this->mriesgos = new ValMRiesgos();
     }
 
     public function index (){
                       
        // $arr = array("valor"=>"valores");
-       $this->repoRiesgos->row = "estatus";
-       $this->repoRiesgos->table = 'cat_areas';
-       $areas = $this->repoRiesgos->getAll(1);
+       $this->repoRiesgos->getCat->rowVal = ["estatus"=>array(1)];
+       $this->repoRiesgos->getCat->table = 'cat_areas';
+       $this->repoRiesgos->getCat->logic = "and";
+       $areas = $this->repoRiesgos->getCat->getAll();
        parent::render('riesgos/index',['areas'=> $areas]);
     }
 
@@ -34,9 +40,10 @@ class RiesgosController extends Flight{
              $this->model = $this->mriesgos->validate($_REQUEST);
             $save = false;
             if(empty($this->model->id) || $this->model->id == 0 ){
-                $save = $this->repoRiesgos->set_model($this->model);
+
+                $save = $this->repoRiesgos->getCat->set_model($this->model);
             }else{
-                $save = $this->repoRiesgos->put_model($this->model);
+                $save = $this->repoRiesgos->getCat->put_model($this->model);
             }
         
             if($save){
@@ -48,17 +55,21 @@ class RiesgosController extends Flight{
         }catch(Exception $ex){
             //parent::view()->set('error', $ex->getMessage());
             //echo $ex->getMessage();
-            //$areas = $this->repoRiesgos->get_Cat();
+            //$areas = $this->repoRiesgos->getCat->get_Cat();
             parent::json(['res'=> $ex->getMessage()],422);
         }
     }
   public function getRiesgos(){
+    $mes = new DateTime();
+    $this->repoRiesgos->getCat->table = "mv_riesgos";
+    $this->repoRiesgos->getCat->logic = "or";
 
-    $this->repoRiesgos->table = "mv_riesgos";
-    
-    $resul = $this->repoRiesgos->getAll();
+   $this->repoRiesgos->getCat->rowVal = array(
+    "id_mes"=>array($mes->format("m")-1,  $mes->format("m") )); 
+    $resul = $this->repoRiesgos->getCat->getAll();
     parent::json(['data'=>$resul]);
 
   }
+  
 
 }
