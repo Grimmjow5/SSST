@@ -30,6 +30,11 @@ const toggleShow = () => {
 
 
   const tabla  = new DataTable('#tableRiesgos', {
+ layout: {
+        topStart: {
+            buttons: [ 'excel']
+        }
+    },
     ajax: 'cat_riesgos',
     colReorder:true,
     pageLength: 25,
@@ -44,21 +49,18 @@ const toggleShow = () => {
     columns: [
       {
         data: "id",
-        className: "text-center"
+        className: "ids text-center"
       },
-      { data: "text_Riesgo",render:function(item){
-        
-        return item.slice(0,30)+"...";
-      } },
-      {   data: "fechaRegistro",render:function(fecha){
+      { data: "text_Riesgo",className:"descri" },
+      {   data: "fechaRegistro",className:"fechaRe",render:function(fecha){
           let full = fecha.split(" ")[0].split("-");
           let reverse = full.reverse();
           let format = reverse.join("-");
           return format;
       } },
-      {data:"prioridad"},
+      {data:"prioridad",className:'prioridad'},
       {
-        data: "estatus",
+        data: "estatus",className:"estatus",
         render: function (item) {
           if (item == 1) {
             return '<i class="bi bi-clipboard-check  text-success h4 mx-1"></i>Solucionado';
@@ -67,12 +69,7 @@ const toggleShow = () => {
           }
         }
       },
-      { data: "solucion", render:function(it){
-        if(it == null ){
-          return " "; 
-        }
-        return it.slice(0,30)+"....";
-      } }
+      { data: "solucion" }
     ]
   });
 

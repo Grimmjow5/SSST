@@ -1,6 +1,6 @@
 <?php
 
-namespace Almacen\Ssst\dbrepo;
+namespace Almacen\Ssst\dbrepo\interfaces;
 
 
 use Almacen\Ssst\config\ConfigDb;

@@ -89,7 +89,7 @@ require 'public/views/components/Nav.php';
         <thead>
           <tr>    
             <th>No. Id</th>
-            <th>Descripción</th>
+            <th class="w-25">Descripción</th>
             <th>Fecha de Resgistro</th>
             <th>Prioridad</th>
             <th>Estatus</th>
@@ -115,6 +115,22 @@ require 'public/views/components/Nav.php';
 <style>
   tr{
     cursor: pointer;
+  }
+  .ids{
+    width: 4rem;
+  }
+  .descri{
+    width: 40%;
+  
+  }
+  .fechaRe{
+    width: 6rem;
+  }
+  .prioridad{
+width: 6rem;
+  }
+  .estatus{
+    width: 9rem;
   }
 </style>
 <?php require 'public/views/components/Footer.php'; ?>

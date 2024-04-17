@@ -1,36 +1,53 @@
-const dateNow = new Date();
-dateNow.setMonth( dateNow.getMonth() <= 9 ?  "0"+dateNow.getMonth() : dateNow.getMonth() );
+const hoy = Date.now();
+const dateNow = new Date(hoy);
+dateNow.setMonth( dateNow.getMonth() <= 9 ?  "0"+dateNow.getMonth() : dateNow.getMonth()+1 );
 
-const  dateReport = $("#fechaReport");
+const  dateMinReport = $("#fechaMinReport");
+const fechNow = `${dateNow.getFullYear()}-0${ dateNow.getMonth()+1}-${dateNow.getUTCDate()}`;
 
-dateReport.attr({"max": `${dateNow.getFullYear()}-0${dateNow.getMonth()}-0${dateNow.getDay()}`});
+dateMinReport.attr({"max": fechNow});
 
-const dateSolution = $("#fechaSolucion");
+dateMinReport.val(`${dateNow.getFullYear()}-0${dateNow.getMonth()+1}-01`);
+const dateMaxReport = $("#fechaMaxReport");
 
-dateSolution.attr({"max": `${dateNow.getFullYear()}-0${dateNow.getMonth()}-0${dateNow.getDay()}`});
+dateMaxReport.attr({"max": fechNow});
+dateMaxReport.val(fechNow);
 //dateSolution.attr({"max":"2024-04-01"});
-const area =$("#area");
-const  withDateSolution =  $("#conSolucion");
+
+//Elementos del DOM
+const area =$("#area");//Are de donde se hace la consulta en caso de cero toma que que son todas las áreas
+const estatus = $("#estatus");//Hay tres opciones reportado, solucionado y las dos al mis tiempo 
+const fechaMinSolucion = $("#fechaMinSolucion");//Fecha minima para consultar por solución
+const fechaMaxSolucion = $("#fechaMaxSolucion");//FechaMaxiuma para consutlar por soluciónnn
 
 
-const model ={
 
-    conFechaSolucion:false,
-};
 
 
 
 $("#report").on('submit',async (e)=>{
     e.preventDefault();
-    console.log( `${dateNow.getFullYear()}-${dateNow.getMonth()}-${dateNow.getDay()}`);    
+    console.log("Here");    
+    try {
+    const config = {method:'GET'};        
+    const res = await fetch(`/riesgos/reports?fechaReport=${dateMinReport.val()}
+    &fechaMaxReport=${dateMaxReport.val()}
+    &area=${area.val()}
+    &estatus=${estatus.val()}
+    &fechaMinSolucion=${fechaMinSolucion.val()}
+    &fechaMaxSolucion=${fechaMaxSolucion.val()}`,config);
 
+        console.log(await res.json());
+    } catch (error) {
+        console.error(error);
+    }
 });
 
-withDateSolution.on('change',()=>{
+/* withDateSolution.on('change',()=>{
     if(!withDateSolution.prop("checked")){
         dateSolution.prop("disabled",true);
     }else{
 
         dateSolution.prop("disabled",false);
     }
-});
+}); */

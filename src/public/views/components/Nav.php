@@ -29,7 +29,7 @@
     <hr>
     <ul>
         <li>
-            <a href="/riesgos/reports" class="text-black">Resportes de Riesgos</a>
+            <a href="/riesgos/report" class="text-black">Resportes de Riesgos</a>
             </li>
     </ul>
 </div>

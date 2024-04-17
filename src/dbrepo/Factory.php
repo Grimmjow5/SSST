@@ -1,7 +1,8 @@
 <?php
 
 namespace Almacen\Ssst\dbrepo;
-use Almacen\Ssst\dbrepo\IReports;
+use Almacen\Ssst\dbrepo\interfaces\ICat_Consultas;
+use Almacen\Ssst\dbrepo\interfaces\IReports;
 
 
 class Factory{

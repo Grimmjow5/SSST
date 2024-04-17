@@ -2,7 +2,7 @@
 
 namespace Almacen\Ssst\dbrepo;
 
-use Almacen\Ssst\dbrepo\ICat_Consultas;
+use Almacen\Ssst\dbrepo\interfaces\ICat_Consultas;
 
 use Almacen\Ssst\config\ConfigDb;
 use Almacen\Ssst\dbrepo\models\MRiesgos;

@@ -15,10 +15,10 @@ class RiesgosController extends Flight{
     private ValMRiesgos $mriesgos;
     private MRiesgos $model;
     private Factory $repoRiesgos;
+    
     public function __construct()
     {        
         $this->model = new MRiesgos();
-
         $this->repoRiesgos = new Factory();
         $this->repoRiesgos->getCatalogos(new RepoMain());
         $this->mriesgos = new ValMRiesgos();
@@ -64,7 +64,7 @@ class RiesgosController extends Flight{
     $this->repoRiesgos->getCat->table = "mv_riesgos";
     $this->repoRiesgos->getCat->logic = "or";
 
-   $this->repoRiesgos->getCat->rowVal = array(
+    $this->repoRiesgos->getCat->rowVal = array(
     "id_mes"=>array($mes->format("m")-1,  $mes->format("m") )); 
     $resul = $this->repoRiesgos->getCat->getAll();
     parent::json(['data'=>$resul]);
