@@ -31,3 +31,4 @@ Como parte del control de cambios y de historial se genero una tabla en el cual 
 
 >Diagrama Entidad Relacion
 >https://dbdiagram.io/d/ReportesV2-6614683603593b6b6181deea
+---
