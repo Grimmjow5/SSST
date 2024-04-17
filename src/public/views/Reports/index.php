@@ -67,6 +67,18 @@ require 'public/views/components/Nav.php';
         </form>
 
 </div>
+<div class="w-100 col-12 bg-light rounded mt-4 p-4">
+<h3>Filtros</h3>
+<!--Tabla que mostrara los datos a exportar -->
+<table class="display " id="tableReport">
+    <thead>
+        <tr>
+            <th>Id. Report</th>
+            <th>Área</th>
+        </tr>
+    </thead>
+</table>
+</div>
 </div>
 <!--Div parte del body-->
 </div>

@@ -32,7 +32,7 @@ const toggleShow = () => {
   const tabla  = new DataTable('#tableRiesgos', {
  layout: {
         topStart: {
-            buttons: [ 'excel']
+          buttons: [ 'excel']
         }
     },
     ajax: 'cat_riesgos',

@@ -43,6 +43,27 @@ $("#report").on('submit',async (e)=>{
     }
 });
 
+//Configuración de Tabla para mostrar antes de 
+const tabla = new DataTable("#tableReport",{
+layout: {
+        topStart: {
+            pageLength:{menu:[5,100]},
+          buttons: [ 'excel']
+        }
+    },
+ 
+        ajax:"",
+        lenguage:{
+            lengthMenu:'Mostrar _MENU_ ',
+            entries:{_:"sdsdfdfsdfsdfsdfs",1:"ffffffffffffffff"}
+         
+        }
+    }
+
+);
+
+
+
 /* withDateSolution.on('change',()=>{
     if(!withDateSolution.prop("checked")){
         dateSolution.prop("disabled",true);
