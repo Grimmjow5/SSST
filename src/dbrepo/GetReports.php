@@ -7,49 +7,48 @@ use Almacen\Ssst\dbrepo\models\MReportRiesgo;
 
 class GetReports extends ConfigDb implements IReports {
 
+    private string $dateRegistro;
+    private string $idArea;
+    private string $dateSolution;
+    private string $statusSolution;
 
     public function GetReports(MReportRiesgo $model){
         //$sql = "SELECT * FROM mv_riesgos";
-        //Para ingresar la fecha de conclusion en dado de que si ingresar el string para crear una nueva consulta de entre 
-
-        $commandSolucion =" ";
-
-        if($model->estatus== '1'){
-            //si viene vacio entonces no ejecutar consulta con las condiciones
-            if(!empty($model->fechaMax) ){
-
-                 $commandSolucion ="AND date(fechaRegistro)<= '{$model->fechaMax}'"; 
-            }
-        }else{
-            $commandSolucion =" ";
-        }
-        //En esta opcion se pueden dat tres opcion
-        //1, reportado, 2. Solucionado y 3. Todos los dos juntos
-        switch($model->estatus){
-                    case 1:
-                $estatus ='AND estatus =1';
-                break;
-            case 0:
-                $estatus = 'AND estatus=0';
-                break;
-            default:
-            $estatus =" ";
-        }
+       //Rango de resgistro del riesgo
+        $this->dateRegistro = $this->validateDateReg($model->fechaMin, $model->fechaMax);
+        //Área
+        $this->idArea = $model->area != 0 ?" AND id_area={$model->area}":" ";
+        //Rango de solución 
         
-        $area = $model->area != 0  ? " AND id_area={$model->area}": " ";
-            
-        $whereSolution = "";
-        if(!empty($model->fechaMinSolucion)){
-            $whereSolution.= " AND fecha_solucion >= { $model->fechaMinSolucion}";
-        }
-        if(!empty($model->fechaMaxSolucion)){
-            $whereSolution .= " AND fecha_solucion <={$model->fechaMaxSolucion}";
-        }
+        $sql = "SELECT * from mv_riesgos WHERE {$this->dateRegistro} {$this->idArea} ;";
+        //return $sql;
 
-        $sql = "SELECT * from mv_riesgos WHERE date(fechaRegistro) >= '{$model->fechaMin}' {$commandSolucion} {$area}  {$estatus} ";
         $stmt = parent::prepare($sql);
+
         $stmt->execute();
         return $stmt->fetchAll(parent::FETCH_ASSOC);
       
     } 
+
+    private function validateDateReg(string $fechaMin,string $fechaMax):string{
+
+        if(empty($fechaMin) &&  empty($fechaMax)){
+            return " ";
+        }
+        
+        if(!empty($fechaMin) &&  empty($fechaMax)){
+            return "date(fechaRegistro) >= '{$fechaMin}'";
+        }
+
+        if(empty($fechaMin) &&  !empty($fechaMax)){
+            return "date(fechaRegistro) <= '{$fechaMax}'";            
+        }
+
+        if(!empty($fechaMin) &&  !empty($fechaMax)){
+            return "date(fechaRegistro) >= '{$fechaMin}' AND date(fechaRegistro) <= '{$fechaMax}' ";
+        }
+
+
+    
+    }
 }

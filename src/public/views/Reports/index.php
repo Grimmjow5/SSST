@@ -70,14 +70,29 @@ require 'public/views/components/Nav.php';
 <div class="w-100 col-12 bg-light rounded mt-4 p-4">
 <h3>Filtros</h3>
 <!--Tabla que mostrara los datos a exportar -->
-<table class="display " id="tableReport">
-    <thead>
-        <tr>
-            <th>Id. Report</th>
-            <th>Área</th>
-        </tr>
-    </thead>
-</table>
+<table id="tableReport" class="display w-100" >
+        <thead>
+          <tr>    
+            <th>No. Id</th>
+            <th class="w-25">Descripción</th>
+            <th>Fecha de Resgistro</th>
+            <th>Prioridad</th>
+            <th>Estatus</th>
+            <th>Solución</th>
+          </tr>
+        </thead>
+        <tfoot>
+           <tr>    
+            <th>No. Id</th>
+            <th>Descripción</th>
+            <th>Fecha de Resgistro</th>
+            <th>Prioridad</th>
+            <th>Estatus</th>
+            <th>Solución</th>
+          </tr>
+        </tfoot>
+      </table>
+
 </div>
 </div>
 <!--Div parte del body-->

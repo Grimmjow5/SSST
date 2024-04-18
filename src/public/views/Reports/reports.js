@@ -21,13 +21,22 @@ const fechaMinSolucion = $("#fechaMinSolucion");//Fecha minima para consultar po
 const fechaMaxSolucion = $("#fechaMaxSolucion");//FechaMaxiuma para consutlar por soluciónnn
 
 
-
+let urlFetch=" ";
 
 
 
 $("#report").on('submit',async (e)=>{
     e.preventDefault();
-    console.log("Here");    
+ /*   console.log("A=S");
+    urlFetch =`/riesgos/reports?fechaReport=${dateMinReport.val()}
+    &fechaMaxReport=${dateMaxReport.val()}
+    &area=${area.val()}
+    &estatus=${estatus.val()}
+    &fechaMinSolucion=${fechaMinSolucion.val()}
+    &fechaMaxSolucion=${fechaMaxSolucion.val()}`;
+    tabla.clear().draw();
+    tabla.ajax.reload();
+   */  console.log("Here");    
     try {
     const config = {method:'GET'};        
     const res = await fetch(`/riesgos/reports?fechaReport=${dateMinReport.val()}
@@ -37,32 +46,62 @@ $("#report").on('submit',async (e)=>{
     &fechaMinSolucion=${fechaMinSolucion.val()}
     &fechaMaxSolucion=${fechaMaxSolucion.val()}`,config);
 
+    tabla.clear().draw();
+    tabla.ajax.url(`/riesgos/reports?fechaReport=${dateMinReport.val()}
+    &fechaMaxReport=${dateMaxReport.val()}
+    &area=${area.val()}
+    &estatus=${estatus.val()}
+    &fechaMinSolucion=${fechaMinSolucion.val()}
+    &fechaMaxSolucion=${fechaMaxSolucion.val()}`).load();
         console.log(await res.json());
     } catch (error) {
         console.error(error);
-    }
+    } 
 });
 
 //Configuración de Tabla para mostrar antes de 
-const tabla = new DataTable("#tableReport",{
-layout: {
-        topStart: {
-            pageLength:{menu:[5,100]},
-          buttons: [ 'excel']
-        }
-    },
+
+
+const tabla  = new DataTable('#tableReport', {
  
-        ajax:"",
-        lenguage:{
-            lengthMenu:'Mostrar _MENU_ ',
-            entries:{_:"sdsdfdfsdfsdfsdfs",1:"ffffffffffffffff"}
-         
-        }
-    }
-
-);
-
-
+      ajax:'', 
+       colReorder:true,
+       pageLength: 25,
+       language: {
+         lengthMenu: 'Mostrar  _MENU_ _ENTRIES_',
+         entries: {
+           _: ' Riesgos',
+         }
+       },
+   
+       select: true,
+       columns: [
+         {
+           data: "id",
+           className: "ids text-center"
+         },
+         { data: "text_Riesgo",className:"descri" },
+         {   data: "fechaRegistro",className:"fechaRe",render:function(fecha){
+             let full = fecha.split(" ")[0].split("-");
+             let reverse = full.reverse();
+             let format = reverse.join("-");
+             return format;
+         } },
+         {data:"prioridad",className:'prioridad'},
+         {
+           data: "estatus",className:"estatus",
+           render: function (item) {
+             if (item == 1) {
+               return '<i class="bi bi-clipboard-check  text-success h4 mx-1"></i>Solucionado';
+             } else {
+               return '<i class="bi bi-clipboard-x text-warning h4 mx-1"></i>Reportado';
+             }
+           }
+         },
+         { data: "solucion" }
+       ]
+     });
+   
 
 /* withDateSolution.on('change',()=>{
     if(!withDateSolution.prop("checked")){

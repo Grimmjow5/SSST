@@ -37,7 +37,8 @@ class ReportsController extends Flight {
             $this->modelRiesgo->fechaMinSolucion =trim($_REQUEST['fechaMinSolucion']);
             $this->modelRiesgo->fechaMaxSolucion = trim($_REQUEST['fechaMaxSolucion']);
            $report = $this->factory->reportes->GetReports($this->modelRiesgo);
-            parent::json(["reportes"=>$report],200);
+            parent::json(['data'=>$report]);
+        
 
         }catch(Exception $ex){
             parent::json(['msg'=>$ex->getMessage()],400);
