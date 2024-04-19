@@ -53,7 +53,8 @@ $("#report").on('submit',async (e)=>{
     &estatus=${estatus.val()}
     &fechaMinSolucion=${fechaMinSolucion.val()}
     &fechaMaxSolucion=${fechaMaxSolucion.val()}`).load();
-        console.log(await res.json());
+    const da = await res.json();
+        console.log(da.data);
     } catch (error) {
         console.error(error);
     } 

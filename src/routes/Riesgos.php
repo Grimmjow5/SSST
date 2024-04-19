@@ -34,6 +34,9 @@ class Riesgos extends Flight{
     //Vista en la que se mostrara el lformulario para genera los reportes de riesgos 
        parent::route('GET /riesgos/report',[$report,'index']);   
        parent::route('GET /riesgos/reports',[$report,'GetReports']);
+       parent::route('GET /rr',[$report,'GenerateExcel']);
+       parent::route('GET /PDF',[$report,'GeneratePDF']);
+
 
     }
 }

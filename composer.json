@@ -1,4 +1,5 @@
 {
+
     "name": "almacen/ssst",
     "autoload": {
         "psr-4": {
@@ -12,6 +13,9 @@
         }
     ],
     "require": {
-        "flightphp/core": "^3.7"
+        "flightphp/core": "^3.7",
+        "ext-gd": "*",
+        "phpoffice/phpspreadsheet": "^2.0",
+        "dompdf/dompdf": "^2.0"
     }
 }
