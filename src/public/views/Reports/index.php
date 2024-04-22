@@ -14,10 +14,12 @@ require 'public/views/components/Nav.php';
                 <label  class="form-label" >Fecha  Minima de  Reporte</label>
                 <input type="date" class="form-control" 
                     id="fechaMinReport" >
+                    <small class="ms-5">* Es la fecha como minimo en la que se levanto el reporte </small>
             </div>
             <div class="col-12 col-md-6 content-fluid">
                 <label for="" class="form-label">Fecha Máxima de Reporte </label>
                 <input type="date" class="form-control" id="fechaMaxReport">
+                    <small class="ms-5">* Es la fecha como máximo en la que se levanto el reporte </small>
                <!--  <div class="form-check form-switch">
                    <input class="form-check-input" type="checkbox" role="switch" id="conSolucion">
                     <label class="form-check-label" for="conSolucion">¿Filtrar con fecha de solución?</label>
@@ -55,20 +57,33 @@ require 'public/views/components/Nav.php';
                 <input type="date" name="" id="fechaMaxSolucion" class="form-control">
             </div>
             <div class="d-flex justify-content-evenly">
-            <button type="submit" class="btn btn-success mt-4">
+                <button class="btn btn-primary mt-4 d-flex align-items-center" type="submit">
+                    <i class="bi bi-table h4 me-2"></i>
+                    <h4>Generar Reporte </h4>
+                </button>
+         <!--    <button type="submit" class="btn btn-success mt-4">
               <i class="bi bi-file-earmark-spreadsheet h4"></i>
                 Excel
             </button>
+            
             <button type="submit" class="btn btn-danger mt-4">
                 <i class="bi bi-file-earmark-pdf h4"></i>    
-            PDF</button> 
+            PDF</button>  -->
             </div>
             <small>La generacion de todos estos reportes seran en base a la fecha que se reporto el insidente</small>
         </form>
 
 </div>
 <div class="w-100 col-12 bg-light rounded mt-4 p-4">
-<h3>Filtros</h3>
+    <button type="button" id="generatePDF"class="btn btn-danger mt-4">
+        <i class="bi bi-file-earmark-pdf h4"></i>    PDF
+    </button>
+    <button type="submit" class="btn btn-success mt-4" id="generateExcel">
+        <i class="bi bi-file-earmark-spreadsheet h4"></i> Excel
+    </button>
+
+
+<h5 id="textTitle" ></h5>
 <!--Tabla que mostrara los datos a exportar -->
 <table id="tableReport" class="display w-100" >
         <thead>

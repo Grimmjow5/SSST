@@ -5,19 +5,24 @@ use Almacen\Ssst\dbrepo\Factory;
 use Almacen\Ssst\dbrepo\GetReports;
 use Almacen\Ssst\dbrepo\models\MReportRiesgo;
 use Almacen\Ssst\dbrepo\RepoMain;
+use Almacen\Ssst\utils\FormatPDF;
 use DateTime;
 use Exception;
 use Flight;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use Dompdf\Dompdf;
+use Dompdf\Options;
 
 class ReportsController extends Flight {
 
     private Factory $factory;
     private MReportRiesgo $modelRiesgo;
+    private Options $opt;
+    private FormatPDF $pdf;
+    private array $dataReport =[]; 
     public function __construct()
     {
-        
+        $this->pdf = new FormatPDF();   
         $this->modelRiesgo = new MReportRiesgo();
         $this->factory = new Factory();
        $this->factory->getCatalogos(new RepoMain());
@@ -31,16 +36,20 @@ class ReportsController extends Flight {
 
         parent::render('Reports/index',['areas'=>$areas]);
     }
+    private function ValidateRequest($request) :MReportRiesgo {
+         $this->modelRiesgo->fechaMin = trim($request['fechaReport']);
+            $this->modelRiesgo->fechaMax = trim($request['fechaMaxReport']);
+            $this->modelRiesgo->area = trim($request['area']);
+            $this->modelRiesgo->estatus = trim($request['estatus']);
+            $this->modelRiesgo->fechaMinSolucion =trim($request['fechaMinSolucion']);
+            $this->modelRiesgo->fechaMaxSolucion = trim($request['fechaMaxSolucion']);
+        return $this->modelRiesgo;   
+    }
     public function GetReports() {
       
          try{
-            $this->modelRiesgo->fechaMin = trim($_REQUEST['fechaReport']);
-            $this->modelRiesgo->fechaMax = trim($_REQUEST['fechaMaxReport']);
-            $this->modelRiesgo->area = trim($_REQUEST['area']);
-            $this->modelRiesgo->estatus = trim($_REQUEST['estatus']);
-            $this->modelRiesgo->fechaMinSolucion =trim($_REQUEST['fechaMinSolucion']);
-            $this->modelRiesgo->fechaMaxSolucion = trim($_REQUEST['fechaMaxSolucion']);
-            $report = $this->factory->reportes->GetReports($this->modelRiesgo);
+           $this->ValidateRequest($_REQUEST);
+            $report = $this->factory->reportes->GetReports($this->modelRiesgo);          
             parent::json(['data'=>$report]);
         
         }catch(Exception $ex){
@@ -49,64 +58,45 @@ class ReportsController extends Flight {
     }
 
     public function GeneratePDF() {
-      $pdf = new Dompdf();
+        $this->opt  = new Options();
+        $this->opt->set('isHtml5ParserEnabled', true);
+        $this->opt->set('enable_remote',true);
+        $pdf = new Dompdf($this->opt);
+
         $pdf->setPaper('A4','landscape');
-        $html =  <<<HTML
-<!DOCTYPE html>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet" />
-<link href="https://fonts.googleapis.com/css2?family=Tangerine&display=swap" rel="stylesheet" />
-<style>
 
-body {
-    font-family: 'Montserrat';
-}
-
-
-</style>
-</head>
-<body>
-    <div style="border:1p solid red;">
-        <div style="border:1p solid green;width:100px;">
-            <h2>jj</h2>
-        </div>
-        <div style="border:1p solid blue; width:200px;">
-            <p class="h1">2</p>
-        </div>
-    </div>
-   
-</body>
-</html>
-HTML
-        ;
-        $pdf->loadHtml($html);
+           $this->ValidateRequest($_REQUEST);
+            $report = $this->factory->reportes->GetReports($this->modelRiesgo);        
+           $title = $_REQUEST["title"];
+        $pdf->loadHtml($this->pdf->HtmlContent($report,$title),'UTF-8');
         $pdf->render();
 
-        $pdf->stream('decha.pdf',array("Attachment"=> false));
+       $pdf->stream('decha.pdf',array("Attachment"=> false));
 
 
     }
     public function GenerateExcel(){
-       
-        //$dir = __DIR__."\Repoddr.xlsx";
-         
         $spreadSheet = new Spreadsheet();
+
+        $headExcel = ['No','Fecha reportado','Descripción','Prioridad','Fecha de Solución','Descripcion de Solucion'];
+        $this->ValidateRequest($_REQUEST);
+        $report = $this->factory->reportes->GetReports($this->modelRiesgo);
       
-        
-        $set = ['val1','val2','val3'];
-        $sett = [['val1','val2','val3','vsdlkjflskdjhflsjkhdflkjhsdlkjfhsldkj   fhslkjdhfskljdflksjhdfskhjalksaljdñljkashldkjah lskjdhalskhjdlakjsdhlaksjhdlakjsdhlakjsdhlakjshdlakjshld kjashlkdhalksjdhljk1','val2','val3'],['val1','val2','val3']];
         //Insert por foreach
-        $spreadSheet->getActiveSheet()->fromArray($set,null,'A1');
-        $spreadSheet->getActiveSheet()->fromArray($sett,null,'A2');
+        $spreadSheet->getActiveSheet()->fromArray($headExcel,null,'A1');
+        $spreadSheet->getActiveSheet()->fromArray($this->FormatDataExcel($report),null,'A2');
         
         //Header de tabla style
-        $spreadSheet->getActiveSheet()->getStyle('A1:C1')->getFont()->setBold(true);
+        $spreadSheet->getActiveSheet()->getStyle('A1:F1')->getFont()->setBold(true);
         //Parte de la configuracion de para alinear el texto
-        $spreadSheet->getActiveSheet()->getStyle('D2')->getAlignment()->setWrapText(true);
+        $spreadSheet->getActiveSheet()->getStyle('C2')->getAlignment()->setWrapText(true);
         //Redimencion de la celda 
-        $spreadSheet->getActiveSheet()->getColumnDimension('D')->setWidth(80);
+        $spreadSheet->getActiveSheet()->getColumnDimension('C')->setWidth(80);
+        
+        $spreadSheet->getActiveSheet()->getStyle('F2')->getAlignment()->setWrapText(true);
+        //Redimencion de la celda 
+        $spreadSheet->getActiveSheet()->getColumnDimension('F')->setWidth(80);
+
 
 
         //Fecha para dar  nombre al archivo
@@ -122,5 +112,18 @@ HTML
 
 
         //parent::json(['msg'=>"MEnsajes"]);
+    }
+    private function FormatDataExcel(array $datos):array{
+         $newArray = array();
+        foreach ($datos as $key) {
+           array_push($newArray,
+                                [
+                                    $key['id'],$this->pdf->dateFormat($key['fechaRegistro']),
+                                    $key['text_Riesgo'],
+                                    $key['prioridad'],
+                                    $this->pdf->dateFormat($key['fecha_solucion']),
+                                    $key['solucion']]);
+        }
+        return $newArray;
     }
 }

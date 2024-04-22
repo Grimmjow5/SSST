@@ -16,50 +16,99 @@ dateMaxReport.val(fechNow);
 
 //Elementos del DOM
 const area =$("#area");//Are de donde se hace la consulta en caso de cero toma que que son todas las áreas
-const estatus = $("#estatus");//Hay tres opciones reportado, solucionado y las dos al mis tiempo 
+const estatus = $("#estatus");//Hay tres opciones reportado, solucionado y las dos al mismo tiempo 
 const fechaMinSolucion = $("#fechaMinSolucion");//Fecha minima para consultar por solución
 const fechaMaxSolucion = $("#fechaMaxSolucion");//FechaMaxiuma para consutlar por soluciónnn
 
 
 let urlFetch=" ";
 
+estatus.on('change',()=>{
+  if(estatus.val() == 1 || estatus.val()=='all'){
+    fechaMinSolucion.prop('disabled',false);
+    
+    fechaMaxSolucion.prop('disabled',false);
 
+  }
+  else{
+
+    fechaMinSolucion.val('');
+    fechaMaxSolucion.val('');
+    fechaMaxSolucion.prop('disabled',true);
+    fechaMinSolucion.prop('disabled',true);
+  }
+});
 
 $("#report").on('submit',async (e)=>{
     e.preventDefault();
- /*   console.log("A=S");
-    urlFetch =`/riesgos/reports?fechaReport=${dateMinReport.val()}
-    &fechaMaxReport=${dateMaxReport.val()}
-    &area=${area.val()}
-    &estatus=${estatus.val()}
-    &fechaMinSolucion=${fechaMinSolucion.val()}
-    &fechaMaxSolucion=${fechaMaxSolucion.val()}`;
-    tabla.clear().draw();
-    tabla.ajax.reload();
-   */  console.log("Here");    
     try {
-    const config = {method:'GET'};        
-    const res = await fetch(`/riesgos/reports?fechaReport=${dateMinReport.val()}
-    &fechaMaxReport=${dateMaxReport.val()}
-    &area=${area.val()}
-    &estatus=${estatus.val()}
-    &fechaMinSolucion=${fechaMinSolucion.val()}
-    &fechaMaxSolucion=${fechaMaxSolucion.val()}`,config);
-
     tabla.clear().draw();
-    tabla.ajax.url(`/riesgos/reports?fechaReport=${dateMinReport.val()}
-    &fechaMaxReport=${dateMaxReport.val()}
-    &area=${area.val()}
-    &estatus=${estatus.val()}
-    &fechaMinSolucion=${fechaMinSolucion.val()}
-    &fechaMaxSolucion=${fechaMaxSolucion.val()}`).load();
+    tabla.ajax.url("/riesgos/reports"+cadenaReport()).load();
+    format();
     const da = await res.json();
         console.log(da.data);
     } catch (error) {
         console.error(error);
     } 
 });
+const textDescripcion = $("#textTitle");
+const format =()=>{
 
+  let text = "";
+  if(dateMinReport.val() != ''  && dateMaxReport.val() != ''){
+    text = `Riesgos reportados entre ${dateMinReport.val()} - ${dateMaxReport.val()}`;
+  }
+  
+  if(dateMinReport.val() != ''  && dateMaxReport.val() == ''){
+    text = `Riesgos reportados desde ${dateMinReport.val()}`;
+  }
+
+  if(dateMinReport.val() == ''  && dateMaxReport.val() != ''){
+      text = `Riesgos reportados asta el ${dateMaxReport.val()}`;
+  }
+if(area.val() >0 ){
+let areaText = $("#area option:selected").text();
+  text += `, de ${areaText}`;
+}
+//En caso de que diga solucionado o los dos entonces se aplicara lo siquiente 
+console.log(estatus.val());
+  switch (estatus.val()) {
+    
+    case '1':
+      text += ", solucionado";
+      break;
+    case '0':
+      text +=", reportado ";
+      break;
+    default:
+      text += ", reportado y solucionado ";
+      break ;
+  }
+  if(fechaMinSolucion.val() != '' && fechaMaxSolucion.val() != ''){
+      text += `, entre ${fechaMinSolucion.val()} - ${fechaMaxSolucion.val()}`;
+  }
+
+  if(fechaMinSolucion.val() != '' && fechaMaxSolucion.val() == ''){
+    text += `, desde ${fechaMinSolucion.val()}`;
+  }
+
+  if(fechaMinSolucion.val() == '' && fechaMaxSolucion.val() != ''){
+    text += `, asta ${fechaMaxSolucion.val()}`;
+  }
+  text = text.trim()+".";
+  textDescripcion.html(text);
+  return text;
+}
+const cadenaReport=()=>{        
+    const res = `?fechaReport=${dateMinReport.val()}
+    &fechaMaxReport=${dateMaxReport.val()}
+    &area=${area.val()}
+    &estatus=${estatus.val()}
+    &fechaMinSolucion=${fechaMinSolucion.val()}
+    &fechaMaxSolucion=${fechaMaxSolucion.val()}`;
+return res;
+
+}
 //Configuración de Tabla para mostrar antes de 
 
 
@@ -102,13 +151,9 @@ const tabla  = new DataTable('#tableReport', {
          { data: "solucion" }
        ]
      });
-   
-
-/* withDateSolution.on('change',()=>{
-    if(!withDateSolution.prop("checked")){
-        dateSolution.prop("disabled",true);
-    }else{
-
-        dateSolution.prop("disabled",false);
-    }
-}); */
+  $("#generatePDF").click(()=>{
+    window.location="/PDF"+cadenaReport()+`&title=${format()}`;
+  });
+  $("#generateExcel").click(()=>{
+    window.location = "/EXCEL"+cadenaReport();
+  });
