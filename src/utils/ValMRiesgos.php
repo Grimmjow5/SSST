@@ -47,5 +47,15 @@ class ValMRiesgos extends MRiesgos{
      
 
     }
-      
+
+    private function val_id(int $id){
+        try {
+            if(empty($id)){
+            }
+        } catch (\Throwable $th) {
+            
+            //throw $th;
+        }        
+    }
+
 }
