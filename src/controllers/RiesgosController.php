@@ -28,6 +28,7 @@ class RiesgosController extends Flight{
        
       // $arr = array("valor"=>"valores");
        $areas = $this->repoRiesgos->getCatalogos(new RepoMain());
+       
        $arre = $this->repoRiesgos->getCat->getAll();
        parent::render('riesgos/index',['areas'=> $areas, 'error'=>""]);
     }
