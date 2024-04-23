@@ -9,6 +9,8 @@ require '../vendor/autoload.php';
 
 session_start();
 
+session_start();
+
 $ll = new Riesgos();
 //$reports = new ReportsRiesgos();
 // Finalmente, inicia el framework.

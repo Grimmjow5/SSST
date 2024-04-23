@@ -19,7 +19,7 @@ class RiesgosController extends Flight{
     public function __construct()
     {        
         $this->model = new MRiesgos();
-        $this->repoRiesgos = new Factory();
+        $this->repoRiesgos = new Riesgos();
         $this->mriesgos = new ValMRiesgos();
     }
 
@@ -27,9 +27,7 @@ class RiesgosController extends Flight{
                 
        
       // $arr = array("valor"=>"valores");
-       $areas = $this->repoRiesgos->getCatalogos(new RepoMain());
-       
-       $arre = $this->repoRiesgos->getCat->getAll();
+       $areas = $this->repoRiesgos->get_Cat();
        parent::render('riesgos/index',['areas'=> $areas, 'error'=>""]);
     }
 
@@ -43,7 +41,7 @@ class RiesgosController extends Flight{
             parent::view()->set('error', $ex->getMessage());
             echo $ex->getMessage();
             
-            $areas = $this->repoRiesgos->getCat->getAll();
+            $areas = $this->repoRiesgos->get_Cat();
 
             parent::render('riesgos/index',['areas'=>$areas]);
         }
