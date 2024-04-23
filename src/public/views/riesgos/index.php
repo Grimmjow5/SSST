@@ -78,29 +78,58 @@ require 'public/views/components/Nav.php';
     </form>
   </div>
 </div>
+<div class="pt-3 mt-2 mx-4">
+    <div class="bg-light p-4 shadow-lg">
+      <!--Se mostrara la tabla de insidentes-->
+      <h4 class="my-1">Riesgos pendientes y Solucionados del Mes pasado</h4>
+      <small>Solo son registros que aun no se han solucionado independiente de la fecha de creción y solo los solucionados en el mes en pasado y en curso.</small>
 
+      <table id="tableRiesgos" class="display w-100" >
+        <thead>
+          <tr>    
+            <th>No. Id</th>
+            <th class="w-25">Descripción</th>
+            <th>Fecha de Resgistro</th>
+            <th>Prioridad</th>
+            <th>Estatus</th>
+            <th>Solución</th>
+          </tr>
+        </thead>
+        <tfoot>
+           <tr>    
+            <th>No. Id</th>
+            <th>Descripción</th>
+            <th>Fecha de Resgistro</th>
+            <th>Prioridad</th>
+            <th>Estatus</th>
+            <th>Solución</th>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+</div>
+</div>
 <!--Es parte del body -->
 <div>
-
-<script>
-
-const optStatus = document.getElementById('estatus');
-const showSolucion = document.getElementById('textSolucion');
-  optStatus.addEventListener('change',()=>{
-   toggleShow(); 
-  });
-
-  const toggleShow = ()=>{
-    console.log(optStatus.value);
-if(optStatus.value == 0 ){
-  console.log("Ejecuta al cargar ");
-    showSolucion.classList.add('d-none');
+<style>
+  tr{
+    cursor: pointer;
+  }
+  .ids{
+    width: 4rem;
+  }
+  .descri{
+    width: 40%;
+     }
+  .fechaRe{
+    width: 6rem;
+  }
+  .prioridad{
+width: 6rem;
     }
-    else{
-      showSolucion.classList.remove('d-none');
-    }
+  .estatus{
+    width: 9rem;
 }
-document.addEventListener('DOMContentLoaded',()=>toggleShow());
-
-</script>
-  <?php require 'public/views/components/Footer.php'; ?>
+</style>
+ <?php require 'public/views/components/Footer.php'; ?>
+<script src="../public/views/riesgos/riesgos.js"></script>
