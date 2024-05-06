@@ -36,5 +36,4 @@ Como parte del control de cambios y de historial se genero una tabla en el cual 
 ## Puntos a tratar 
 - Número de insdente
 - Firmas en el formato pdf, del reporte
-- Roles y seguridad
-- 
+- Roles y seguridad 
