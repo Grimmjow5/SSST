@@ -1,6 +1,8 @@
 <?php
 
 namespace Almacen\Ssst\routes;
+
+use Almacen\Ssst\controllers\ExtintorController;
 use Flight;
 use Almacen\Ssst\controllers\Login;
 
@@ -37,6 +39,9 @@ class Riesgos extends Flight{
        parent::route('GET /EXCEL',[$report,'GenerateExcel']);
        parent::route('GET /PDF',[$report,'GeneratePDF']);
 
+       //vista Extintores 
+       $extintores = new ExtintorController();
+       parent::route('GET /Extintores',[$extintores,'index']);
 
     }
 }

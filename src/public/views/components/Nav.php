@@ -23,7 +23,7 @@
             <a href="/riesgos" class="text-black" >Situaciones de riesgo</a>
         </li>
         <li class="my-3">
-            <a href="#" class="text-black">Extintores</a>
+            <a href="/Extintores" class="text-black">Extintores</a>
         </li>
     </ul>
     <hr>
