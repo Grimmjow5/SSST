@@ -26,7 +26,7 @@ require 'public/views/components/Nav.php';
 
 <div class="card-body">
 </br>
-  <form class="row g-3">
+  <form class="row g-3" id="newExtintor">
 
 
 
@@ -69,7 +69,7 @@ require 'public/views/components/Nav.php';
         </div>
 
         <div class="form-check form-check-inline me-5 ms-5">
-          <input class="form-check-input" type="radio" name="pregunta1" id="inlineRadio2" value="option2">
+          <input class="form-check-input" type="radio" name="pregunta1" id="inlineRadio1" value="option2">
           <label class="form-check-label" for="inlineRadio2">No</label>
         </div>
         </br>
@@ -77,12 +77,12 @@ require 'public/views/components/Nav.php';
         </br>
 
         <div class="form-check form-check-inline me-5 ms-5">
-          <input class="form-check-input" type="radio" name="pregunta2" id="inlineRadio3" value="option4">
+          <input class="form-check-input" type="radio" name="pregunta2" id="inlineRadio1" value="option4">
           <label class="form-check-label " for="inlineRadio4">Si</label>
         </div>
 
         <div class="form-check form-check-inline me-5 ms-5">
-          <input class="form-check-input" type="radio" name="pregunta2" id="inlineRadio4" value="option3">
+          <input class="form-check-input" type="radio" name="pregunta2" id="inlineRadio1" value="option3">
           <label class="form-check-label" for="inlineRadio3">No</label>
         </div>
         </br>
@@ -90,24 +90,24 @@ require 'public/views/components/Nav.php';
         </br>
 
         <div class="form-check form-check-inline me-5 ms-5">
-          <input class="form-check-input" type="radio" name="pregunta3" id="inlineRadio1" value="option1">
+          <input class="form-check-input" type="radio" name="pregunta3" id="inlineRadio5" value="option1">
           <label class="form-check-label " for="inlineRadio1">Si</label>
         </div>
 
         <div class="form-check form-check-inline me-5 ms-5">
-          <input class="form-check-input" type="radio" name="pregunta3" id="inlineRadio2" value="option2">
+          <input class="form-check-input" type="radio" name="pregunta3" id="inlineRadio6" value="option2">
           <label class="form-check-label" for="inlineRadio2">No</label>
         </div>
         </br>
         <label for="pregunta4" class="form-label">4.-Las instruciones de operación sobre la placa del extintor son legibles</label>
         </br>
         <div class="form-check form-check-inline me-5 ms-5">
-          <input class="form-check-input" type="radio" name="pregunta4" id="inlineRadio1" value="option1">
+          <input class="form-check-input" type="radio" name="pregunta4" id="inlineRadio7" value="option1">
           <label class="form-check-label " for="inlineRadio1">Si</label>
         </div>
 
         <div class="form-check form-check-inline me-5 ms-5">
-          <input class="form-check-input" type="radio" name="pregunta4" id="inlineRadio2" value="option2">
+          <input class="form-check-input" type="radio" name="pregunta4" id="inlineRadio8" value="option2">
           <label class="form-check-label" for="inlineRadio2">No</label>
         </div>
         </br>
@@ -115,12 +115,12 @@ require 'public/views/components/Nav.php';
         </br>
 
         <div class="form-check form-check-inline me-5 ms-5">
-          <input class="form-check-input" type="radio" name="pregunta5" id="inlineRadio1" value="option1">
+          <input class="form-check-input" type="radio" name="pregunta5" id="inlineRadio9" value="option1">
           <label class="form-check-label " for="inlineRadio1">Si</label>
         </div>
 
         <div class="form-check form-check-inline me-5 ms-5">
-          <input class="form-check-input" type="radio" name="pregunta5" id="inlineRadio2" value="option2">
+          <input class="form-check-input" type="radio" name="pregunta5" id="inlineRadio10" value="option2">
           <label class="form-check-label" for="inlineRadio2">No</label>
         </div>
 
@@ -128,12 +128,12 @@ require 'public/views/components/Nav.php';
         <label for="pregunta6" class="form-label">6.-Los sellos de inviolabilidad están en buenas codiciones</labe>
         </br>
         <div class="form-check form-check-inline me-5 ms-5">
-          <input class="form-check-input" type="radio" name="pregunta6" id="inlineRadio1" value="option1">
+          <input class="form-check-input" type="radio" name="pregunta6" id="inlineRadio11" value="option1">
           <label class="form-check-label " for="inlineRadio1">Si</label>
         </div>
 
         <div class="form-check form-check-inline me-5 ms-5">
-          <input class="form-check-input" type="radio" name="pregunta6" id="inlineRadio2" value="option2">
+          <input class="form-check-input" type="radio" name="pregunta6" id="inlineRadio12" value="option2">
           <label class="form-check-label" for="inlineRadio2">No</label>
         </div>
         </br>
@@ -141,12 +141,12 @@ require 'public/views/components/Nav.php';
         </br>
 
         <div class="form-check form-check-inline me-5 ms-5">
-          <input class="form-check-input" type="radio" name="pregunta7" id="inlineRadio1" value="option1">
+          <input class="form-check-input" type="radio" name="pregunta7" id="inlineRadio13" value="option1">
           <label class="form-check-label " for="inlineRadio1">Si</label>
         </div>
 
         <div class="form-check form-check-inline me-5 ms-5">
-          <input class="form-check-input" type="radio" name="pregunta7" id="inlineRadio2" value="option2">
+          <input class="form-check-input" type="radio" name="pregunta7" id="inlineRadio14" value="option2">
           <label class="form-check-label" for="inlineRadio2">No</label>
         </div>
         </br>
@@ -154,12 +154,12 @@ require 'public/views/components/Nav.php';
         </br>
 
         <div class="form-check form-check-inline me-5 ms-5">
-          <input class="form-check-input" type="radio" name="pregunta8" id="inlineRadio1" value="option1">
+          <input class="form-check-input" type="radio" name="pregunta8" id="inlineRadio15" value="option1">
           <label class="form-check-label " for="inlineRadio1">Si</label>
         </div>
 
         <div class="form-check form-check-inline me-5 ms-5">
-          <input class="form-check-input" type="radio" name="pregunta9" id="inlineRadio2" value="option2">
+          <input class="form-check-input" type="radio" name="pregunta9" id="inlineRadio16" value="option2">
           <label class="form-check-label" for="inlineRadio2">No</label>
         </div>
         </br> 
@@ -175,13 +175,13 @@ require 'public/views/components/Nav.php';
           
             </br>
             <label for="formGroupExampleInput" class="form-label">Peso del extintor</label>
-            <input type="text" class="form-control" id="txtNumIn" placeholder="Altura">
+            <input type="text" class="form-control" id="txtPeso" placeholder="Peso">
         </div>
 
         <div class="col-6">
         </br>
         <label for="formGroupExampleInput" class="form-label">Altura del extintor</label>
-            <input type="text" class="form-control" id="txtNumIn" placeholder="Altura">
+            <input type="text" class="form-control" id="txtAltura" placeholder="Altura">
       </div>
       </div>
 
@@ -192,4 +192,5 @@ require 'public/views/components/Nav.php';
       </div>
 
       <?php require 'public/views/components/Footer.php'; ?>
+      <script src="../public/views/Extintores/extintor.js"></script>
 

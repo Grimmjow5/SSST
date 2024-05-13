@@ -1,0 +1,162 @@
+[33mcommit 38bf6ebd60301f45c5897e2c5d32bccceb2cbe00[m[33m ([m[1;36mHEAD -> [m[1;32mSSSCT-5-Formularios-de-Extintor[m[33m, [m[1;31morigin/SSSCT-5-Formularios-de-Extintor[m[33m)[m
+Author: AxelJ26 <axelleyva26@gmail.com>
+Date:   Mon May 13 11:51:03 2024 -0600
+
+    correcion de formulario
+
+[33mcommit e101253106e416fff6f41b26e3e7e9dba9a9c59f[m
+Author: AxelJ26 <axelleyva26@gmail.com>
+Date:   Sat May 11 22:47:43 2024 -0600
+
+    Vista Formulario
+
+[33mcommit 8c3fd8fbeec323ffc3f25410aa096f11216264cf[m[33m ([m[1;32mmain[m[33m)[m
+Author: Grimmjow5 <72721674+Grimmjow5@users.noreply.github.com>
+Date:   Wed May 8 15:42:02 2024 -0600
+
+    Respaldo de la base de datos
+
+[33mcommit 7c7fc9d7713f6f3d2b01ed4dad0084e1c37b7228[m[33m ([m[1;31morigin/SSCT-2-Encrypt[m[33m)[m
+Author: sebastian <s3v4s61@gmail.com>
+Date:   Mon May 6 14:58:31 2024 -0600
+
+    JRA-123 No funciona este respaldo
+
+[33mcommit b09f2ac7a34a966181a313d108e5ed3d34003b9a[m
+Author: sebastian <s3v4s61@gmail.com>
+Date:   Mon May 6 14:55:19 2024 -0600
+
+    Respaldo
+
+[33mcommit 1851e0dd521b371643c88d2dc9f40d8cd00ee366[m
+Author: sebastian <s3v4s61@gmail.com>
+Date:   Mon May 6 12:20:01 2024 -0600
+
+    Prueba
+
+[33mcommit 416a96be9e6cbaa5dbaa79c429666f1c311557d2[m
+Author: sebastian <41399823+7sevas7@users.noreply.github.com>
+Date:   Mon May 6 11:13:48 2024 -0600
+
+    Comentarios de la documentación
+
+[33mcommit 07e0b8d06ca2b3a721636561bc2c49b653f7b82a[m
+Author: sebastian <41399823+7sevas7@users.noreply.github.com>
+Date:   Tue Apr 23 08:46:35 2024 -0600
+
+    Se borraron comentarios
+
+[33mcommit f770012c6d0c086d1177ea1671549b824bdf9ec7[m
+Author: sebastian <41399823+7sevas7@users.noreply.github.com>
+Date:   Mon Apr 22 23:39:26 2024 -0600
+
+    Se restablecioreron los archivos perdido
+
+[33mcommit 59e8d878cbb95c5d154a595931edd7bc6f973999[m
+Author: sebastian <41399823+7sevas7@users.noreply.github.com>
+Date:   Mon Apr 22 23:38:29 2024 -0600
+
+    Se volvio a configurar el header y footer, se elimino una session
+
+[33mcommit 903561ccb9983018c75cca00be509835caa6b6dd[m
+Author: sebastian <41399823+7sevas7@users.noreply.github.com>
+Date:   Mon Apr 22 23:36:48 2024 -0600
+
+    Se eñadio funciones a la interface para actualizar
+
+[33mcommit 138b477cc1d8e0579620b5060e3727cc71ac5fe9[m
+Author: sebastian <41399823+7sevas7@users.noreply.github.com>
+Date:   Mon Apr 22 23:34:55 2024 -0600
+
+    Se restablecio el archivo
+
+[33mcommit 5c98f46879a31cc8400b661d138f0b980f1107ff[m
+Author: sebastian <41399823+7sevas7@users.noreply.github.com>
+Date:   Mon Apr 22 23:33:33 2024 -0600
+
+    Se implemento factory hacer mas limpio el codigo de controllers
+
+[33mcommit de34d22b167c3d7f0e293810a4e62e35373c17c7[m
+Author: sebastian <41399823+7sevas7@users.noreply.github.com>
+Date:   Mon Apr 22 22:50:17 2024 -0600
+
+    Se modificaton las consultas de los reportes
+
+[33mcommit a16713a7fd9d8f5c19cb9b9ebc4a591faa14b113[m
+Author: sebastian <41399823+7sevas7@users.noreply.github.com>
+Date:   Mon Apr 22 16:41:02 2024 -0600
+
+    Respaldo
+
+[33mcommit 458b1ddc5fc4b8c7cfc6b1301618b259f29e0369[m
+Author: sebastian <41399823+7sevas7@users.noreply.github.com>
+Date:   Mon Apr 22 16:32:06 2024 -0600
+
+    Error de versiones
+
+[33mcommit 8ecc09a1a27115bb60f09518513fafd7063653af[m
+Merge: e865cb0 14f321a
+Author: sebastian <41399823+7sevas7@users.noreply.github.com>
+Date:   Mon Apr 22 16:04:31 2024 -0600
+
+    Merge branch 'main' of https://win-uu2topjeohi/Informatica/_git/SSST
+
+[33mcommit 14f321a7d983f3ecbe523ac4d9e0f6fa7e5bd314[m
+Author: sebastian <41399823+7sevas7@users.noreply.github.com>
+Date:   Thu Apr 11 16:53:05 2024 -0600
+
+    Se modificaron algunas dependencias y se crearon consultas
+
+[33mcommit e865cb0b7d582c8de54fce2c164ec2f4d244809b[m
+Author: sebastian <41399823+7sevas7@users.noreply.github.com>
+Date:   Mon Apr 22 15:42:04 2024 -0600
+
+    Listo para ezportar a PDF Y excel solo falta resolver algunas dudas
+
+[33mcommit feb4d035e9a136ab9dfa8a6f991cddd9233b982b[m
+Author: sebastian <41399823+7sevas7@users.noreply.github.com>
+Date:   Fri Apr 19 16:40:38 2024 -0600
+
+    Lista la configuracion para excel, pendiente la consfiguración de PDF
+
+[33mcommit 417a918ea319cd6b3f426ab70a57b37b537c6008[m
+Author: sebastian <41399823+7sevas7@users.noreply.github.com>
+Date:   Thu Apr 18 16:42:37 2024 -0600
+
+    Se cambio configuracion de consultas a los reportes y en la vista de la misma
+
+[33mcommit 690c3bc8d384f8d5f989dcf06b5675b5f6401af6[m
+Author: sebastian <41399823+7sevas7@users.noreply.github.com>
+Date:   Wed Apr 17 16:35:53 2024 -0600
+
+    Pruebas de reportes de riesgos
+
+[33mcommit cbbef64cf862df13252fb2adbf40171cb9a3424a[m
+Author: Sebastián Posadas Cordero <trabajo_dif@outlook.com>
+Date:   Wed Apr 17 21:16:49 2024 +0000
+
+    Se actualizó: README.md
+
+[33mcommit a233c7190f38ed28247e4c6dc23126790e8f943e[m
+Author: sebastian <41399823+7sevas7@users.noreply.github.com>
+Date:   Wed Apr 17 15:14:58 2024 -0600
+
+    Guardadndo cambios para reportes
+
+[33mcommit db640611acfb3828b8ed112ded9d215a07b26517[m
+Author: sebastian <41399823+7sevas7@users.noreply.github.com>
+Date:   Fri Apr 12 16:51:16 2024 -0600
+
+    Vamonos jejej
+
+[33mcommit 1e988f6b547592b2b99c2ad47195596ee7fdcdf7[m
+Author: sebastian <41399823+7sevas7@users.noreply.github.com>
+Date:   Thu Apr 11 16:53:05 2024 -0600
+
+    Todo alv
+
+[33mcommit e67f0fdde6a90a49218bd1cd6537e61ac78778aa[m
+Author: sebastian <41399823+7sevas7@users.noreply.github.com>
+Date:   Tue Apr 9 16:41:26 2024 -0600
+
+    Inicio
