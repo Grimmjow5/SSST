@@ -1,9 +1,9 @@
 <?php return array(
     'root' => array(
         'name' => 'almacen/ssst',
-        'pretty_version' => 'dev-main',
-        'version' => 'dev-main',
-        'reference' => 'cadc39708b5ba889d7fd2f5275a2174de3362205',
+        'pretty_version' => '1.0.0+no-version-set',
+        'version' => '1.0.0.0',
+        'reference' => null,
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -11,9 +11,9 @@
     ),
     'versions' => array(
         'almacen/ssst' => array(
-            'pretty_version' => 'dev-main',
-            'version' => 'dev-main',
-            'reference' => 'cadc39708b5ba889d7fd2f5275a2174de3362205',
+            'pretty_version' => '1.0.0+no-version-set',
+            'version' => '1.0.0.0',
+            'reference' => null,
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
