@@ -28,7 +28,7 @@ forma.addEventListener('submit', async(e) => {
     form.append('txtNumIn', inven.value);
     form.append('txtPeso', peso.value);
     form.append('txtAltura', altura.value)
-    const res = await fetch('/riesgos', {
+    const res = await fetch('/Extintores', {
         method: 'POST',
         body: form,
 
