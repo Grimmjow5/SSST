@@ -6,7 +6,7 @@ namespace Almacen\Ssst\utils;
 use Almacen\Ssst\dbrepo\models\MExtintores;
 use Exception;
 
-class ValExtintor extends MExtintores{
+class ValExtintores extends MExtintores{
    
      public function __construct()
     {
