@@ -21,6 +21,8 @@ class Login extends Flight{
     }
 
     public function RenderHome() {
+
+
         parent::render('Home/index',['header'=> 'Home']);
     }
     
