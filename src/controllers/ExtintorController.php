@@ -22,8 +22,7 @@ class ExtintorController extends Flight{
         $this->model=new MExtintores();
         $this->repoRiesgos = new Factory();
         $this->repoRiesgos->getCatalogos(new RepoMain());
-       // $this->prueba = new ValidacionExtintores();
-    $this->extin= new ValidacionExtintores();
+        $this->extin= new ValidacionExtintores();
     }
 
     public function index (){
@@ -34,4 +33,34 @@ class ExtintorController extends Flight{
        $areas = $this->repoRiesgos->getCat->getAll();
         parent::render('Extintores/index',['areas'=>$areas,'error'=>""]);
     }
+
+    public function postExtintores(){
+        
+      try{
+        
+             $this->model = $this->extin->validate($_REQUEST);
+            $save = false;
+            if(empty($this->model->id) || $this->model->id == 0 ){
+
+                $save = $this->repoRiesgos->getCatEx->set_modelEx($this->model);
+            }else{
+                $save = $this->repoRiesgos->getCatEx->put_modelEx($this->model);
+            }
+     
+            if($save){
+                parent::json(["OK"],200);
+            }else{
+                parent::json(["F"],400);
+            }
+        
+        }catch(Exception $ex){
+            //parent::view()->set('error', $ex->getMessage());
+            //echo $ex->getMessage();
+            //$areas = $this->repoRiesgos->getCat->get_Cat();
+            parent::json(['res'=> $ex->getMessage()],422);
+        }
+    }
+   
+ 
+
 }

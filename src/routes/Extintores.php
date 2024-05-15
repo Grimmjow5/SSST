@@ -9,7 +9,7 @@ use Almacen\Ssst\controllers\Login;
 
 
 
-class Riesgos extends Flight{
+class Extintores extends Flight{
 
     private $login;
     function __construct()
@@ -22,7 +22,9 @@ class Riesgos extends Flight{
        //vista Extintores 
        $extintores = new ExtintorController();
        parent::route('GET /Extintores',[$extintores,'index']);
-       parent::route('POST /Extintores',[$extintores,'postRiesgo']);
+       parent::route('POST /Extintores',[$extintores,'postExtintores']);
+     
+       
 
     }
 }

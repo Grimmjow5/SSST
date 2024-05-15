@@ -26,13 +26,8 @@ require 'public/views/components/Nav.php';
 
 <div class="card-body">
 </br>
-  <form class="row g-3" id="newExtintor">
-
-
-
-
-    <div class="row">
-
+  <form  id="newExtintor"   class="row">
+   
       <div class="col-6">
         <label for="formGroupExampleInput" class="form-label">Area</label>
 
@@ -53,7 +48,7 @@ require 'public/views/components/Nav.php';
         <input type="text" class="form-control" id="txtNumIn" placeholder="Nu.De inventario">
       </div>
 
-    </div>
+    
 
     <div class="row mx-auto" style="width: 30rem; "> 
 

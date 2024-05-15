@@ -40,8 +40,8 @@ class Riesgos extends Flight{
        parent::route('GET /PDF',[$report,'GeneratePDF']);
 
        //vista Extintores 
-       $extintores = new ExtintorController();
-       parent::route('GET /Extintores',[$extintores,'index']);
+       
+     
 
     }
 }

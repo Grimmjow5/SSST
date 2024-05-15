@@ -3,7 +3,7 @@
         'name' => 'almacen/ssst',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => '85ab3e5a7ae4ee706e84fb19f3e4d0d907497bdb',
+        'reference' => '8704c6bf121259c323b55fc657dbb546a95322e2',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -13,7 +13,7 @@
         'almacen/ssst' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => '85ab3e5a7ae4ee706e84fb19f3e4d0d907497bdb',
+            'reference' => '8704c6bf121259c323b55fc657dbb546a95322e2',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
