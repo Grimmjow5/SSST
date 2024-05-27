@@ -16,27 +16,27 @@ class Login extends Flight{
     }
 
     public function login(){
-    //CONDICIONAL EN CASO QUE EXISTA UNA SESION
-    parent::render('Login');
+        //CONDICIONAL EN CASO QUE EXISTA UNA SESION
+        parent::render('Login');
     }
 
     public function RenderHome() {
-
 
         parent::render('Home/index',['header'=> 'Home']);
     }
     
     public function setlogin(){
+
             if(isset($_POST['nombre_usuario']) && isset($_POST["password"])){
                $this->nameUser = $_POST["nombre_usuario"];
                $this->pass = $_POST["password"];
 
                if(empty($this->nameUser) && empty($this->pass)){
-                parent::render('Login',['mensaje'=>'2']);
-                parent::stop();
+                    parent::render('Login',['mensaje'=>'2']);
+                    parent::stop();
                 }
                 
-                $sql = "SELECT * FROM `cat_usuarios` WHERE `user`=? AND `pass`=? AND `status`=1;";            
+                $sql = "SELECT * FROM `cat_usuarios` WHERE `user`= ? AND `pass`= ? AND `status`= 1;";            
                 $stmt = $this->conexion->prepare($sql);
                 $stmt->bindValue(1,$this->nameUser);
                 $stmt->bindValue(2,$this->pass);
@@ -53,6 +53,7 @@ class Login extends Flight{
                     parent::redirect('/home');
               
                 }else{
+                    
                     parent::render('Login',['mensaje'=>'1']);
                 }
 

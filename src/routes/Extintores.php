@@ -3,6 +3,7 @@
 namespace Almacen\Ssst\routes;
 
 use Almacen\Ssst\controllers\ExtintorController;
+use Almacen\Ssst\controllers\CatalogoController;
 use Flight;
 use Almacen\Ssst\controllers\Login;
 
@@ -22,7 +23,16 @@ class Extintores extends Flight{
        //vista Extintores 
        $extintores = new ExtintorController();
        parent::route('GET /Extintores',[$extintores,'index']);
+
        parent::route('POST /Extintores',[$extintores,'postExtintores']);
+       
+       parent::route('GET /registro_ext',[$extintores,'getExtintores']);
+
+       /*$catalogo = new CatalogoController();
+       parent::route('GET /cat_extintores',[$catalogo,'getCatalogo']);
+       $catalogo = new CatalogoController();
+       parent::route('GET /Catalogo',[$catalogo,'getCatalogo']);
+       //parent::route('POST /Catalogo',[$catalogo,'postCatalogo']);*/
      
        
 

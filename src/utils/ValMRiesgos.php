@@ -13,11 +13,6 @@ class ValMRiesgos extends MRiesgos{
      }
      $this->idArea = $request['area'];
      
-    if(empty($request['nRiesgo'])){
-        throw new Exception("Ingresa el No. De Riesgo");    
-    }
-    $this->id_control = $request['nRiesgo'];
-     
      if(empty($request['descripcion'])){
         throw new Exception("Ingresa descripción del riesgo");
      }
@@ -34,10 +29,10 @@ class ValMRiesgos extends MRiesgos{
     $this->prioridad = $request['prioridad'];
 
     if($this->estatus == 1){
-     if(empty($request['solucion'])){
-        throw new Exception("Ingresa la solucion del problema");
-     }
-     $this->solucion = $request['solucion'];
+        if(empty($request['solucion'])){
+            throw new Exception("Ingresa la solucion del problema");
+        }
+        $this->solucion = $request['solucion'];
     }
      $this->id = $request['idRiesgo'];
      

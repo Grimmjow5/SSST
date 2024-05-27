@@ -151,6 +151,7 @@ const tabla  = new DataTable('#tableReport', {
          { data: "solucion" }
        ]
      });
+     
   $("#generatePDF").click(()=>{
     window.location="/PDF"+cadenaReport()+`&title=${format()}`;
   });

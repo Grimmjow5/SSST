@@ -7,10 +7,10 @@ class FormatPDF{
  public function HtmlContent(array  $datos, string $title):string  {
 
       //Config para logo
-      $path = __DIR__."\..\img\logo.png";
-      $strinImg = file_get_contents($path);
-   $base64 = "data:image/png;base64,".base64_encode($strinImg);
-   $datoss = $this->AddRow($datos);
+    $path = __DIR__."\..\img\logo.png";
+    $strinImg = file_get_contents($path);
+    $base64 = "data:image/png;base64,".base64_encode($strinImg);
+    $datoss = $this->AddRow($datos);
 
             $html =  <<<HTML
 <!DOCTYPE html>
@@ -112,7 +112,7 @@ th{
 <!--header de Reporte -->
         <div  class="logo">
             <img src="{$base64}" class="img">
-            <h1 >DIF</h1>
+            <h1>DIF</h1>
         </div>
         
         <div  class="title">
@@ -147,7 +147,7 @@ HTML;
       
       return $html;
 
-    }
+}
 private function AddRow(array $datos) :string{
     $rows = ""; 
     foreach ($datos as $key ) {

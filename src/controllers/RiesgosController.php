@@ -61,14 +61,15 @@ class RiesgosController extends Flight{
             parent::json(['res'=> $ex->getMessage()],422);
         }
     }
- public function getRiesgos(){
-    $mes = new DateTime();
-    $this->repoRiesgos->getCat->table = "mv_riesgos";
-    $this->repoRiesgos->getCat->logic = "or";
-            
-    $this->repoRiesgos->getCat->rowVal = array(
-    "id_mes"=>array($mes->format("m")-1,  $mes->format("m") )); 
-    $resul = $this->repoRiesgos->getCat->getAll();
-    parent::json(['data'=>$resul]);
-}
+    public function getRiesgos(){
+        
+        $mes = new DateTime();
+        $this->repoRiesgos->getCat->table = "mv_riesgos";
+        $this->repoRiesgos->getCat->logic = "or";
+                
+        $this->repoRiesgos->getCat->rowVal = array(
+        "id_mes"=>array($mes->format("m")-1,  $mes->format("m") )); 
+        $resul = $this->repoRiesgos->getCat->getAll();
+        parent::json(['data'=>$resul]);
+    }
 }

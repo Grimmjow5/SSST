@@ -20,6 +20,7 @@ class MExtintores {
     public $pesoM;
     public $fecha_UrecargaM;
     public $fecha_PrecargaM;
+    public $estatus;
     
     #Datos ingresados en automatico
     public $idDireccion;

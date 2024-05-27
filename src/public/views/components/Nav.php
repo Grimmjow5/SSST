@@ -9,9 +9,10 @@
                 <i class="bi bi-list h3"></i>
         </button>
     </div>  
-    <a class="text-black" href="#">
+    <a class="text-black" href="http://localhost:8082/">
         <i class="bi bi-box-arrow-left "></i>
-        Cerrar Sesión</a>
+        Cerrar Sesión
+    </a>
   </div>
 </nav>
 
@@ -22,15 +23,35 @@
         <li class="my-3">
             <a href="/riesgos" class="text-black" >Situaciones de riesgo</a>
         </li>
-        <li class="my-3">
-            <a href="/Extintores" class="text-black">Extintores</a>
+        
+        <li>
+            <a href="/Catalogo" class="text-black">Extintores</a>
         </li>
+        <!--Aqui cambiamos la ruta ya que se agrego una opcion en la lista del nav-->
+</br>
+        <li>
+            <a href="/Extintores" class="text-black">Formulario de extintores</a>
+        </li>
+        <!--termina-->
     </ul>
     <hr>
     <ul>
         <li>
             <a href="/riesgos/report" class="text-black">Resportes de Riesgos</a>
-            </li>
+        </li>
+<!--Se modifico por la de arriba-->
+        <li class="my-3">
+            <a href="#" class="text-black">Reportes de Extintores</a>
+        </li>
+        </br>
+        </br>
+        </br>
+        </br>
+        </br>
+        <hr>
+        <li class="my-3">
+            <a href="/Roles" class="text-black">Roles</a>
+        </li>
     </ul>
 </div>
 

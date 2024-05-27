@@ -46,7 +46,7 @@ class RepoMain extends ConfigDb implements ICat_Consultas {
             try{
                 $sql ="INSERT INTO
                     `mv_riesgos` (`id`, `id_area`, `id_mes`, `text_Riesgo`, `id_userReg`, `fechaRegistro`, `fechaModificacion`, `id_userModificacion`, `estatus`,`prioridad`, `fecha_solucion` ,`solucion`)
-                        VALUES (NULL,   ? ,      ?,           ?,             ?,             ? ,                 null,                     NULL,             b?, ?,?, ?)";
+                        VALUES   (NULL,      ?,         ?,         ?,             ?,             ?,                 NULL,                 NULL,             b?,        ?,              ?,            ?    )";
                  $dateNow = new DateTime();
 
                 $stmt = parent::prepare($sql);
@@ -109,9 +109,9 @@ class RepoMain extends ConfigDb implements ICat_Consultas {
             $model->fechaModificacion = $fech->format("Y-m-d H:i");
             $stmt->bindValue(3,$model->fechaModificacion);
 
-                $model->idUserMod = $_SESSION["id_usuario"];
+            $model->idUserMod = $_SESSION["id_usuario"];
 
-                $stmt->bindValue(4,$model->idUserMod); 
+            $stmt->bindValue(4,$model->idUserMod); 
             $stmt->bindValue(5,$model->estatus);
             $stmt->bindValue(6,$model->prioridad);
             ///Aqui vas bien tendria que comparar en la base de datos para que se haga la correcta modificacion de fecha 

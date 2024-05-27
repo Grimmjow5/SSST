@@ -25,8 +25,8 @@ class ReportsController extends Flight {
         $this->pdf = new FormatPDF();   
         $this->modelRiesgo = new MReportRiesgo();
         $this->factory = new Factory();
-       $this->factory->getCatalogos(new RepoMain());
-       $this->factory->getReportes(new GetReports());
+        $this->factory->getCatalogos(new RepoMain());
+        $this->factory->getReportes(new GetReports());
     }
     public function index (){
         $this->factory->getCat->rowVal  = ["estatus"=>array(1)];
