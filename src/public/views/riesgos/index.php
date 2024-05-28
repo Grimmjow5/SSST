@@ -3,7 +3,7 @@ require 'public/views/components/Header.php';
 require 'public/views/components/Nav.php';
 
 ?>
-<div class="d-flex flex-column">
+<div class="d-flex flex-column p-2 w-100">
 <div class="pt-2 mx-4 " style="background-color: #eceff4;">
 <!---->
   <div class="w-100 bg-light shadow-lg  rounded p-4 mt-3">
@@ -29,10 +29,6 @@ require 'public/views/components/Nav.php';
         </select>
       </div>
             <!--Verificar que este número no exista en la base de datos-->
-      <div class="col-md-6 mt-3">
-        <label class="form-label">Número de riesgo</label>
-        <input type="number" class="form-control" id="nRiesgo">
-      </div>
 
       <div class="col-lg-12">
           <label class="form-label" for="exampleInput">Descripción de la situación de riesgo</label>          
@@ -71,7 +67,7 @@ require 'public/views/components/Nav.php';
         <!--<input type="text" class="form-control" id="textSolucion" id="">-->
       </div>
       <!--Insidente-->
-      <button type="submit" class="btn btn-success mt-3"  value="add">
+      <button type="submit" class="btn btn-success mt-3"  value ="add">
         <i class="bi bi-floppy"></i>  
         Guardar
     </button>
@@ -125,7 +121,7 @@ require 'public/views/components/Nav.php';
     width: 6rem;
   }
   .prioridad{
-width: 6rem;
+  width: 6rem;
     }
   .estatus{
     width: 9rem;

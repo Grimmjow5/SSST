@@ -1,9 +1,9 @@
 <?php return array(
     'root' => array(
         'name' => 'almacen/ssst',
-        'pretty_version' => 'dev-main',
-        'version' => 'dev-main',
-        'reference' => '85ab3e5a7ae4ee706e84fb19f3e4d0d907497bdb',
+        'pretty_version' => '1.0.0+no-version-set',
+        'version' => '1.0.0.0',
+        'reference' => null,
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -11,9 +11,9 @@
     ),
     'versions' => array(
         'almacen/ssst' => array(
-            'pretty_version' => 'dev-main',
-            'version' => 'dev-main',
-            'reference' => '85ab3e5a7ae4ee706e84fb19f3e4d0d907497bdb',
+            'pretty_version' => '1.0.0+no-version-set',
+            'version' => '1.0.0.0',
+            'reference' => null,
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
@@ -94,6 +94,15 @@
             'reference' => '46b25da81613a9cf43c83b2a8c2c1bdab27df691',
             'type' => 'library',
             'install_path' => __DIR__ . '/../phenx/php-svg-lib',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
+        'phpmailer/phpmailer' => array(
+            'pretty_version' => 'v6.9.1',
+            'version' => '6.9.1.0',
+            'reference' => '039de174cd9c17a8389754d3b877a2ed22743e18',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../phpmailer/phpmailer',
             'aliases' => array(),
             'dev_requirement' => false,
         ),

@@ -3,13 +3,14 @@
 namespace Almacen\Ssst\routes;
 
 use Almacen\Ssst\controllers\ExtintorController;
+use Almacen\Ssst\controllers\ReportExtController;
 use Flight;
 use Almacen\Ssst\controllers\Login;
 
 
 
 
-class Riesgos extends Flight{
+class Extintores extends Flight{
 
     private $login;
     function __construct()
@@ -22,7 +23,23 @@ class Riesgos extends Flight{
        //vista Extintores 
        $extintores = new ExtintorController();
        parent::route('GET /Extintores',[$extintores,'index']);
-       parent::route('POST /Extintores',[$extintores,'postRiesgo']);
+
+       parent::route('POST /Extintores',[$extintores,'postExtintores']);
+       
+       parent::route('GET /registro_ext',[$extintores,'getExtintores']);
+
+        //Reportes
+       $reportE = new ReportExtController();
+       //Vista en la que se mostrara el lformulario para genera los reportes de riesgos 
+       parent::route('GET /Extintores/reportE',[$reportE,'index']); 
+
+       parent::route('GET /Extintores/reports',[$reportE,'GetReportsExt']);
+
+       parent::route('GET /EXCEL',[$reportE,'GenerateExcel']);
+
+       parent::route('GET /PDF',[$reportE,'GeneratePDF']);
+     
+       
 
     }
 }

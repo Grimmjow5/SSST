@@ -25,8 +25,8 @@ class ReportsController extends Flight {
         $this->pdf = new FormatPDF();   
         $this->modelRiesgo = new MReportRiesgo();
         $this->factory = new Factory();
-       $this->factory->getCatalogos(new RepoMain());
-       $this->factory->getReportes(new GetReports());
+        $this->factory->getCatalogos(new RepoMain());
+        $this->factory->getReportes(new GetReports());
     }
     public function index (){
         $this->factory->getCat->rowVal  = ["estatus"=>array(1)];
@@ -37,7 +37,7 @@ class ReportsController extends Flight {
         parent::render('Reports/index',['areas'=>$areas]);
     }
     private function ValidateRequest($request) :MReportRiesgo {
-         $this->modelRiesgo->fechaMin = trim($request['fechaReport']);
+            $this->modelRiesgo->fechaMin = trim($request['fechaReport']);
             $this->modelRiesgo->fechaMax = trim($request['fechaMaxReport']);
             $this->modelRiesgo->area = trim($request['area']);
             $this->modelRiesgo->estatus = trim($request['estatus']);

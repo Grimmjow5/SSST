@@ -1,5 +1,5 @@
 const area = document.getElementById('area');
-const nRiesgo = document.getElementById('nRiesgo');
+//const nRiesgo = document.getElementById('nRiesgo');
 const descripcion = document.getElementById('descripcion');
 const estatus = document.getElementById('estatus');
 const prioridad = document.getElementById('prioridad');
@@ -91,7 +91,7 @@ toggleShow();
 const selectRow = async(dates) => {
     area.value = dates.id_area;
     //Preguntar que onda con el numero de riesgo ya que se hace de manera automatica
-    nRiesgo.value = 210001202;
+    //nRiesgo.value = 210001202;
 
     descripcion.value = dates.text_Riesgo;
     estatus.value = dates.estatus;
@@ -100,10 +100,11 @@ const selectRow = async(dates) => {
     elId.value = dates.id;
     toggleShow();
 }
+
 const clearForm = () => {
     area.value = 0;
     //Preguntar que onda con el numero de riesgo ya que se hace de manera automatica
-    nRiesgo.value = null;
+    //nRiesgo.value = null;
     descripcion.value = null;
     estatus.value = 0;
     prioridad.value = 0;
@@ -118,7 +119,7 @@ forma.addEventListener('submit', async(e) => {
     e.preventDefault();
     const form = new FormData();
     form.append('area', area.value);
-    form.append('nRiesgo', nRiesgo.value);
+    //form.append('nRiesgo', nRiesgo.value);
     form.append('descripcion', descripcion.value);
     form.append('estatus', estatus.value);
     form.append('prioridad', prioridad.value);
