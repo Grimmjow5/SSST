@@ -43,12 +43,7 @@ require 'public/views/components/Nav.php';
         </select>
       </div>
 
-      <div class="col-md-6 col-12 mt-1">                
-          <label  class="form-label" >Mes</label>
-            <input type="month" class="form-control" 
-                id="mesExtintor" >
-            <small class="ms-5">*Este registro es mes con mes del año en curso</small>
-      </div>
+      
 
     <div class="row">
       <div class="col-md-6 col-12 mt-2">

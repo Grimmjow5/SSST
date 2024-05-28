@@ -28,7 +28,8 @@ const tabla = new DataTable('#tablaRegExt', {
     },
 
     select: true,
-    columns: [{
+    columns: [
+        {
             data: "id",
             className: "ids text-center"
         },

@@ -2,7 +2,7 @@ const hoy = Date.now();
 const dateNow = new Date(hoy);
 dateNow.setMonth( dateNow.getMonth() <= 9 ?  "0"+dateNow.getMonth() : dateNow.getMonth()+1 );
 
-const  dateMinReport = $("#fechaMinReport");
+const dateMinReport = $("#fechaMinReport");
 const fechNow = `${dateNow.getFullYear()}-0${ dateNow.getMonth()+1}-${dateNow.getUTCDate()}`;
 
 dateMinReport.attr({"max": fechNow});
@@ -66,10 +66,10 @@ const format =()=>{
   if(dateMinReport.val() == ''  && dateMaxReport.val() != ''){
       text = `Riesgos reportados asta el ${dateMaxReport.val()}`;
   }
-if(area.val() >0 ){
-let areaText = $("#area option:selected").text();
-  text += `, de ${areaText}`;
-}
+  if(area.val() >0 ){
+    let areaText = $("#area option:selected").text();
+    text += `, de ${areaText}`;
+  }
 //En caso de que diga solucionado o los dos entonces se aplicara lo siquiente 
 console.log(estatus.val());
   switch (estatus.val()) {

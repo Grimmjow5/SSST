@@ -3,7 +3,7 @@
 namespace Almacen\Ssst\routes;
 
 use Almacen\Ssst\controllers\ExtintorController;
-use Almacen\Ssst\controllers\CatalogoController;
+use Almacen\Ssst\controllers\ReportExtController;
 use Flight;
 use Almacen\Ssst\controllers\Login;
 
@@ -28,11 +28,16 @@ class Extintores extends Flight{
        
        parent::route('GET /registro_ext',[$extintores,'getExtintores']);
 
-       /*$catalogo = new CatalogoController();
-       parent::route('GET /cat_extintores',[$catalogo,'getCatalogo']);
-       $catalogo = new CatalogoController();
-       parent::route('GET /Catalogo',[$catalogo,'getCatalogo']);
-       //parent::route('POST /Catalogo',[$catalogo,'postCatalogo']);*/
+        //Reportes
+       $reportE = new ReportExtController();
+       //Vista en la que se mostrara el lformulario para genera los reportes de riesgos 
+       parent::route('GET /Extintores/reportE',[$reportE,'index']); 
+
+       parent::route('GET /Extintores/reports',[$reportE,'GetReportsExt']);
+
+       parent::route('GET /EXCEL',[$reportE,'GenerateExcel']);
+
+       parent::route('GET /PDF',[$reportE,'GeneratePDF']);
      
        
 

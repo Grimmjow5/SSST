@@ -37,7 +37,7 @@ class ReportsController extends Flight {
         parent::render('Reports/index',['areas'=>$areas]);
     }
     private function ValidateRequest($request) :MReportRiesgo {
-         $this->modelRiesgo->fechaMin = trim($request['fechaReport']);
+            $this->modelRiesgo->fechaMin = trim($request['fechaReport']);
             $this->modelRiesgo->fechaMax = trim($request['fechaMaxReport']);
             $this->modelRiesgo->area = trim($request['area']);
             $this->modelRiesgo->estatus = trim($request['estatus']);
