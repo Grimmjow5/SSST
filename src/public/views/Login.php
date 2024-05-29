@@ -21,12 +21,13 @@
             <div class="row justify-content-center">
                 <div class="col-md-12 col-lg-10">
                     <div class="wrap d-md-flex">
-                        <div class="img" style="background-image: url(public/img/DIF_LOGO-01.png)";>
+                        <div class="img p-3" >
+                        <img src="public/img/DIF_LOGO-01.png" style="width: 100%;"/>
                         </div>
                         <div class="login-wrap p-4 p-md-5">
                             <div class="d-flex">
                                 <div class="w-100">
-                                    <h1 class="text-center mb-4">SSST</h1>
+                                    <h3 class="text-center ">Sistema de Seguridad y Salud en el Trabajo (SSST)</h3>
                                 </div>
 
                                 <?php
