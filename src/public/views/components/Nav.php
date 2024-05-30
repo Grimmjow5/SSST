@@ -25,12 +25,12 @@
         </li>
         
         <li>
-            <a href="/Catalogo" class="text-black">Extintores</a>
+            <a href="/Catalogo" class="text-black">Alta de extintores</a>
         </li>
         <!--Aqui cambiamos la ruta ya que se agrego una opcion en la lista del nav-->
 </br>
         <li>
-            <a href="/Extintores" class="text-black">Formulario de extintores</a>
+            <a href="/Extintores" class="text-black">Reporte de condición de extintor</a>
         </li>
         <!--termina-->
     </ul>

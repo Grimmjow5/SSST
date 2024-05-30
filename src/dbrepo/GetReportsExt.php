@@ -12,8 +12,6 @@ class GetReportsExt extends ConfigDb implements IReportsExt {
     private string $idArea;
 
 
-    //En caso de que sea solucionado 
-    private string $condicion;
     public function GetReportsExt(MReportExt $model){
        
        //Rango de resgistro del riesgo
@@ -34,8 +32,10 @@ class GetReportsExt extends ConfigDb implements IReportsExt {
     private function validateDateReg(string $fecha):string{
    
         if(empty($fecha)){
-            return " ";
+
+            return "date(fechaRegistro) >= '{$fecha} ";
         }
+        return $fecha;
     
     }
 }

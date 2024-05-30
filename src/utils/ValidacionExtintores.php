@@ -17,15 +17,14 @@ public function validate($request) : MExtintores {
             }
              $this->idArea = $request['area'];
 
-            if($request['estatus'] != 0 && $request['estatus'] != 1){
-                  throw new Exception("Error de estatus");
-            }
-               $this->estatus = $request['estatus'];
-            /*tercero
+           
+           
              if(empty($request['extintor']) || $request['extintor'] == 0 ){
-               throw new Exception("Error de área, seleciona una");
-            }*/
-            //Validacion de preguntas
+               throw new Exception("Error de área, NuExtintor");
+            }
+            $this->idExtintor=$request['extintor'];
+
+           
             if (empty($request['pregunta1']) && $request['pregunta1'] !== '0'){
                throw new Exception("Contesta la pregunta 1");
 

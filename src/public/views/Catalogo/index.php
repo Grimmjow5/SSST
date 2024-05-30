@@ -26,10 +26,26 @@ require 'public/views/components/Nav.php';
       </br>
         <form  id="newExtintorCat"   class="row">
         <input type="hidden" id="idExtintor" value="0">
-          <div class="col-12" >
+
+        <div class="row">
+        <div class="col-6" >
+        <label for="formGroupExampleInput" class="form-label">Area</label>
+        <select class="form-select" id="area" name="area">
+          <option value="0" selected>Selecciona un área</option>
+          <?php
+          $opt = "";
+          foreach ($areas as $item) {
+            $opt .= "<option value='{$item["id_area"]}'>{$item["textArea"]}</option>";
+          }
+          echo $opt;
+          ?>
+        </select>
+          </div>  
+          <div class="col-6" >
             <label for="formGroupExampleInput" class="form-label">Numero de Extintor</label>
             <input type="number" class="form-control" id="nExtintor" placeholder="Numero de Extintor">
-          </div>  
+          </div>   
+          </div>
 
           <div class="col-md-6 col-12 mt-4">
             <div class="form-group row-6">
@@ -37,8 +53,8 @@ require 'public/views/components/Nav.php';
               <div class="col-sm-12">
                 <select id="estatus" id="estatus" class="form-control">
                 <option value="2" selected>Seleccione el estatus</option>
-                  <option value="0">Reportó</option>
-                  <option value="1">Solucionó</option>
+                  <option value="0">Inactivo</option>
+                  <option value="1">Activo</option>
                 </select>
               </div>
             </div>
@@ -70,6 +86,7 @@ require 'public/views/components/Nav.php';
             <thead>
               <tr>    
                 <th>No. Id</th>
+                <th>Areas</th>
                 <th>Numero Extintoristro</th>
                 <th>Numero Inventario</th>
                 <th>Estatus</th>

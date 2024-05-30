@@ -9,6 +9,7 @@ class MCatalogo {
     public $num_inventario	;
     public $num_extintor;
     public $estatus;
+    public $idArea;
     
     #Datos ingresados en automatico
     public $fecha_registro;

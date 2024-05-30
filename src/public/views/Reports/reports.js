@@ -21,8 +21,6 @@ const fechaMinSolucion = $("#fechaMinSolucion");//Fecha minima para consultar po
 const fechaMaxSolucion = $("#fechaMaxSolucion");//FechaMaxiuma para consutlar por soluciónnn
 
 
-let urlFetch=" ";
-
 estatus.on('change',()=>{
   if(estatus.val() == 1 || estatus.val()=='all'){
     fechaMinSolucion.prop('disabled',false);
@@ -51,6 +49,7 @@ $("#report").on('submit',async (e)=>{
         console.error(error);
     } 
 });
+
 const textDescripcion = $("#textTitle");
 const format =()=>{
 
@@ -71,7 +70,7 @@ const format =()=>{
     text += `, de ${areaText}`;
   }
 //En caso de que diga solucionado o los dos entonces se aplicara lo siquiente 
-console.log(estatus.val());
+  console.log(estatus.val());
   switch (estatus.val()) {
     
     case '1':
@@ -109,9 +108,8 @@ const cadenaReport=()=>{
 return res;
 
 }
+
 //Configuración de Tabla para mostrar antes de 
-
-
 const tabla  = new DataTable('#tableReport', {
  
       ajax:'', 

@@ -2,10 +2,10 @@
 
 namespace Almacen\Ssst\controllers;
 use Almacen\Ssst\dbrepo\Factory;
-use Almacen\Ssst\dbrepo\GetReportsExt;//GetReports
-use Almacen\Ssst\dbrepo\models\MReportExt;//MReporRiesgo
-use Almacen\Ssst\dbrepo\ExtMain;//RepoMain
-use Almacen\Ssst\utils\FormatExtPDF;//FormatPDF
+use Almacen\Ssst\dbrepo\GetReportsExt;
+use Almacen\Ssst\dbrepo\models\MReportExt;
+use Almacen\Ssst\dbrepo\ExtMain;
+use Almacen\Ssst\utils\FormatExtPDF;
 use DateTime;
 use Exception;
 use Flight;
@@ -19,7 +19,6 @@ class ReportExtController extends Flight {
     private MReportExt $modelExtintor;
     private Options $opt;
     private FormatExtPDF $pdf;
-    private array $dataReport =[]; 
     public function __construct()
     {
         $this->pdf = new FormatExtPDF();   
@@ -36,7 +35,7 @@ class ReportExtController extends Flight {
         parent::render('ReportExt/index',['areas'=>$areas]);
     }
     private function ValidateRequest($request) :MReportExt {
-            $this->modelExtintor->fecha = trim($request['fechaReport']);
+            $this->modelExtintor->fecha = trim($request['fecha']);
             $this->modelExtintor->area = trim($request['area']);
         return $this->modelExtintor;   
     }
@@ -52,7 +51,8 @@ class ReportExtController extends Flight {
         } 
     }
 
-    public function GeneratePDF() {
+    public function GenerateExtPDF() {
+
         $this->opt  = new Options();
         $this->opt->set('isHtml5ParserEnabled', true);
         $this->opt->set('enable_remote',true);
@@ -62,18 +62,18 @@ class ReportExtController extends Flight {
 
            $this->ValidateRequest($_REQUEST);
             $reportE = $this->factory->reportesExt->GetReportsExt($this->modelExtintor);        
-           $title = $_REQUEST["title"];
-        $pdf->loadHtml($this->pdf->HtmlContent($reportE,$title),'UTF-8');
-        $pdf->render();
+            $title = $_REQUEST["title"];
+            $pdf->loadHtml($this->pdf->HtmlContent($reportE,$title),'UTF-8');
+            $pdf->render();
 
-       $pdf->stream('decha.pdf',array("Attachment"=> false));
+            $pdf->stream('decha.pdf',array("Attachment"=> false));
 
 
     }
-    public function GenerateExcel(){
+    public function GenerateExtExcel(){
         $spreadSheet = new Spreadsheet();
 
-        $headExcel = ['No','Fecha de Registro','Lugar designado','Acceso obstruido','Señalamiento Obstruido','Instrucciones Legibles','Sellos en condiciones','Rango Operable','Daño Fisico','Accesorios en buen estado','Altura','Peso','Fecha Ultima Recarga','Fecha Proxima Recarga','Estatus'];
+        $headExcel = ['No','Fecha de Registro','Lugar designado','Acceso obstruido','Señalamiento Obstruido','Instrucciones Legibles','Sellos en condiciones','Rango Operable','Daño Fisico','Accesorios en buen estado','Altura','Peso','Fecha Ultima Recarga','Fecha Proxima Recarga'];
         $this->ValidateRequest($_REQUEST);
         $reportE = $this->factory->reportesExt->GetReportsExt($this->modelExtintor);
       
@@ -95,7 +95,7 @@ class ReportExtController extends Flight {
 
 
         //Fecha para dar  nombre al archivo
-            $date =new   DateTime();
+            $date = new   DateTime();
             $hoy = $date->format('d-m-Y');
         //Configuration for save xlsx in PC
         header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
@@ -113,23 +113,35 @@ class ReportExtController extends Flight {
         foreach ($datos as $key) {
            array_push($newArray,
                                 [
-                                    $key['id'],$this->pdf->dateFormat($key['fecha_reg']),
-                                    $key['lugar_designado'],
-                                    $key['acceso'],
-                                    $key['senial'],
-                                    $key['instruciones'],
-                                    $key['sellos'],
-                                    $key['lecturas'],
-                                    $key['danio'],
-                                    $key['manijas'],
+                                    $key['id'],
+                                    $this->pdf->dateFormat($key['fecha_reg']),
+                                    $this->formatBitField($key['lugar_designado']),
+                                    $this->formatBitField($key['acceso']),
+                                    $this->formatBitField($key['senial']),
+                                    $this->formatBitField($key['instrucciones']),
+                                    $this->formatBitField($key['sellos']),
+                                    $this->formatBitField($key['lecturas']),
+                                    $this->formatBitField($key['danio']),
+                                    $this->formatBitField($key['manijas']),
                                     $key['altura'],
                                     $key['peso'],
                                     $key['fecha_recarga'],
-                                    $key['fecha_prox_recarga'],
-                                    $key['estatus'],
+                                    $key['fecha_prox_recarga']
                                 ]);
         }
-        //''No','Fecha de Registro','Lugar designado','Acceso obstruido','Señalamiento Obstruido','Instrucciones Legibles','Sellos en condiciones','Rango Operable','Daño Fisico','Accesorios en buen estado','Altura','Peso','Fecha Ultima Recarga','Fecha Proxima Recarga','Estatus'
+        
         return $newArray;
+    }
+
+    private function formatBitField($value) {
+        return $value ? 'Sí' : 'No';
+    }
+
+    public function dateFormat($fecha) {
+        if (!empty($fecha)) {
+            $jj = strtotime($fecha);
+            return date("d-m-Y", $jj);
+        }
+        return " ";
     }
 }

@@ -9,13 +9,7 @@ require 'public/views/components/Nav.php';
 <div class=" bg-light shadow-lg rounded p-4">
     <h4>Forma para genera Excel o PDF </h4>
         <form id="report"  class="row mt-4">
-            <div class="col-12 col-md-6">                
-                <label  class="form-label" >Fecha de  Registro</label>
-                <input type="date" class="form-control" 
-                    id="fecha" >
-                    <small class="ms-5">* Es la fecha de registro del formulario </small>
-            </div>
-
+           
             <div class="col-12 col-md-6 mt-1">
                 <label for="" class="form-label" >Área</label>
                 <select name="" id="area"class="form-control">
@@ -29,6 +23,15 @@ require 'public/views/components/Nav.php';
                         ?>
                 </select>
             </div>
+
+
+            <div class="col-12 col-md-6  invisible">                
+                <label  class="form-label" >Fecha de  Registro</label>
+                <input type="date" class="form-control" 
+                    id="fecha" >
+                    <small class="ms-5">* Es la fecha de registro del formulario </small>
+            </div> 
+
 
             <div class="d-flex justify-content-evenly">
                 <button class="btn btn-primary mt-4 d-flex align-items-center" type="submit">
@@ -68,7 +71,6 @@ require 'public/views/components/Nav.php';
             <th>Peso</th>
             <th>Fech Ult Rec</th>
             <th>Fech Prox Rec</th>
-            <th>Estatus</th>
           </tr>
         </thead>
       </table>

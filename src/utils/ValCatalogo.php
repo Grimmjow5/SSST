@@ -15,6 +15,11 @@ class ValCatalogo extends MCatalogo{
          }
          $this->num_extintor = $request['nExtintor']; 
 
+         if(empty($request['area']) || $request['area'] == 0 ){
+            throw new Exception("Error de área, seleciona una");
+      }
+       $this->idArea = $request['area'];
+
          if($request['estatus'] != 0 && $request['estatus'] != 1){
             throw new Exception("Error de estatus");
          }

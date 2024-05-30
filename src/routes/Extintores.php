@@ -2,11 +2,11 @@
 
 namespace Almacen\Ssst\routes;
 
-use Almacen\Ssst\controllers\ExtintorController;
-use Almacen\Ssst\controllers\ReportExtController;
+
 use Flight;
 use Almacen\Ssst\controllers\Login;
-
+use Almacen\Ssst\controllers\ReportExtController;
+use Almacen\Ssst\controllers\ExtintorController;
 
 
 
@@ -35,9 +35,9 @@ class Extintores extends Flight{
 
        parent::route('GET /Extintores/reports',[$reportE,'GetReportsExt']);
 
-       parent::route('GET /EXCEL',[$reportE,'GenerateExcel']);
+       parent::route('GET /EXCELex',[$reportE,'GenerateExtExcel']);
 
-       parent::route('GET /PDF',[$reportE,'GeneratePDF']);
+       parent::route('GET /PDFex',[$reportE,'GenerateExtPDF']);
      
        
 
