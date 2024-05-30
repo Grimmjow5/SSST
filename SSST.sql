@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 30-05-2024 a las 17:33:00
+-- Tiempo de generación: 30-05-2024 a las 17:55:22
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -267,21 +267,6 @@ CREATE TABLE `cat_extintores` (
   `id_area` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Volcado de datos para la tabla `cat_extintores`
---
-
-INSERT INTO `cat_extintores` (`id_extintor`, `num_inventario`, `fecha_registro`, `num_extintor`, `estatus`, `id_area`) VALUES
-(1, 36602, '2024-05-21 23:45:00', 300, b'1', 2),
-(2, 36603, '2024-05-28 17:35:00', 100, b'0', NULL),
-(3, 36603, '2024-05-28 18:02:00', 1000, b'0', NULL),
-(4, 33603, '2024-05-28 21:05:00', 100, b'1', NULL),
-(5, 33603, '2024-05-29 21:36:00', 100, b'1', 2),
-(6, 4334343, '2024-05-29 23:39:00', 100, b'1', 2),
-(7, 33603, '2024-05-30 00:32:00', 100, b'0', 4),
-(8, 33603, '2024-05-30 00:33:00', 100, b'1', 1),
-(9, 33603, '2024-05-30 17:17:00', 100, b'1', 5);
-
 -- --------------------------------------------------------
 
 --
@@ -306,13 +291,7 @@ CREATE TABLE `cat_usuarios` (
 --
 
 INSERT INTO `cat_usuarios` (`id_user`, `user`, `user_name`, `last_name`, `fecha_reg`, `pass`, `reg_user`, `id_rol`, `status`, `correo`) VALUES
-(1, 'Master', 'sevas', 'cordero', '2024-04-16 11:34:00', '123456', 1, 1, b'1', NULL),
-(6, 'Hector Tilino', 'Hector', 'De La Rosa', '2024-05-22 19:08:00', '$2y$10$HxcH8qxpUm4VdIORwx712eFiwVDkm2249KlkYZ6Z6al52lCUmLokC', 1, 2, NULL, ''),
-(28, 'Axelj', 'Axel', 'Leyva', '2024-05-23 22:50:00', '$2y$10$8JCgy1mAtwp5iEFGeIDg/eh4aBBh4qESuKqPF5U5SBfI.jAOQxhK2', 1, 1, b'1', ''),
-(29, 'Hector', 'Hector', 'De La Rosa', '2024-05-23 23:27:00', '$2y$10$HFy2Q1EJfrf3tRtVTsrMJ.TABIDGzYUImOIdp5L.lkZ8zU/1oyRMK', 28, 2, b'1', ''),
-(31, 'Reportes', 'Hector', 'De La Rosa', '2024-05-24 18:32:00', '$2y$10$qHbhKqcAzCj6ZU58zf1tiuizObzgsK0LDgtkEFQ9B3CmA0BekmyK6', 28, 3, b'1', ''),
-(35, 'Hola', 'joshua', 'leyva', '2024-05-28 18:24:00', '$2y$10$tmzBplarHk1Hcj8UrUoJTOzOxyvbOyyQBCLbT5l6bfw1wN2.tOC06', 28, 3, b'1', 'hdelarosasanchez@gmail.com'),
-(36, 'Axelj2', 'Axel', 'Leyva', '2024-05-30 17:19:00', '$2y$10$7TOE3pEowP0XXg1m503sxOBj2Sd/fGWyPgKF/JwH3NKG.R7Ol94fW', 28, 3, b'1', 'axelleyva26@gmail.com');
+(1, 'Master', 'sevas', 'cordero', '2024-04-16 11:34:00', '$2y$10$8JCgy1mAtwp5iEFGeIDg/eh4aBBh4qESuKqPF5U5SBfI.jAOQxhK2', 1, 1, b'1', NULL);
 
 -- --------------------------------------------------------
 
@@ -352,15 +331,6 @@ CREATE TABLE `mv_riesgos` (
   `solucion` varchar(500) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Volcado de datos para la tabla `mv_riesgos`
---
-
-INSERT INTO `mv_riesgos` (`id`, `id_area`, `id_mes`, `text_Riesgo`, `id_userReg`, `fechaRegistro`, `fechaModificacion`, `id_userModificacion`, `prioridad`, `estatus`, `fecha_solucion`, `solucion`) VALUES
-(12, 2, 5, '288jnjn', 1, '2024-05-16 23:28:00', '2024-05-27 03:30:00', 1, 'Alta', b'0', NULL, NULL),
-(13, 1, 5, 'eee', 1, '2024-05-17 17:29:00', '2024-05-21 17:52:00', 1, 'Media', b'1', '2024-05-21 17:52:00', 'qqqq'),
-(14, 9, 5, 'hola', 1, '2024-05-20 21:14:00', '2024-05-20 22:32:00', 1, 'Media', b'1', '2024-05-20 22:32:00', 'mlk');
-
 -- --------------------------------------------------------
 
 --
@@ -390,19 +360,6 @@ CREATE TABLE `reg_extintores` (
   `fecha_modificacion` datetime DEFAULT NULL,
   `resp_modificacion` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Volcado de datos para la tabla `reg_extintores`
---
-
-INSERT INTO `reg_extintores` (`id`, `id_extintor`, `id_area`, `id_direccion`, `id_mes_captura`, `lugar_designado`, `acceso`, `senial`, `instrucciones`, `sellos`, `lecturas`, `danio`, `altura`, `manijas`, `peso`, `fecha_recarga`, `fecha_prox_recarga`, `fecha_reg`, `resp_reg`, `fecha_modificacion`, `resp_modificacion`) VALUES
-(1, 0, 1, NULL, 5, b'1', b'1', b'0', b'0', b'1', b'0', b'0', 1.5, b'1', 4.5, '2024-05-08 00:00:00', '2025-05-08 00:00:00', '2024-05-21 23:47:00', 1, NULL, NULL),
-(4, 0, 3, NULL, 5, b'1', b'1', b'1', b'1', b'1', b'1', b'1', 3, b'1', 4, '2024-05-04 00:00:00', '2025-05-04 00:00:00', '2024-05-28 22:09:00', 28, NULL, NULL),
-(5, 2, 4, NULL, 5, b'1', b'1', b'1', b'1', b'1', b'1', b'1', 3, b'1', 3, '2024-05-25 00:00:00', '2025-05-25 00:00:00', '2024-05-28 22:58:00', 28, NULL, NULL),
-(6, 4, 4, NULL, 5, b'1', b'1', b'1', b'1', b'1', b'1', b'1', 4, b'1', 5, '2024-05-29 00:00:00', '2025-05-29 00:00:00', '2024-05-28 23:08:00', 28, NULL, NULL),
-(7, 4, 4, NULL, 5, b'1', b'1', b'1', b'1', b'1', b'1', b'1', 2, b'1', 5, '2024-05-03 00:00:00', '2025-05-03 00:00:00', '2024-05-28 23:13:00', 28, NULL, NULL),
-(8, 4, 2, NULL, 5, b'1', b'1', b'1', b'1', b'1', b'1', b'1', 3, b'1', 3, '2024-05-10 00:00:00', '2025-05-10 00:00:00', '2024-05-29 23:41:00', 28, NULL, NULL),
-(9, 5, 4, NULL, 5, b'1', b'1', b'1', b'1', b'1', b'1', b'1', 5, b'1', 6, '2024-05-08 00:00:00', '2025-05-08 00:00:00', '2024-05-30 17:17:00', 28, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -539,13 +496,13 @@ ALTER TABLE `cat_direccion`
 -- AUTO_INCREMENT de la tabla `cat_extintores`
 --
 ALTER TABLE `cat_extintores`
-  MODIFY `id_extintor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_extintor` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `cat_usuarios`
 --
 ALTER TABLE `cat_usuarios`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `historico`
@@ -557,13 +514,13 @@ ALTER TABLE `historico`
 -- AUTO_INCREMENT de la tabla `mv_riesgos`
 --
 ALTER TABLE `mv_riesgos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `reg_extintores`
 --
 ALTER TABLE `reg_extintores`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `roles`
