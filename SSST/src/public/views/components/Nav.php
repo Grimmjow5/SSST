@@ -3,13 +3,13 @@
 
     <div class="d-flex align-items-center" >
          <a class="navbar-brand" href="#">
-            <img src=<?="../public/img/logo.png" ?> alt="" width="120" height="60" class="d-inline-block align-text-top">
+            <img src=<?="src/public/img/logo.png" ?> alt="" width="120" height="60" class="d-inline-block align-text-top">
         </a>
         <button type="button" class="btn btn-outline-light text-black" id="toggle" style="height: 2rem;width: 2rem;">
                 <i class="bi bi-list h3"></i>
         </button>
     </div>  
-    <a class="text-black" href="http://localhost:8082/">
+    <a class="text-black" href="/">
         <i class="bi bi-box-arrow-left "></i>
         Cerrar Sesión
     </a>
@@ -37,11 +37,11 @@
     <hr>
     <ul>
         <li>
-            <a href="/riesgos/report" class="text-black">Resportes de Riesgos</a>
+            <a href="/riesgosr" class="text-black">Resportes de Riesgos</a>
         </li>
 <!--Se modifico por la de arriba-->
         <li class="my-3">
-            <a href="/Extintores/reportE" class="text-black">Reportes de Extintores</a>
+            <a href="/extintoresr" class="text-black">Reportes de Extintores</a>
         </li>
         </br>
         </br>

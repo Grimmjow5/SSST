@@ -11,7 +11,7 @@
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <link rel="stylesheet" href="public/css/style.css">
+    <link rel="stylesheet" href="src/public/css/style.css">
 
 </head>
 
@@ -22,7 +22,7 @@
                 <div class="col-md-12 col-lg-10">
                     <div class="wrap d-md-flex">
                         <div class="img p-3" >
-                        <img src="public/img/DIF_LOGO-01.png" style="width: 100%;"/>
+                        <img src="src/public/img/DIF_LOGO-01.png" style="width: 100%;"/>
                         </div>
                         <div class="login-wrap p-4 p-md-5">
                             <div class="d-flex">
@@ -68,7 +68,7 @@
 
                             <div class="text-center mb-4">
                                 <div>
-                                    <img src="public/img/hidalgo-02.png" width="200" height="120" position: fixed;>
+                                    <img src="src/public/img/hidalgo-02.png" width="200" height="120" position: fixed;>
                                 </div>
                             </div>
 
@@ -97,10 +97,10 @@
         </div>
         </div>
     </section>
-    <script src="/public/js/jquery.min.js"></script>
-    <script src="/public/js/popper.min.js"></script>
-    <script src="/public/js/bootstrap.min.js"></script>
-    <script src="/public/js/main.js"></script>
+    <script src="src/public/js/jquery.min.js"></script>
+    <script src="src/public/js/popper.min.js"></script>
+    <script src="src/public/js/bootstrap.min.js"></script>
+    <script src="src/public/js/main.js"></script>
 
 </body>
 

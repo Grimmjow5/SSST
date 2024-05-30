@@ -6,7 +6,6 @@ use Almacen\Ssst\routes\Riesgos;
 use Almacen\Ssst\routes\Roles;
 use Almacen\Ssst\routes\Registro;
 
-require '../vendor/autoload.php';
 
 
 session_start();

@@ -1,7 +1,7 @@
 <?php 
-   require 'public/views/components/Header.php';
+   require 'src/public/views/components/Header.php';
 
-   require 'public/views/components/Nav.php';
+   require 'src/public/views/components/Nav.php';
 ?>
 
 <div class="container p-5" style="background-color: #eceff4;">
@@ -10,4 +10,4 @@
 <!--Es parte del body -->
 <div>
 
-<?php require 'public/views/components/Footer.php';?>
+<?php require 'src/public/views/components/Footer.php';?>
