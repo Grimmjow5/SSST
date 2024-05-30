@@ -24,10 +24,11 @@ Flight::route('GET /riesgos',[$riesgos,'index']);
 
 Flight::route('POST /riesgos',[$riesgos,'postRiesgo']);
  */
-namespace Almacen\Ssst;
+namespace Almacen\Ssst\routes;
 use Flight;
 use Almacen\Ssst\controllers\Login;
 use Almacen\Ssst\controllers\RiesgosController;
+
 class Acceso extends Flight{
     private $login;
 function __construct()
@@ -38,6 +39,7 @@ function __construct()
 
     parent::route('GET /home',[$this->login,'RenderHome']);
     
+     parent::route('/logout',[$this->login,'logout']);
     //Vista de riesgo
     $riesgos = new RiesgosController();
 
@@ -46,6 +48,8 @@ function __construct()
     Flight::route('POST /riesgos',[$riesgos,'postRiesgo']);
 
     Flight::route('GET /cat_riesgos',[$riesgos,'getRiesgos']);
+    
+   
 
 
 }

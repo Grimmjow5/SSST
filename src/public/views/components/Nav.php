@@ -9,7 +9,7 @@
                 <i class="bi bi-list h3"></i>
         </button>
     </div>  
-    <a class="text-black" href="http://localhost:8082/">
+    <a class="text-black" href="/logout">
         <i class="bi bi-box-arrow-left "></i>
         Cerrar Sesión
     </a>

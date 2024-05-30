@@ -25,8 +25,13 @@ class ExtintorController extends Flight{
         $this->Extintor->getCatalogosEx(new ExtMain());
         $this->extin= new ValidacionExtintores();
     }
+    private function checkAdmin() {
+        if (!isset($_SESSION["rol"]) || $_SESSION["rol"] !== 1  && $_SESSION['rol'] !==3) {
+            parent::halt(403, "Acceso denegado: Solo los administradores pueden acceder.");
+        }}
 
     public function index (){
+        $this->checkAdmin();
       $this->Extintor->getCatEx->roVal=[];
       $this->Extintor->getCatEx->table='cat_extintores';
       $extintores=$this->Extintor->getCatEx->getExt();
@@ -39,7 +44,7 @@ class ExtintorController extends Flight{
     }
 
     public function postExtintores(){
-        
+        $this->checkAdmin();
       try{
         
             $this->model = $this->extin->validate($_REQUEST);
