@@ -27,37 +27,37 @@ class Login extends Flight{
     
     public function setlogin(){
 
-            if(isset($_POST['nombre_usuario']) && isset($_POST["password"])){
-               $this->nameUser = $_POST["nombre_usuario"];
-               $this->pass = $_POST["password"];
+        if (isset($_POST['nombre_usuario']) && isset($_POST["password"])) {
+            $this->nameUser = $_POST["nombre_usuario"];
+            $this->pass = $_POST["password"];
 
-               if(empty($this->nameUser) && empty($this->pass)){
-                    parent::render('Login',['mensaje'=>'2']);
-                    parent::stop();
-                }
-                
-                $sql = "SELECT * FROM `cat_usuarios` WHERE `user`= ? AND `pass`= ? AND `status`= 1;";            
-                $stmt = $this->conexion->prepare($sql);
-                $stmt->bindValue(1,$this->nameUser);
-                $stmt->bindValue(2,$this->pass);
-                $stmt->execute();
-                $resultado = $stmt->fetch();
+            if (empty($this->nameUser) || empty($this->pass)) {
+                parent::render('Login', ['mensaje'=>'2']);
+                parent::stop();
+            }
 
-                if(is_array($resultado) && count($resultado) > 0){
+            $sql = "SELECT * FROM `cat_usuarios` WHERE `user`= ? AND `status`= 1;";
+            $stmt = $this->conexion->prepare($sql);
+            $stmt->bindValue(1, $this->nameUser);
+            $stmt->execute();
+            $resultado = $stmt->fetch();
 
-                    $_SESSION["id_usuario"]=$resultado["id_user"];
-                    $_SESSION["nombre_usuario"]=$resultado["user_name"];
-                    $_SESSION["nombre"]=$resultado["user"];
-                    $_SESSION["apellidos"]=$resultado["last_name"];
-                    
+            if (is_array($resultado) && count($resultado) > 0) {
+                if (password_verify($this->pass, $resultado["pass"])) {
+                    $_SESSION["id_usuario"] = $resultado["id_user"];
+                    $_SESSION["nombre_usuario"] = $resultado["user_name"];
+                    $_SESSION["nombre"] = $resultado["user"];
+                    $_SESSION["apellidos"] = $resultado["last_name"];
+                    $_SESSION["rol"] = $resultado["id_rol"]; // Guardar el rol en la sesión
+
                     parent::redirect('/home');
-              
-                }else{
-                    
-                    parent::render('Login',['mensaje'=>'1']);
+                } else {
+                    parent::render('Login', ['mensaje'=>'1']);
                 }
-
-            } 
+            } else {
+                parent::render('Login', ['mensaje'=>'1']);
+            }
+        }
     }
   
 

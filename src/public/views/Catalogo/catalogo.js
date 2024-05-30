@@ -1,3 +1,4 @@
+const area = document.getElementById('area');
 const extint = document.getElementById('nExtintor');
 const invent = document.getElementById('nInventario');
 const estatus = document.getElementById('estatus');
@@ -8,7 +9,7 @@ const toggleShow = () => {
     if (estatus.value == 0) {
         console.log("Ejecuta al cargar ");
         showSolucion.classList.add('d-none');
-    } 
+    }
 }
 
 const tabla = new DataTable('#tableExtintores', {
@@ -27,26 +28,30 @@ const tabla = new DataTable('#tableExtintores', {
             data: "id_extintor",
             className: "ids text-center"
         },
-        { 
-            data: "num_extintor", 
-            className: "ids text-center" 
+        {
+            data: "id_area",
+            className: "ids text-center"
         },
-        { 
-            data: "num_inventario", 
-            className: 'ids text-center' 
+        {
+            data: "num_extintor",
+            className: "ids text-center"
+        },
+        {
+            data: "num_inventario",
+            className: 'ids text-center'
         },
         {
             data: "estatus",
             className: "estatus",
             render: function(item) {
                 if (item == 1) {
-                    return '<i class="bi bi-clipboard-check  text-success h4 mx-1"></i>Soluciono';
+                    return '<i class="bi bi-clipboard-check  text-success h4 mx-1"></i>Activo';
                 } else {
-                    return '<i class="bi bi-clipboard-x text-warning h4 mx-1"></i>Reporto';
+                    return '<i class="bi bi-clipboard-x text-warning h4 mx-1"></i>Inactivo';
                 }
             }
         }
-        
+
     ]
 });
 
@@ -73,15 +78,17 @@ const selectRow = async(dates) => {
     estatus.value = dates.estatus;
     invent.value = dates.num_inventario;
     exId.value = dates.id_extintor;
+    area.value = dates.id_area;
     toggleShow();
 }
 
 const clearForm = () => {
 
     extint.value = null;
-    invent.value = null; 
-    estatus.value = 2; 
+    invent.value = null;
+    estatus.value = 2;
     exId.value = 0;
+    area.value = 0;
     toggleShow();
 }
 
@@ -95,6 +102,7 @@ forma.addEventListener('submit', async(e) => {
     form.append('nInventario', invent.value);
     form.append('estatus', estatus.value);
     form.append('idExtintor', exId.value)
+    form.append('area', area.value);
     const res = await fetch('/Catalogo', {
         method: 'POST',
         body: form,

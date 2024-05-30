@@ -17,6 +17,8 @@ class CatalogoController extends Flight{
     private MCatalogo $model;
     //private $repoExt;
     private  Factory $Catalogo;
+
+
     public function __construct()
     {        
         $this->model = new MCatalogo();
@@ -26,8 +28,15 @@ class CatalogoController extends Flight{
     }
 
     public function index (){
+        $this->Catalogo->getCatCat->rowVal = [];
+        $this->Catalogo->getCatCat->table = "cat_areas";
+     
+        $areas = $this->Catalogo->getCatCat->getAll();
+        
+       
+        
         //etse es el principio
-        parent::render('Catalogo/index');
+        parent::render('Catalogo/index',['areas'=>$areas,'erro'=>""]);
     }
 
     public function postCatalogo(){

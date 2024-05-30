@@ -12,7 +12,8 @@ require 'public/views/components/Nav.php';
 <div class="d-flex  justify-content-between">
 
   <div class="col-6">
-  <h3 class="mb-6">Formulario de Reporte</h3> 
+  <input type="hidden" id="idExtintor" value="0">
+  <h3 class="mb-6">Reporte de condición de extintor </h3> 
   </div>
 
   <div class="col-6 d-flex justify-content-end">
@@ -31,7 +32,7 @@ require 'public/views/components/Nav.php';
       <div class="col-md-6 col-12 mt-1">
         <label for="formGroupExampleInput" class="form-label">Area</label>
 
-        <select class="form-select" id="area">
+        <select class="form-select" id="area" name="area">
           <option value="0" selected>Selecciona un área</option>
           <?php
           $opt = "";
@@ -43,49 +44,31 @@ require 'public/views/components/Nav.php';
         </select>
       </div>
 
-      <div class="col-md-6 col-12 mt-1">                
-          <label  class="form-label" >Mes</label>
-            <input type="month" class="form-control" 
-                id="mesExtintor" >
-            <small class="ms-5">*Este registro es mes con mes del año en curso</small>
-      </div>
-
-    <div class="row">
-      <div class="col-md-6 col-12 mt-2">
-        <div class="form-group row-6">
-          <label for="exampleSelect" class="col-sm-2 form-control-label">Estatus</label>
-          <div class="col-sm-12">
-            <select id="estatus" id="estatus" class="form-control">
-              <option value="2" selected>Seleccione el estatus</option>
-              <option value="0">Reportó</option>
-              <option value="1">Solucionó</option>
-            </select>
-          </div>
-        </div>
-      </div>
-    
-
       <div class="col-md-6 col-12 mt-1" >
         <label for="formGroupExampleInput" class="form-label">Numero de Extintor</label>
         
-        <select class="form-select" id="extintor">
+        <select class="form-select" id="extintor" name="extintor">
           <option value="0" selected>Selecciona un extintor</option>
-          <!--<?php
-          /*$opt = "";
-          foreach ($extintores as $item) {
-            $opt .= "<option value='{$item["id_extintor"]}'>{$item["num_extintor"]}</option>";
-          }
-          echo $opt;*/
-          ?>-->
+          <?php
+                $opt = "";
+                foreach ($extintores as $item) {
+                    $opt .= "<option value='{$item["id_extintor"]}'>{$item["num_inventario"]}</option>";
+                }
+                echo $opt;
+                ?>
         </select>
       </div> 
-    </div>
 
-    <div class="row mx-auto" style="width: 30rem; "> 
+      
+
+    
+
+    <div class="row mx-auto"  > 
     <!-- Joshua-->
-    <div class="col-12 text-center" >
+    <div class="row">
+    <div class="col-6 " >
       </br>
-      </br>
+      
         <label for="pregunta1" class="form-label">1.-El extintor está en el lugar designado</label>
       </br>
 
@@ -138,6 +121,9 @@ require 'public/views/components/Nav.php';
           <label class="form-check-label" for="inlineRadio2">No</label>
         </div>
         </br>
+    </div>
+    <div class="col-6">
+    </br>
         <label for="pregunta5" class="form-label">5.-Las manijas, boquilla y manguera están en buen estado </label>
         </br>
 
@@ -191,6 +177,7 @@ require 'public/views/components/Nav.php';
         </div>
         </br>  
       </div>
+      </div>
       <!-- joshua -->
         </div>
         </br> 
@@ -240,13 +227,7 @@ require 'public/views/components/Nav.php';
 
       </br>
 
-      <button type="button" id="generatePDF" class="btn btn-danger mt-4">
-        <i class="bi bi-file-earmark-pdf h4"></i>PDF
-      </button>
-      <button type="submit" class="btn btn-success mt-4" id="generateExcel">
-          <i class="bi bi-file-earmark-spreadsheet h4"></i> Excel
-      </button>
-      
+     
 
       <table id="tablaRegExt" class="display w-100" >
         <thead>

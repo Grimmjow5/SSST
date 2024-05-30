@@ -27,15 +27,15 @@ class ExtintorController extends Flight{
     }
 
     public function index (){
+      $this->Extintor->getCatEx->roVal=[];
+      $this->Extintor->getCatEx->table='cat_extintores';
+      $extintores=$this->Extintor->getCatEx->getExt();
+      $this->Extintor->getCatEx->table = 'cat_areas';
       
-        $this->Extintor->getCatEx->table = 'cat_areas';
-       //$this->repoRiesgos->getCat->logic = "and";
+
         $areas = $this->Extintor->getCatEx->getAll();
-        parent::render('Extintores/index',['areas'=>$areas,'error'=>""]);
-        /*aqui empieze-primero
-        $this->Registro->getCatEx->table = 'cat_extintores';
-        $extintores = $this->Registro->getCatEx->getAll();
-        parent::render('Extintores/index',['extintores'=>$extintores,'error'=>""]);*/
+        parent::render('Extintores/index',['areas'=>$areas,'extintores'=>$extintores]);
+       
     }
 
     public function postExtintores(){

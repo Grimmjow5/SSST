@@ -25,12 +25,12 @@
         </li>
         
         <li>
-            <a href="/Catalogo" class="text-black">Extintores</a>
+            <a href="/Catalogo" class="text-black">Alta de extintores</a>
         </li>
         <!--Aqui cambiamos la ruta ya que se agrego una opcion en la lista del nav-->
 </br>
         <li>
-            <a href="/Extintores" class="text-black">Formulario de extintores</a>
+            <a href="/Extintores" class="text-black">Reporte de condición de extintor</a>
         </li>
         <!--termina-->
     </ul>
@@ -41,7 +41,7 @@
         </li>
 <!--Se modifico por la de arriba-->
         <li class="my-3">
-            <a href="#" class="text-black">Reportes de Extintores</a>
+            <a href="/Extintores/reportE" class="text-black">Reportes de Extintores</a>
         </li>
         </br>
         </br>
@@ -51,6 +51,9 @@
         <hr>
         <li class="my-3">
             <a href="/Roles" class="text-black">Roles</a>
+        </li>
+        <li class="my-3">
+            <a href="/Registro" class="text-black">Registro</a>
         </li>
     </ul>
 </div>

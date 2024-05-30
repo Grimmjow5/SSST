@@ -4,17 +4,34 @@ const peso = document.getElementById('txtPeso');
 const altura = document.getElementById('txtAltura');
 const ultRec = document.getElementById('fechaUltRec');
 const proxRec = document.getElementById('fechaProxRec');
-const estatus = document.getElementById('estatus');
+const extintor = document.getElementById('extintor');
+const idRe = document.getElementById('idExtinto');
+
 //const inlineRadio1 = document.getElementById('inlineRadio1');
 const radioGroup = document.getElementById('newExtintor');
 //const areaR = $("#areaR");aqui*/
 
-//Validacion con respecto a las recargas de los extintores <--Empiezo
+
+const areaShow = () => {
+    console.log(area.value);
+    if (area.value == 0) {
+        console.log("Ejecuta al cargar ");
+        showSolucion.classList.add('d-none');
+    }
+}
+const ExtintoresShow = () => {
+        console.log(extintor.value);
+        if (extintor.value == 0) {
+            console.log("Ejecuta al cargar ");
+            showSolucion.classList.add('d-none');
+        }
+    }
+    //Validacion con respecto a las recargas de los extintores <--Empiezo
 ultRec.addEventListener('change', () => {
     nuevafecha = ultRec.value.split('-');
     nuevafecha[0]++;
-    proxRec.value=nuevafecha.join('-');
-});//<--Acabo
+    proxRec.value = nuevafecha.join('-');
+}); //<--Acabo
 
 const tabla = new DataTable('#tablaRegExt', {
     ajax: 'registro_ext',
@@ -32,9 +49,9 @@ const tabla = new DataTable('#tablaRegExt', {
             data: "id",
             className: "ids text-center"
         },
-        { 
-            data: "lugar_designado", 
-            className: "ids text-center", 
+        {
+            data: "lugar_designado",
+            className: "ids text-center",
             render: function(item) {
                 if (item == 1) {
                     return '<i class="bi bi-check-circle-fill  text-success h4 mx-1"></i>';
@@ -43,30 +60,8 @@ const tabla = new DataTable('#tablaRegExt', {
                 }
             }
         },
-        { 
-            data: "acceso", 
-            className: 'ids text-center',
-            render: function(item) {
-                if (item == 1) {
-                    return '<i class="bi bi-check-circle-fill  text-success h4 mx-1"></i>';
-                } else {
-                    return '<i class="bi bi-x-circle-fill text-warning h4 mx-1"></i>';
-                }
-            }
-        },
-        { 
-            data: "senial", 
-            className: 'ids text-center',
-            render: function(item) {
-                if (item == 1) {
-                    return '<i class="bi bi-check-circle-fill  text-success h4 mx-1"></i>';
-                } else {
-                    return '<i class="bi bi-x-circle-fill text-warning h4 mx-1"></i>';
-                }
-            }
-        },
-        /*{ 
-            data: "instrucciones", 
+        {
+            data: "acceso",
             className: 'ids text-center',
             render: function(item) {
                 if (item == 1) {
@@ -77,7 +72,7 @@ const tabla = new DataTable('#tablaRegExt', {
             }
         },
         {
-            data: "sellos",
+            data: "senial",
             className: 'ids text-center',
             render: function(item) {
                 if (item == 1) {
@@ -87,65 +82,43 @@ const tabla = new DataTable('#tablaRegExt', {
                 }
             }
         },
-        { 
-            data: "lecturas", 
-            className: 'ids text-center',
-            render: function(item) {
-                if (item == 1) {
-                    return '<i class="bi bi-check-circle-fill  text-success h4 mx-1"></i>';
-                } else {
-                    return '<i class="bi bi-x-circle-fill text-warning h4 mx-1"></i>';
-                }
-            }
-        },
-        { 
-            data: "danio", 
-            className: 'ids text-center',
-            render: function(item) {
-                if (item == 1) {
-                    return '<i class="bi bi-check-circle-fill  text-success h4 mx-1"></i>';
-                } else {
-                    return '<i class="bi bi-x-circle-fill text-warning h4 mx-1"></i>';
-                }
-            }
-        },
-        { 
-            data: "manijas", 
-            className: 'ids text-center',
-            render: function(item) {
-                if (item == 1) {
-                    return '<i class="bi bi-check-circle-fill  text-success h4 mx-1"></i>';
-                } else {
-                    return '<i class="bi bi-x-circle-fill text-warning h4 mx-1"></i>';
-                }
-            }
-        },*/
+
         {
             data: "altura",
-            className: 'ids text-center' 
+            className: 'ids text-center'
         },
         {
             data: "peso",
-            className: 'ids text-center' 
+            className: 'ids text-center'
         }
-        /*{ 
-            data: "id_mes_captura", 
-            className: 'ids text-center' 
-        }
-        {
-            data: "estatus",
-            className: "estatus",
-            render: function(item) {
-                if (item == 1) {
-                    return '<i class="bi bi-clipboard-check  text-success h4 mx-1"></i>Solucionado';
-                } else {
-                    return '<i class="bi bi-clipboard-x text-warning h4 mx-1"></i>Reportado';
-                }
-            }
-        }*/
-        
+
+
     ]
 });
+$('#tablaRegExt tbody').on('click', 'tr', async function() {
+    if ($(this).hasClass('selected')) {
+        $(this).removeClass('selected');
+    } else {
+        tabla.$('tr.selected').removeClass('selected');
+        $(this).addClass('selected');
+
+        let dates = tabla.row('.selected').data();
+        console.log(dates);
+        extint.focus();
+        await selectRow(dates);
+    }
+
+});
+
+
+const selectRow = async(dates) => {
+    idRe.value = dates.id;
+    areaShow();
+
+
+
+
+}
 
 const clearForm = () => {
     area.value = 0;
@@ -154,7 +127,8 @@ const clearForm = () => {
     altura.value = null;
     ultRec.value = null;
     proxRec.value = null;
-    estatus.value = 2;
+    extintor.value = 0;
+
     //inlineRadio1.value = " ";
 
     const radios = radioGroup.querySelectorAll('input[type="radio"]');
@@ -170,12 +144,14 @@ forma.addEventListener('submit', async(e) => {
     e.preventDefault();
     const form = new FormData();
     form.append('area', area.value);
+    form.append('extintor', extintor.value);
     //form.append('extintor', ext.value);
     form.append('txtPeso', peso.value);
     form.append('txtAltura', altura.value);
     form.append('fechaProxRec', proxRec.value);
     form.append('fechaUltRec', ultRec.value);
-    form.append('estatus', estatus.value);
+
+
     /*joshua*/
     const pregun1 = document.querySelector('input[name="pregunta1"]:checked');
     const pregun2 = document.querySelector('input[name="pregunta2"]:checked');
@@ -224,8 +200,8 @@ forma.addEventListener('submit', async(e) => {
     if (pregun8 && pregun8.checked) {
         form.append('pregunta8', pregun8.value);
     } else {
-        form.append('pregunta8', '');
-    }
+        form.append('pregunta8',  '');    
+    }
 
     /*aqui termina joshua*/
     const res = await fetch('/Extintores', {
@@ -233,7 +209,7 @@ forma.addEventListener('submit', async(e) => {
         body: form,
 
     });
-    
+
     const msg = await res.json();
     if (res.status != 200) {
         showToast({ title: "Error", text: msg.res, icon: "error" });
@@ -384,12 +360,12 @@ const tablaR  = new DataTable('#tablaRepExt', {
        ]
      });
 */
-    $("#generatePDF").click(()=>{
-        window.location="/PDF"+cadenaReport()+`&title=${format()}`;
-    });
-    $("#generateExcel").click(()=>{
-        window.location = "/EXCEL"+cadenaReport();
-    });
+$("#generatePDF").click(() => {
+    window.location = "/PDF" + cadenaReport() + `&title=${format()}`;
+});
+$("#generateExcel").click(() => {
+    window.location = "/EXCEL" + cadenaReport();
+});
 
 const showToast = (msg) => {
     swal({
@@ -398,6 +374,3 @@ const showToast = (msg) => {
         icon: msg.icon
     });
 }
-
-
-

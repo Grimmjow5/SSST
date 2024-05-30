@@ -19,7 +19,6 @@ class ReportsController extends Flight {
     private MReportRiesgo $modelRiesgo;
     private Options $opt;
     private FormatPDF $pdf;
-    private array $dataReport =[]; 
     public function __construct()
     {
         $this->pdf = new FormatPDF();   
@@ -37,7 +36,7 @@ class ReportsController extends Flight {
         parent::render('Reports/index',['areas'=>$areas]);
     }
     private function ValidateRequest($request) :MReportRiesgo {
-         $this->modelRiesgo->fechaMin = trim($request['fechaReport']);
+            $this->modelRiesgo->fechaMin = trim($request['fechaReport']);
             $this->modelRiesgo->fechaMax = trim($request['fechaMaxReport']);
             $this->modelRiesgo->area = trim($request['area']);
             $this->modelRiesgo->estatus = trim($request['estatus']);
@@ -91,7 +90,7 @@ class ReportsController extends Flight {
         //Parte de la configuracion de para alinear el texto
         $spreadSheet->getActiveSheet()->getStyle('C2')->getAlignment()->setWrapText(true);
         //Redimencion de la celda 
-        $spreadSheet->getActiveSheet()->getColumnDimension('C')->setWidth(80);
+        $spreadSheet->getActiveSheet()->getColumnDimension('C')->setWidth(30);
         
         $spreadSheet->getActiveSheet()->getStyle('F2')->getAlignment()->setWrapText(true);
         //Redimencion de la celda 
