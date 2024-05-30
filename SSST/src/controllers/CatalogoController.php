@@ -26,8 +26,13 @@ class CatalogoController extends Flight{
         $this->Catalogo->getCatalogosCat(new CatMain());
         $this->cat= new ValCatalogo();
     }
-
+ private function checkAdmin() {
+        if (!isset($_SESSION["rol"]) || $_SESSION["rol"] !== 1  && $_SESSION['rol'] !==2) {
+            parent::halt(403, "Acceso denegado: Solo los administradores pueden acceder.");
+        }
+    }
     public function index (){
+            $this->checkAdmin();
         $this->Catalogo->getCatCat->rowVal = [];
         $this->Catalogo->getCatCat->table = "cat_areas";
      
@@ -40,7 +45,7 @@ class CatalogoController extends Flight{
     }
 
     public function postCatalogo(){
-        
+            $this->checkAdmin();
       try{
         
             $this->model = $this->cat->validate($_REQUEST);

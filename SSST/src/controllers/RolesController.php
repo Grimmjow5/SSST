@@ -24,14 +24,23 @@ class RolesController extends Flight{
         $this->Roles->getCatalogosRol(new RolesMain());
         $this->rol= new ValMRoles();
     }
+      private function checkAdmin() {
+        if (!isset($_SESSION["rol"]) || $_SESSION["rol"] !== 1) {
+            parent::halt(403, "Acceso denegado: Solo puede acceder personal autorizado .");
+        }
+    }
+
 
     public function index (){
+             $this->checkAdmin();   
+
         //etse es el principio
         parent::render('Roles/index');
     }
 
     public function postRoles(){
-        
+             $this->checkAdmin();   
+
       try{
         
             $this->model = $this->rol->validate($_REQUEST);

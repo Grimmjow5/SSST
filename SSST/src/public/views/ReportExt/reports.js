@@ -44,8 +44,9 @@ const formatE = () => {
         text += ` ${areaText}`;
     } else {
         if (area.val() == 0) {
-            text = "Todas las areas"
+            text = `Todas las areas - ${fechNow}`;
         }
+
     }
 
     text = text.trim() + ".";
