@@ -9,5 +9,5 @@ favicon.ico
 img/
 index.php
 xampp/
-src
+./src
 webalizer
