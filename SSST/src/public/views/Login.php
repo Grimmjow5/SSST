@@ -72,7 +72,7 @@
                                 </div>
                             </div>
 
-                            <form class="sign-box" action="/log" method="post" id="login_form">
+                            <form class="sign-box" action="/SSST/log" method="post" id="login_form">
                                 <div class="form-group mb-3">
                                     <label class="label" for="name">Usuario</label>
                                     <input type="text" id="nombre_usuario" name="nombre_usuario" class="form-control" placeholder="Ingresa nombre de usuario" required>
