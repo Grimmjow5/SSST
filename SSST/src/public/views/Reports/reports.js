@@ -151,8 +151,8 @@ const tabla  = new DataTable('#tableReport', {
      });
      
   $("#generatePDF").click(()=>{
-    window.location="/PDF"+cadenaReport()+`&title=${format()}`;
+    window.location="/SSST/PDF"+cadenaReport()+`&title=${format()}`;
   });
   $("#generateExcel").click(()=>{
-    window.location = "/EXCEL"+cadenaReport();
+    window.location = "/SSST/EXCEL"+cadenaReport();
   });
