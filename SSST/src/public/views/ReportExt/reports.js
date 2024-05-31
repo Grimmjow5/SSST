@@ -22,7 +22,7 @@ $("#report").on('submit', async(e) => {
     e.preventDefault();
     try {
         tabla.clear().draw();
-        tabla.ajax.url("/SSST/Extintores/reports" + cadenaReport()).load();
+        tabla.ajax.url("/Extintores/reports" + cadenaReport()).load();
         formatE();
         const da = await res.json();
         console.log(da.data);
@@ -46,7 +46,6 @@ const formatE = () => {
         if (area.val() == 0) {
             text = `Todas las areas - ${fechNow}`;
         }
-
     }
 
     text = text.trim() + ".";
@@ -185,9 +184,9 @@ const tabla = new DataTable('#tableReport', {
 });
 
 $("#generatePDF").click(() => {
-    window.location = "/SSST/PDFex" + cadenaReport() + `&title=${formatE()}`;
+    window.location = "/PDFex" + cadenaReport() + `&title=${formatE()}`;
 });
 
 $("#generateExcel").click(() => {
-    window.location = "/SSST/EXCELex" + cadenaReport();
+    window.location = "/EXCELex" + cadenaReport();
 });

@@ -99,14 +99,14 @@ class ReMain extends ConfigDb implements ICat_ConsultaRes {
             $mail->isSMTP();
             $mail->Host       = 'smtp.gmail.com';
             $mail->SMTPAuth   = true;
-            $mail->Username   = 'ssstssst103@gmail.com'; // Tu dirección de correo electrónico
-            $mail->Password   = 'maip xkcr pexe gynf'; // Tu contraseña de correo electrónico
+            $mail->Username   = 's3v4s51@gmail.com'; // Tu dirección de correo electrónico
+            $mail->Password   = 'sdip ptxu sxlz oosh'; // Tu contraseña de correo electrónico
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
             $mail->Port       = 587;
             $mail->CharSet    = 'UTF-8';
 
             // Dirección de correo electrónico del remitente y destinatario
-            $mail->setFrom('ssstssst103@gmail.com', 'Sistema de Seguridad y Salud en el Trabajo (SSST)');
+            $mail->setFrom('s3v4s51@gmail.com', 'Mailer');
             $mail->addAddress($correoDestinatario);
 
             // Contenido del correo electrónico

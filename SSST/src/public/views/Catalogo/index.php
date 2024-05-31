@@ -1,6 +1,6 @@
 <?php
-require 'src/public/views/components/Header.php';
-require 'src/public/views/components/Nav.php';
+require 'public/views/components/Header.php';
+require 'public/views/components/Nav.php';
 
 ?>
 <div class="d-flex flex-column p-2 w-100" >
@@ -86,7 +86,7 @@ require 'src/public/views/components/Nav.php';
             <thead>
               <tr>    
                 <th>No. Id</th>
-                <th>Areas</th>
+                <th>Area</th>
                 <th>Numero Extintoristro</th>
                 <th>Numero Inventario</th>
                 <th>Estatus</th>
@@ -108,6 +108,6 @@ require 'src/public/views/components/Nav.php';
   }
   </style>
 
-<?php require 'src/public/views/components/Footer.php'; ?>
-<script src="src/public/views/Catalogo/catalogo.js"></script>
+<?php require 'public/views/components/Footer.php'; ?>
+<script src="../public/views/Catalogo/catalogo.js"></script>
 

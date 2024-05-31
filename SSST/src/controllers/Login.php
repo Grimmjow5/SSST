@@ -60,10 +60,11 @@ class Login extends Flight{
         }
     }
   
-public function logout(){
-
+    public function logout(){
+      
         session_destroy();
         parent::redirect('/');
 
     }
+
 }

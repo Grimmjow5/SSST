@@ -41,7 +41,7 @@ $("#report").on('submit',async (e)=>{
     e.preventDefault();
     try {
     tabla.clear().draw();
-    tabla.ajax.url("/SSST/riesgos/reports"+cadenaReport()).load();
+    tabla.ajax.url("/riesgos/reports"+cadenaReport()).load();
     format();
     const da = await res.json();
         console.log(da.data);
@@ -151,8 +151,8 @@ const tabla  = new DataTable('#tableReport', {
      });
      
   $("#generatePDF").click(()=>{
-    window.location="/SSST/PDF"+cadenaReport()+`&title=${format()}`;
+    window.location="/PDF"+cadenaReport()+`&title=${format()}`;
   });
   $("#generateExcel").click(()=>{
-    window.location = "/SSST/EXCEL"+cadenaReport();
+    window.location = "/EXCEL"+cadenaReport();
   });

@@ -9,7 +9,21 @@ const idRe = document.getElementById('idExtinto');
 
 //const inlineRadio1 = document.getElementById('inlineRadio1');
 const radioGroup = document.getElementById('newExtintor');
-//const areaR = $("#areaR");aqui*/
+
+function filterExtintoresByArea() {
+    var selectedArea = document.getElementById("area").value;
+    var extintoresDropdown = document.getElementById("extintor");
+    var extintoresOptions = extintoresDropdown.getElementsByTagName("option");
+
+    for (var i = 0; i < extintoresOptions.length; i++) {
+        var extintorArea = extintoresOptions[i].getAttribute("data-area");
+        if (selectedArea === "0" || extintorArea === selectedArea) {
+            extintoresOptions[i].style.display = "";
+        } else {
+            extintoresOptions[i].style.display = "none";
+        }
+    }
+}
 
 
 const areaShow = () => {
@@ -33,93 +47,6 @@ ultRec.addEventListener('change', () => {
     proxRec.value = nuevafecha.join('-');
 }); //<--Acabo
 
-const tabla = new DataTable('#tablaRegExt', {
-    ajax: 'registro_ext',
-    colReorder: true,
-    pageLength: 25,
-    language: {
-        lengthMenu: 'Mostrar  _MENU_ _ENTRIES_',
-        entries: {
-            _: ' Extintores',
-        }
-    },
-
-    select: true,
-    columns: [
-        {
-            data: "id",
-            className: "ids text-center"
-        },
-        {
-            data: "lugar_designado",
-            className: "ids text-center",
-            render: function(item) {
-                if (item == 1) {
-                    return '<i class="bi bi-check-circle-fill  text-success h4 mx-1"></i>';
-                } else {
-                    return '<i class="bi bi-x-circle-fill text-warning h4 mx-1"></i>';
-                }
-            }
-        },
-        {
-            data: "acceso",
-            className: 'ids text-center',
-            render: function(item) {
-                if (item == 1) {
-                    return '<i class="bi bi-check-circle-fill  text-success h4 mx-1"></i>';
-                } else {
-                    return '<i class="bi bi-x-circle-fill text-warning h4 mx-1"></i>';
-                }
-            }
-        },
-        {
-            data: "senial",
-            className: 'ids text-center',
-            render: function(item) {
-                if (item == 1) {
-                    return '<i class="bi bi-check-circle-fill  text-success h4 mx-1"></i>';
-                } else {
-                    return '<i class="bi bi-x-circle-fill text-warning h4 mx-1"></i>';
-                }
-            }
-        },
-
-        {
-            data: "altura",
-            className: 'ids text-center'
-        },
-        {
-            data: "peso",
-            className: 'ids text-center'
-        }
-
-
-    ]
-});
-$('#tablaRegExt tbody').on('click', 'tr', async function() {
-    if ($(this).hasClass('selected')) {
-        $(this).removeClass('selected');
-    } else {
-        tabla.$('tr.selected').removeClass('selected');
-        $(this).addClass('selected');
-
-        let dates = tabla.row('.selected').data();
-        console.log(dates);
-        extint.focus();
-        await selectRow(dates);
-    }
-
-});
-
-
-const selectRow = async(dates) => {
-    idRe.value = dates.id;
-    areaShow();
-
-
-
-
-}
 
 const clearForm = () => {
     area.value = 0;
@@ -205,7 +132,7 @@ forma.addEventListener('submit', async(e) => {
     }
 
     /*aqui termina joshua*/
-    const res = await fetch('/SSST/Extintores', {
+    const res = await fetch('/Extintores', {
         method: 'POST',
         body: form,
 
@@ -216,151 +143,14 @@ forma.addEventListener('submit', async(e) => {
         showToast({ title: "Error", text: msg.res, icon: "error" });
     } else {
         ///err 
-        tabla.clear().draw();
-        tabla.ajax.reload();
+
+
         clearForm();
         showToast({ title: "Listo !!", text: "Se a guardado los datos del extintor", icon: "success" });
     }
 
 });
-/*Aqui
-$("#reportR").on('submitR',async (e)=>{
-    e.preventDefault();
-    try {
-    tabla.clear().draw();
-    tabla.ajax.url("/Extintores"+cadenaReport()).load();
-    format();
-    const da = await res.json();
-        console.log(da.data);
-    } catch (error) {
-        console.error(error);
-    } 
-});
 
-const cadenaReport=()=>{        
-    const res = `?area=${area.val()}`;
-return res;
-
-}
-Configuración de Tabla para mostrar antes de 
-
-const tablaR  = new DataTable('#tablaRepExt', {
- 
-      ajax:'', 
-       colReorder:true,
-       pageLength: 25,
-       language: {
-         lengthMenu: 'Mostrar  _MENU_ _ENTRIES_',
-         entries: {
-           _: ' Extintores',
-         }
-       },
-   
-       select: true,
-       columns: [
-            {
-                data: "id",
-                className: "ids text-center"
-            },
-            { 
-                data: "lugar_designado", 
-                className: "ids text-center", 
-                render: function(item) {
-                    if (item == 1) {
-                        return '<i class="bi bi-check-circle-fill  text-success h4 mx-1"></i>';
-                    } else {
-                        return '<i class="bi bi-x-circle-fill text-warning h4 mx-1"></i>';
-                    }
-                }
-            },
-            { 
-                data: "acceso", 
-                className: 'ids text-center',
-                render: function(item) {
-                    if (item == 1) {
-                        return '<i class="bi bi-check-circle-fill  text-success h4 mx-1"></i>';
-                    } else {
-                        return '<i class="bi bi-x-circle-fill text-warning h4 mx-1"></i>';
-                    }
-                }
-            },
-            { 
-                data: "senial", 
-                className: 'ids text-center',
-                render: function(item) {
-                    if (item == 1) {
-                        return '<i class="bi bi-check-circle-fill  text-success h4 mx-1"></i>';
-                    } else {
-                        return '<i class="bi bi-x-circle-fill text-warning h4 mx-1"></i>';
-                    }
-                }
-            },
-            { 
-                data: "instrucciones", 
-                className: 'ids text-center',
-                render: function(item) {
-                    if (item == 1) {
-                        return '<i class="bi bi-check-circle-fill  text-success h4 mx-1"></i>';
-                    } else {
-                        return '<i class="bi bi-x-circle-fill text-warning h4 mx-1"></i>';
-                    }
-                }
-            },
-            {
-                data: "sellos",
-                className: 'ids text-center',
-                render: function(item) {
-                    if (item == 1) {
-                        return '<i class="bi bi-check-circle-fill  text-success h4 mx-1"></i>';
-                    } else {
-                        return '<i class="bi bi-x-circle-fill text-warning h4 mx-1"></i>';
-                    }
-                }
-            },
-            { 
-                data: "lecturas", 
-                className: 'ids text-center',
-                render: function(item) {
-                    if (item == 1) {
-                        return '<i class="bi bi-check-circle-fill  text-success h4 mx-1"></i>';
-                    } else {
-                        return '<i class="bi bi-x-circle-fill text-warning h4 mx-1"></i>';
-                    }
-                }
-            },
-            { 
-                data: "danio", 
-                className: 'ids text-center',
-                render: function(item) {
-                    if (item == 1) {
-                        return '<i class="bi bi-check-circle-fill  text-success h4 mx-1"></i>';
-                    } else {
-                        return '<i class="bi bi-x-circle-fill text-warning h4 mx-1"></i>';
-                    }
-                }
-            },
-            { 
-                data: "manijas", 
-                className: 'ids text-center',
-                render: function(item) {
-                    if (item == 1) {
-                        return '<i class="bi bi-check-circle-fill  text-success h4 mx-1"></i>';
-                    } else {
-                        return '<i class="bi bi-x-circle-fill text-warning h4 mx-1"></i>';
-                    }
-                }
-            },
-            {
-                data: "altura",
-                className: 'ids text-center' 
-            },
-            {
-                data: "peso",
-                className: 'ids text-center' 
-            }
-       ]
-     });
-*/
 $("#generatePDF").click(() => {
     window.location = "/PDF" + cadenaReport() + `&title=${format()}`;
 });

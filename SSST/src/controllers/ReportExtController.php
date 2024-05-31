@@ -27,14 +27,14 @@ class ReportExtController extends Flight {
         $this->factory->getCatalogosEx(new ExtMain());
         $this->factory->getReportesExt(new GetReportsExt());
     }
-      private function checkAdmin() {
+    private function checkAdmin() {
         if (!isset($_SESSION["rol"]) || $_SESSION["rol"] !== 1) {
             parent::halt(403, "Acceso denegado: Solo puede acceder personal autorizado .");
         }
     }
-
+    
     public function index (){
-          $this->checkAdmin();
+        $this->checkAdmin();
         $this->factory->getCatEx->table = 'cat_areas';
         $this->factory->getCatEx->logic = "and";
         $areas = $this->factory->getCatEx->getAll();

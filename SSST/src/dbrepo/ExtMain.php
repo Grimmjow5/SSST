@@ -53,31 +53,43 @@ class ExtMain extends ConfigDb implements ICat_ConsultaEx {
     //Insert extintores
     public function set_modelEx(MExtintores $extintores):bool{
             try{
-                $sql = "CALL InsertarRegExtintor(
-                    ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?
-                )";
+                $sql = "CALL InsertarRegExtintor(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
     
                 $dateNow = new DateTime();
     
                 $stmt = parent::prepare($sql);
     
                 $stmt->bindValue(1, $extintores->idExtintor);
+
                 $stmt->bindValue(2, $extintores->idArea);
+
                 $stmt->bindValue(3, null); // id_direccion
+
                 $extintores->idMes = $dateNow->format("m");
                 $stmt->bindValue(4, $extintores->idMes);
     
-                $stmt->bindValue(5, $extintores->lugarDesigando); 
-                $stmt->bindValue(6, $extintores->accesoM);
-                $stmt->bindValue(7, $extintores->senalM);
-                $stmt->bindValue(8, $extintores->instrucionM); 
-                $stmt->bindValue(9, $extintores->selloM); 
-                $stmt->bindValue(10, $extintores->lecturaM); 
-                $stmt->bindValue(11, $extintores->danoM);
+                $stmt->bindValue(5, $extintores->lugarDesigando, \PDO::PARAM_BOOL); 
+
+                $stmt->bindValue(6, $extintores->accesoM, \PDO::PARAM_BOOL);
+
+                $stmt->bindValue(7, $extintores->senalM, \PDO::PARAM_BOOL);
+
+                $stmt->bindValue(8, $extintores->instrucionM, \PDO::PARAM_BOOL); 
+
+                $stmt->bindValue(9, $extintores->selloM, \PDO::PARAM_BOOL); 
+
+                $stmt->bindValue(10, $extintores->lecturaM, \PDO::PARAM_BOOL); 
+
+                $stmt->bindValue(11, $extintores->danoM, \PDO::PARAM_BOOL);
+
                 $stmt->bindValue(12, $extintores->alturaM); 
-                $stmt->bindValue(13, $extintores->manijasM); 
+
+                $stmt->bindValue(13, $extintores->manijasM, \PDO::PARAM_BOOL); 
+
                 $stmt->bindValue(14, $extintores->pesoM);
+
                 $stmt->bindValue(15, $extintores->fecha_UrecargaM); 
+
                 $stmt->bindValue(16, $extintores->fecha_PrecargaM);
     
                 $extintores->fechaRegistro = $dateNow->format("Y-m-d H:i");
@@ -98,8 +110,53 @@ class ExtMain extends ConfigDb implements ICat_ConsultaEx {
     
     //Actualizacion del modelo de extintores
 
-    public function put_modelEx(MExtintores $model):bool{
-         
+    public function put_modelEx(MExtintores $extintores):bool{
+
+        $fech = new DateTime();
+        $sql = "CALL UpdateRegExtintor(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        
+        try{
+            $stmt = parent::prepare($sql);
+
+            $stmt->bindValue(1, $extintores->id);
+
+            $stmt->bindValue(2, $extintores->idExtintor);
+
+            $stmt->bindValue(3, $extintores->idArea);
+            
+            $stmt->bindValue(4, $extintores->lugarDesigando);
+    
+            $stmt->bindValue(5, $extintores->accesoM);
+
+            $stmt->bindValue(6, $extintores->senalM);
+
+            $stmt->bindValue(7, $extintores->instrucionM); 
+        
+            $stmt->bindValue(8, $extintores->selloM); 
+
+            $stmt->bindValue(9, $extintores->lecturaM); 
+
+            $stmt->bindValue(10, $extintores->danoM);
+
+            $stmt->bindValue(11, $extintores->alturaM); 
+
+            $stmt->bindValue(12, $extintores->manijasM); 
+
+            $stmt->bindValue(13, $extintores->pesoM);
+
+            $stmt->bindValue(14, $extintores->fecha_UrecargaM); 
+
+            $stmt->bindValue(15, $extintores->fecha_PrecargaM);
+
+            $extintores->fechaModificacion = $fech->format("Y-m-d H:i");
+            $stmt->bindValue(16,$extintores->fechaModificacion);
+
+            $extintores->idUserMod = $_SESSION["id_usuario"];
+            $stmt->bindValue(17,$extintores->idUserMod); 
+            
+        }catch (\Throwable $th) {
+            return false;
+        }
        return true; 
     }
 }

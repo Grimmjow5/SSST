@@ -1,6 +1,6 @@
 <?php
-require 'src/public/views/components/Header.php';
-require 'src/public/views/components/Nav.php';
+require 'public/views/components/Header.php';
+require 'public/views/components/Nav.php';
 
 ?>
 <div class="d-flex flex-column p-2 w-100" >
@@ -75,6 +75,6 @@ require 'src/public/views/components/Nav.php';
       </div>
 </div><!--primer div-->
 
-<?php require 'src/public/views/components/Footer.php'; ?>
-<script src="../src/public/views/Roles/roles.js"></script>
+<?php require 'public/views/components/Footer.php'; ?>
+<script src="../public/views/Roles/roles.js"></script>
 

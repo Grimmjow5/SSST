@@ -9,7 +9,7 @@ class ConfigDb extends PDO {
 
     public function __construct(){
         try {
-            parent::__construct("mysql:local=localhost;dbname=SSST","root", "");
+          parent::__construct("mysql:local=localhost;dbname=nueva","root", "");
         } catch (Exception $e) {
             throw new Exception($e->getMessage());
         }

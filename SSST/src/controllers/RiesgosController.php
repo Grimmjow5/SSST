@@ -23,15 +23,15 @@ class RiesgosController extends Flight{
         $this->repoRiesgos->getCatalogos(new RepoMain());
         $this->mriesgos = new ValMRiesgos();
     }
-   private function checkAdmin() {
+    private function checkAdmin() {
         if (!isset($_SESSION["rol"]) || $_SESSION["rol"] !== 1  && $_SESSION['rol'] !==2) {
             parent::halt(403, "Acceso denegado: Solo los administradores pueden acceder.");
         }
     }   
-    public function index (){
-                
-            $this->checkAdmin();   
 
+    public function index (){
+             $this->checkAdmin();   
+       
       // $arr = array("valor"=>"valores");
        $this->repoRiesgos->getCat->rowVal = ["estatus"=>array(1)];
        $this->repoRiesgos->getCat->table = 'cat_areas';
@@ -41,9 +41,9 @@ class RiesgosController extends Flight{
     }
 
     public function postRiesgo(){
-             $this->checkAdmin();   
-
+        
       try{
+        $this->checkAdmin();   
         
              $this->model = $this->mriesgos->validate($_REQUEST);
             $save = false;

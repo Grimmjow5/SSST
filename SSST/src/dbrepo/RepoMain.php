@@ -71,14 +71,13 @@ class RepoMain extends ConfigDb implements ICat_Consultas {
                     $this->table = "mv_riesgos";
                     $this->rowVal = array("id"=>array($riesgo->id));//
                     $registr = $this->getAll(); 
-                    if(!empty($registr)){
+
                     if( ($registr['estatus'] == 1) && $riesgo->estatus == 1){
                         $riesgo->fechaSolucion  = $registr['fecha_solucion'];
                         $riesgo->solucion = null;
                     }else{
                     $riesgo->fechaSolucion = $dateNow->format("Y-m-d H:i");                
                     }
-                }
                 }else{
                     $riesgo->fechaSolucion = null;
                 }

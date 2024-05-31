@@ -29,7 +29,7 @@ public function validate($request) : MExtintores {
                throw new Exception("Contesta la pregunta 1");
 
             }
-            $this->lugarDesigando = $request['pregunta2'];
+            $this->lugarDesigando = $request['pregunta1'];
          
             if (empty($request['pregunta2']) && $request['pregunta2'] !== '0'){
                   throw new Exception("Contesta la pregunta 2");

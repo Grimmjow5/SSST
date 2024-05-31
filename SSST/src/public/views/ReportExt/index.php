@@ -1,6 +1,6 @@
 <?php
-require 'src/public/views/components/Header.php';
-require 'src/public/views/components/Nav.php';
+require 'public/views/components/Header.php';
+require 'public/views/components/Nav.php';
 
 ?>
 
@@ -79,5 +79,5 @@ require 'src/public/views/components/Nav.php';
 </div>
 <!--Div parte del body-->
 </div>
-<?php require 'src/public/views/components/Footer.php'; ?>
-<script src="src/public/views/ReportExt/reports.js"></script>
+<?php require 'public/views/components/Footer.php'; ?>
+<script src="../public/views/ReportExt/reports.js"></script>
