@@ -125,7 +125,7 @@ forma.addEventListener('submit', async(e) => {
     form.append('prioridad', prioridad.value);
     form.append('solucion', solucion.value);
     form.append('idRiesgo', elId.value)
-    const res = await fetch('/riesgos', {
+    const res = await fetch('/SSST/riesgos', {
         method: 'POST',
         body: form,
 

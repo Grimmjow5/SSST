@@ -112,4 +112,4 @@ require 'src/public/views/components/Nav.php';
 </div>
 </div>
 <?php require 'src/public/views/components/Footer.php'; ?>
-<script src="../public/views/Registro/registro.js"></script>
+<script src="src/public/views/Registro/registro.js"></script>

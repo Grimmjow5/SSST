@@ -8,10 +8,10 @@ a{
 
 }
 </style>
-<script src="public/js/popper.min.js" crossorigin="anonymous"></script>
-<script src="public/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>    
+<script src="src/public/js/popper.min.js" crossorigin="anonymous"></script>
+<script src="src/public/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>    
 
-<script src="public/js/bootstrap.bundle.min.js"></script>
+<script src="src/public/js/bootstrap.bundle.min.js"></script>
 <script src="src/public/js/datatables.min.js"></script>
 
 

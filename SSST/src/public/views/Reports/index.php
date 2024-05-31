@@ -113,4 +113,4 @@ require 'src/public/views/components/Nav.php';
 <!--Div parte del body-->
 </div>
 <?php require 'src/public/views/components/Footer.php'; ?>
-<script src="../src/public/views/Reports/reports.js"></script>
+<script src="src/public/views/Reports/reports.js"></script>

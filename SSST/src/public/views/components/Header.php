@@ -1,13 +1,4 @@
-<?php
-if (php_sapi_name() == 'cli') {
-    // El script se está ejecutando desde la línea de comandos
-    echo "Ejecutando en la línea de comandos.\n";
-} else {
-    // El script se está ejecutando en un servidor web
-    echo "Ejecutando en un servidor web.\n";
-}
 
-?>
 <html lang="en">
   <head>
     <meta charset="utf-8">
