@@ -43,8 +43,7 @@ $("#report").on('submit',async (e)=>{
     tabla.clear().draw();
     tabla.ajax.url("/SSST/riesgos/reports"+cadenaReport()).load();
     format();
-    const da = await res.json();
-        console.log(da.data);
+
     } catch (error) {
         console.error(error);
     } 
