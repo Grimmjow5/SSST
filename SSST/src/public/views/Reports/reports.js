@@ -3,8 +3,8 @@ const dateNow = new Date(hoy);
 dateNow.setMonth( dateNow.getMonth() <= 9 ?  "0"+dateNow.getMonth() : dateNow.getMonth()+1 );
 
 const dateMinReport = $("#fechaMinReport");
-const fechNow = `${dateNow.getFullYear()}-0${ dateNow.getMonth()+1}-${dateNow.getUTCDate()}`;
-
+const fechNow = `${dateNow.getFullYear()}-0${ dateNow.getMonth()+1}-${dateNow.getUTCDate() <= 9 ? "0"+dateNow.getUTCDate():dateNow.getUTCDate()}`;
+console.log("==========>"+fechNow);
 dateMinReport.attr({"max": fechNow});
 
 dateMinReport.val(`${dateNow.getFullYear()}-0${dateNow.getMonth()+1}-01`);
@@ -41,7 +41,7 @@ $("#report").on('submit',async (e)=>{
     e.preventDefault();
     try {
     tabla.clear().draw();
-    tabla.ajax.url("/riesgos/reports"+cadenaReport()).load();
+    tabla.ajax.url("/SSST/riesgos/reports"+cadenaReport()).load();
     format();
     const da = await res.json();
         console.log(da.data);
@@ -151,8 +151,8 @@ const tabla  = new DataTable('#tableReport', {
      });
      
   $("#generatePDF").click(()=>{
-    window.location="/PDF"+cadenaReport()+`&title=${format()}`;
+    window.location="/SSST/PDF"+cadenaReport()+`&title=${format()}`;
   });
   $("#generateExcel").click(()=>{
-    window.location = "/EXCEL"+cadenaReport();
+    window.location = "/SSST/EXCEL"+cadenaReport();
   });

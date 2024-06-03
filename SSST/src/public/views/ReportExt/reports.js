@@ -184,9 +184,9 @@ const tabla = new DataTable('#tableReport', {
 });
 
 $("#generatePDF").click(() => {
-    window.location = "/PDFex" + cadenaReport() + `&title=${formatE()}`;
+    window.location = "/SSST/PDFex" + cadenaReport() + `&title=${formatE()}`;
 });
 
 $("#generateExcel").click(() => {
-    window.location = "/EXCELex" + cadenaReport();
+    window.location = "/SSST/EXCELex" + cadenaReport();
 });

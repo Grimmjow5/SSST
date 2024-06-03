@@ -119,7 +119,7 @@ forma.addEventListener('submit', async(e) => {
     form.append('estatus', estatus.value);
 
     try {
-        const res = await fetch('/Registro', {
+        const res = await fetch('/SSST/Registro', {
             method: 'POST',
             body: form,
         });

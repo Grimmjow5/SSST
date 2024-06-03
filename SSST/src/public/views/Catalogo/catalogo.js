@@ -103,7 +103,7 @@ forma.addEventListener('submit', async(e) => {
     form.append('estatus', estatus.value);
     form.append('idExtintor', exId.value)
     form.append('area', area.value);
-    const res = await fetch('/Catalogo', {
+    const res = await fetch('/SSST/Catalogo', {
         method: 'POST',
         body: form,
 

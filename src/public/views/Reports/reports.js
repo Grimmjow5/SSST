@@ -10,8 +10,8 @@ dateMinReport.attr({"max": fechNow});
 dateMinReport.val(`${dateNow.getFullYear()}-0${dateNow.getMonth()+1}-01`);
 const dateMaxReport = $("#fechaMaxReport");
 
-dateMaxReport.attr({"max": fechNow});
-dateMaxReport.val(fechNow);
+//dateMaxReport.attr({"max": fechNow});
+//dateMaxReport.val(fechNow);
 //dateSolution.attr({"max":"2024-04-01"});
 
 //Elementos del DOM
@@ -41,10 +41,9 @@ $("#report").on('submit',async (e)=>{
     e.preventDefault();
     try {
     tabla.clear().draw();
-    tabla.ajax.url("/riesgos/reports"+cadenaReport()).load();
+    tabla.ajax.url("/SSST/riesgos/reports"+cadenaReport()).load();
     format();
-    const da = await res.json();
-        console.log(da.data);
+
     } catch (error) {
         console.error(error);
     } 
@@ -151,8 +150,8 @@ const tabla  = new DataTable('#tableReport', {
      });
      
   $("#generatePDF").click(()=>{
-    window.location="/PDF"+cadenaReport()+`&title=${format()}`;
+    window.location="/SSST/PDF"+cadenaReport()+`&title=${format()}`;
   });
   $("#generateExcel").click(()=>{
-    window.location = "/EXCEL"+cadenaReport();
+    window.location = "/SSST/EXCEL"+cadenaReport();
   });

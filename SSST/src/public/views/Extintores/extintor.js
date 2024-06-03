@@ -132,7 +132,7 @@ forma.addEventListener('submit', async(e) => {
     }
 
     /*aqui termina joshua*/
-    const res = await fetch('/Extintores', {
+    const res = await fetch('/SSST/Extintores', {
         method: 'POST',
         body: form,
 

@@ -98,7 +98,7 @@ forma.addEventListener('submit', async(e) => {
     form.append('nomRol', rol.value);
     form.append('estatus', estatus.value);
     form.append('idRol',rlId.value);
-    const res = await fetch('/Roles', {
+    const res = await fetch('/SSST/Roles', {
         method: 'POST',
         body: form,
 
