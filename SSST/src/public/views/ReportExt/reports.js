@@ -22,7 +22,7 @@ $("#report").on('submit', async(e) => {
     e.preventDefault();
     try {
         tabla.clear().draw();
-        tabla.ajax.url("/Extintores/reports" + cadenaReport()).load();
+        tabla.ajax.url("/SSST/Extintores/reports" + cadenaReport()).load();
         formatE();
 
     } catch (error) {

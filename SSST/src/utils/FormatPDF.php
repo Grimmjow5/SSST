@@ -7,7 +7,7 @@ class FormatPDF{
  public function HtmlContent(array  $datos, string $title):string  {
 
       //Config para logo
-    $path = __DIR__."\..\img\logo.png";
+    $path = "src/img/logo.png";
     $strinImg = file_get_contents($path);
     $base64 = "data:image/png;base64,".base64_encode($strinImg);
     $datoss = $this->AddRow($datos);

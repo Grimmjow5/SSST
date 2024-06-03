@@ -11,7 +11,7 @@ require 'src/public/views/components/Nav.php';
   <div class="row mt-4 ms-2 me-2">
 
 <div class="d-flex  justify-content-between">
-  <h3 class="mb-6">Situaciones de riesgo</h3> 
+  <h3 class="mb-6">Registro de Usuarios</h3> 
   <button class="btn btn-danger" onclick="clearForm()">
   <i class="bi bi-arrow-repeat"></i>
   Limpiar</button>
@@ -35,7 +35,7 @@ require 'src/public/views/components/Nav.php';
        
           <div class="col-12 col-md-6" >
             <label for="formGroupExampleInput" class="form-label">Nombre de Usuario</label>
-            <input type="text" class="form-control" id="txtUsuario" placeholder="N.Usuario">
+            <input type="text" class="form-control" id="txtUsuario" placeholder="NUsuario">
           </div>
  
   
