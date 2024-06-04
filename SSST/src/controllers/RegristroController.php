@@ -37,7 +37,7 @@ use Flight;
         $this->Registro->getCatRe->rowVal = [];
         $this->Registro->getCatRe->table = 'roles';
        $this->Registro->getCatRe->logic = "and";
-       $roles = $this->Registro->getCatRe->getAll();
+       $roles = $this->Registro->getCatRe->getRol();
 
 
         parent::render('Registro/index',['roles'=>$roles,'error'=>""]);

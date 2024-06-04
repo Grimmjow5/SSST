@@ -14,6 +14,14 @@ class ReMain extends ConfigDb implements ICat_ConsultaRes {
     public $rowVal;
     public $logic;
 
+    public function getRol(){
+        $condicion = empty($this->rowVal) ? " WHERE estatus = 1" : "{$this->generate($this->rowVal)} AND estatus = 1";
+        $sql = "SELECT * FROM {$this->table} {$condicion};";
+        $stmt = parent::prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll(parent::FETCH_ASSOC);    
+    }
+    
     public function getAll() {
         $condicion = empty($this->rowVal) ? " " : $this->generate($this->rowVal);
         $sql = "SELECT * FROM {$this->table} {$condicion};";

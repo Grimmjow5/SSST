@@ -22,7 +22,8 @@
                 <div class="col-md-12 col-lg-10">
                     <div class="wrap d-md-flex">
                        <div class="img p-3" >
-                        <img src="src/public/img/DIF_LOGO-01.png" style="width: 100%;"/>
+                        <img src="src/public/img/DIF_LOGO-01.png" width="300" height="400"/>
+                        
                         </div>
                         <div class="login-wrap p-4 p-md-5">
                             <div class="d-flex">
