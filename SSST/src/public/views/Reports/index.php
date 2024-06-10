@@ -7,7 +7,7 @@ require 'src/public/views/components/Nav.php';
 <div  class="d-flex flex-column p-2 w-100">
 
 <div class=" bg-light shadow-lg rounded p-4">
-    <h4>Forma para genera Excel o PDF </h4>
+    <h4>Forma para generar, Excel o PDF </h4>
     <small>Preguntar si tambien sera requerido tomar en cuanta solo si esta solucionado</small>
         <form id="report"  class="row mt-4">
             <div class="col-12 col-md-6">                
