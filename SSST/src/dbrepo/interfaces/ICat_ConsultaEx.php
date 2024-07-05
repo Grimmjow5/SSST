@@ -11,6 +11,7 @@ interface ICat_ConsultaEx{
 
     public function getAll();
     public function getExt();
+    public function getSubArea();
 
     public function set_modelEx(MExtintores $model):bool;
     public function put_modelEx(MExtintores $model):bool;

@@ -2,20 +2,20 @@ const hoy = Date.now();
 const dateNow = new Date(hoy);
 dateNow.setMonth( dateNow.getMonth() <= 9 ?  "0"+dateNow.getMonth() : dateNow.getMonth()+1 );
 
+
+const fechNow = `${dateNow.getFullYear()}-0${ dateNow.getMonth()+1}-${dateNow.getUTCDate()}`;
+
 const dateMinReport = $("#fechaMinReport");
-const fechNow = `${dateNow.getFullYear()}-0${ dateNow.getMonth()+1}-${dateNow.getUTCDate() <= 9 ? "0"+dateNow.getUTCDate():dateNow.getUTCDate()}`;
-console.log("==========>"+fechNow);
 dateMinReport.attr({"max": fechNow});
-
 dateMinReport.val(`${dateNow.getFullYear()}-0${dateNow.getMonth()+1}-01`);
-const dateMaxReport = $("#fechaMaxReport");
 
+const dateMaxReport = $("#fechaMaxReport");
 dateMaxReport.attr({"max": fechNow});
 dateMaxReport.val(fechNow);
 //dateSolution.attr({"max":"2024-04-01"});
 
 //Elementos del DOM
-const area =$("#area");//Are de donde se hace la consulta en caso de cero toma que que son todas las áreas
+const SubArea =$("#subarea");//Are de donde se hace la consulta en caso de cero toma que que son todas las áreas
 const estatus = $("#estatus");//Hay tres opciones reportado, solucionado y las dos al mismo tiempo 
 const fechaMinSolucion = $("#fechaMinSolucion");//Fecha minima para consultar por solución
 const fechaMaxSolucion = $("#fechaMaxSolucion");//FechaMaxiuma para consutlar por soluciónnn
@@ -24,7 +24,6 @@ const fechaMaxSolucion = $("#fechaMaxSolucion");//FechaMaxiuma para consutlar po
 estatus.on('change',()=>{
   if(estatus.val() == 1 || estatus.val()=='all'){
     fechaMinSolucion.prop('disabled',false);
-    
     fechaMaxSolucion.prop('disabled',false);
 
   }
@@ -41,9 +40,10 @@ $("#report").on('submit',async (e)=>{
     e.preventDefault();
     try {
     tabla.clear().draw();
-    tabla.ajax.url("/SSST/riesgos/reports"+cadenaReport()).load();
+    tabla.ajax.url("/riesgos/reports"+cadenaReport()).load();
     format();
-
+    const da = await res.json();
+        console.log(da.data);
     } catch (error) {
         console.error(error);
     } 
@@ -64,9 +64,9 @@ const format =()=>{
   if(dateMinReport.val() == ''  && dateMaxReport.val() != ''){
       text = `Riesgos reportados asta el ${dateMaxReport.val()}`;
   }
-  if(area.val() >0 ){
-    let areaText = $("#area option:selected").text();
-    text += `, de ${areaText}`;
+  if(SubArea.val() >0 ){
+    let SubareaText = $("#subarea option:selected").text();
+    text += `, de ${SubareaText}`;
   }
 //En caso de que diga solucionado o los dos entonces se aplicara lo siquiente 
   console.log(estatus.val());
@@ -100,7 +100,7 @@ const format =()=>{
 const cadenaReport=()=>{        
     const res = `?fechaReport=${dateMinReport.val()}
     &fechaMaxReport=${dateMaxReport.val()}
-    &area=${area.val()}
+    &subarea=${SubArea.val()}
     &estatus=${estatus.val()}
     &fechaMinSolucion=${fechaMinSolucion.val()}
     &fechaMaxSolucion=${fechaMaxSolucion.val()}`;
@@ -149,9 +149,15 @@ const tabla  = new DataTable('#tableReport', {
        ]
      });
      
-  $("#generatePDF").click(()=>{
-    window.location="/SSST/PDF"+cadenaReport()+`&title=${format()}`;
-  });
-  $("#generateExcel").click(()=>{
-    window.location = "/SSST/EXCEL"+cadenaReport();
-  });
+$("#generatePDF").click(()=>{
+  const url = "/PDF" + cadenaReport() + `&title=${format()}`;
+  window.open(url, '_blank');
+});
+
+$("#generateExcel").click(()=>{
+  window.location = "/EXCEL"+cadenaReport();
+});
+
+
+
+  

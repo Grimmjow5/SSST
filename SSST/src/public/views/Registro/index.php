@@ -1,17 +1,17 @@
 <?php
-require 'src/public/views/components/Header.php';
-require 'src/public/views/components/Nav.php';
+require 'public/views/components/Header.php';
+require 'public/views/components/Nav.php';
 
 ?>
 <div id="loading" style="display: none;">Cargando...</div>
-<div class="d-flex flex-column">
+<div class="d-flex flex-column p-2 w-100">
 <div class="pt-2 mx-4 " style="background-color: #eceff4;">
 <!---->
   <div class="w-100 bg-light shadow-lg  rounded p-4 mt-3">
-  <div class="row mt-4 ms-2 me-2">
+  <!--<div class="row mt-4 ms-2 me-2">-->
 
 <div class="d-flex  justify-content-between">
-  <h3 class="mb-6">Registro de Usuarios</h3> 
+  <h3 class="mb-6">Registro de usuarios</h3> 
   <button class="btn btn-danger" onclick="clearForm()">
   <i class="bi bi-arrow-repeat"></i>
   Limpiar</button>
@@ -35,7 +35,7 @@ require 'src/public/views/components/Nav.php';
        
           <div class="col-12 col-md-6" >
             <label for="formGroupExampleInput" class="form-label">Nombre de Usuario</label>
-            <input type="text" class="form-control" id="txtUsuario" placeholder="NUsuario">
+            <input type="text" class="form-control" id="txtUsuario" placeholder="N.Usuario">
           </div>
  
   
@@ -67,23 +67,51 @@ require 'src/public/views/components/Nav.php';
         </select>
       </div>
 
+      <div class="col-md-6 col-12 mt-1">
+        <label for="area" class="form-label">Area</label>
+          <select class="form-select" id="area" name="area" onchange="filterSubAreaByArea()">
+            <option value="0" selected>Selecciona un área</option>
+            <?php
+              $opt = "";
+                foreach ($area as $item) {
+                  $opt .= "<option value='{$item["id_area"]}' data-area='{$item["id_area"]}'>{$item["textArea"]}</option>";
+                }
+                echo $opt;
+            ?>
+          </select>
+      </div>
+      <div class="col-md-6 col-12 mt-1">
+        <label for="subarea" class="form-label">SubArea</label>
+          <select class="form-select" id="subarea" name="subarea" multiple>
+              <?php
+              $opt = "";
+              foreach ($subArea as $item) {
+                $opt .= "<option value='{$item["id_subarea"]}' data-area='{$item["id_area"]}'>{$item["textArea"]}</option>";
+              }
+              echo $opt;
+              ?>
+          </select>
+      </div>
       <div class="col-12 col-md-6" >
             <label for="formGroupExampleInput" class="form-label">Correo</label>
             <input type="email" id="correo" class="form-control" placeholder="@gmail.com">
-  </div>
+      </div>
 
           <div class="col-12 col-md-6" >
-            <label for="formGroupExampleInput" class="form-label">Contraseña</label>
-            <input type="password" id="password" class="form-control" aria-describedby="passwordHelpInline">
+          <label for="formGroupExampleInput" class="form-label">Contraseña</label>
+            <div class="input-group">
+              <input type="password" id="password" class="form-control" aria-describedby="passwordHelpInline">
+              <button class="btn btn-secondary bi bi-eye-fill" type="button" onclick="mostrarContrasena()"></button>
+            </div>
+          </div>
   </div>
-  </div>
-          <div class="col-12 mt-2 ms-2 me-2">
+          
             <button type="submit" class="btn btn-success col-12" value = "add" >Guardar</button>
+          
+            </form>
           </div>
-          </div>
-          </div>
-          </br> 
-</form>
+</div>
+
 
 <div class="pt-3 mt-2 mx-4">
             <div class="bg-light p-4 shadow-lg">
@@ -101,15 +129,16 @@ require 'src/public/views/components/Nav.php';
                     <th>Fecha de registro</th>
                     <th>Rol</th>
                     <th>Estatus</th>
+                    <th>Correo</th>
                   </tr>
                 </thead>
               </table>
             </div>
-      </div>
-</div>
+      
+          </div>
   </div>
-</div>
-</div>
-</div>
-<?php require 'src/public/views/components/Footer.php'; ?>
-<script src="src/public/views/Registro/registro.js"></script>
+
+
+
+<?php require 'public/views/components/Footer.php'; ?>
+<script src="../public/views/Registro/registro.js"></script>

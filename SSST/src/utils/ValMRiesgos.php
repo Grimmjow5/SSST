@@ -8,10 +8,10 @@ class ValMRiesgos extends MRiesgos{
     public function validate($request):MRiesgos
     {
     
-    if(empty($request['area']) || $request['area'] == 0 ){
-        throw new Exception("Error de área, seleciona una");
+    if(empty($request['subarea']) || $request['subarea'] == 0 ){
+        throw new Exception("Error de Subarea, seleciona una");
      }
-     $this->idArea = $request['area'];
+     $this->idSubArea = $request['subarea'];
      
      if(empty($request['descripcion'])){
         throw new Exception("Ingresa descripción del riesgo");

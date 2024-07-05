@@ -1,6 +1,6 @@
 <?php
-require 'src/public/views/components/Header.php';
-require 'src/public/views/components/Nav.php';
+require 'public/views/components/Header.php';
+require 'public/views/components/Nav.php';
 ?>
 
 <div class="d-flex flex-column p-2 w-100">
@@ -8,7 +8,6 @@ require 'src/public/views/components/Nav.php';
         <div class="w-100 bg-light shadow-lg rounded p-4 mt-3">
             <div class="d-flex justify-content-between">
                 <div class="col-6">
-                    <input type="hidden" id="idExtintor" value="0">
                     <h3 class="mb-6">Reporte de condición de extintor</h3>
                 </div>
                 <div class="col-6 d-flex justify-content-end">
@@ -20,21 +19,21 @@ require 'src/public/views/components/Nav.php';
             </div>
 
             <div class="card-body">
-                </br>
                 <form id="newExtintor" class="row">
-                    <div class="col-md-6 col-12 mt-1">
-                        <label for="area" class="form-label">Area</label>
-                        <select class="form-select" id="area" name="area" onchange="filterExtintoresByArea()">
-                        <option value="0" selected>Selecciona un área</option>
-                            <?php
-                            $opt = "";
-                            foreach ($areas as $item) {
-                                $opt .= "<option value='{$item["id_area"]}' data-area='{$item["id_area"]}'>{$item["textArea"]}</option>";
-                            }
-                            echo $opt;
-                            ?>
-                        </select>
-                    </div>
+                <div class="col-6" >
+          <label for="formGroupExampleInput" class="form-label">Subarea</label>
+            <select class="form-select" id="subarea" name="subarea">
+              <option value="0" selected>Selecciona una Subarea</option>
+              <?php
+              $opt = "";
+              foreach ($subArea as $item) {
+                $opt .=   "<option value='{$item["id_area"]}' data-area='{$item["id_user"]}'>{$item["textArea"]}</option>";
+
+              }
+              echo $opt;
+              ?>
+            </select>
+        </div>
 
                     <div class="col-md-6 col-12 mt-1">
                         <label for="extintor" class="form-label">Numero de Extintor</label>
@@ -43,7 +42,7 @@ require 'src/public/views/components/Nav.php';
                                 <?php
                                 $opt = "";
                                 foreach ($extintores as $item) {
-                                    $opt .= "<option value='{$item["id_extintor"]}' data-area='{$item["id_area"]}'>{$item["num_inventario"]}</option>";
+                                    $opt .= "<option value='{$item["id_extintor"]}' data-subarea='{$item["id_sub"]}'>{$item["num_inventario"]}</option>";
                                 }
                                 echo $opt;
                                 ?>
@@ -156,12 +155,12 @@ require 'src/public/views/components/Nav.php';
                         <div class="col-6">
                             </br>
                             <label for="txtPeso" class="form-label">Peso del extintor</label>
-                            <input step="any" type="number" class="form-control" id="txtPeso" placeholder="Peso">
+                            <input step="0.01" type="number" class="form-control" id="txtPeso" placeholder="Peso en Kilogramos">
                         </div>
                         <div class="col-6">
                             </br>
                             <label for="txtAltura" class="form-label">Altura del extintor</label>
-                            <input step="any" type="number" class="form-control" id="txtAltura" placeholder="Altura">
+                            <input step="0.01" type="number" class="form-control" id="txtAltura" placeholder="Altura en metros">
                         </div>
                         <div class="col-12 col-md-6">
                             <label for="fechaUltRec" class="form-label">Fecha de ultima recarga</label>
@@ -199,6 +198,6 @@ require 'src/public/views/components/Nav.php';
     }
 </style>
 
-<?php require 'src/public/views/components/Footer.php'; ?>
+<?php require 'public/views/components/Footer.php'; ?>
 
-<script src="src/public/views/Extintores/extintor.js"></script>
+<script src="../public/views/Extintores/extintor.js"></script>

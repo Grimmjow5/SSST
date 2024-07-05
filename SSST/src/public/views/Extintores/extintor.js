@@ -1,167 +1,102 @@
-const area = document.getElementById('area');
-//const ext = document.getElementById('extintor');
-const peso = document.getElementById('txtPeso');
-const altura = document.getElementById('txtAltura');
-const ultRec = document.getElementById('fechaUltRec');
-const proxRec = document.getElementById('fechaProxRec');
-const extintor = document.getElementById('extintor');
-const idRe = document.getElementById('idExtinto');
+document.addEventListener('DOMContentLoaded', function() {
+    const subArea = document.getElementById('subarea');
+    const extintor = document.getElementById('extintor');
+    const peso = document.getElementById('txtPeso');
+    const altura = document.getElementById('txtAltura');
+    const ultRec = document.getElementById('fechaUltRec');
+    const proxRec = document.getElementById('fechaProxRec');
+    const radioGroup = document.getElementById('newExtintor');
 
-//const inlineRadio1 = document.getElementById('inlineRadio1');
-const radioGroup = document.getElementById('newExtintor');
+    function filterExtintoresBySubArea() {
+        const selectedSubArea = subArea.value;
+        const extintoresOptions = extintor.getElementsByTagName("option");
 
-function filterExtintoresByArea() {
-    var selectedArea = document.getElementById("area").value;
-    var extintoresDropdown = document.getElementById("extintor");
-    var extintoresOptions = extintoresDropdown.getElementsByTagName("option");
+        // Restablecer el valor del extintor seleccionado cuando se cambie de área o se seleccione "Seleccionar área"
+        if (selectedSubArea === "0") {
+            extintor.value = "0";
+        }
 
-    for (var i = 0; i < extintoresOptions.length; i++) {
-        var extintorArea = extintoresOptions[i].getAttribute("data-area");
-        if (selectedArea === "0" || extintorArea === selectedArea) {
-            extintoresOptions[i].style.display = "";
-        } else {
+        // Ocultar todos los extintores
+        for (let i = 0; i < extintoresOptions.length; i++) {
             extintoresOptions[i].style.display = "none";
         }
-    }
-}
 
-
-const areaShow = () => {
-    console.log(area.value);
-    if (area.value == 0) {
-        console.log("Ejecuta al cargar ");
-        showSolucion.classList.add('d-none');
-    }
-}
-const ExtintoresShow = () => {
-        console.log(extintor.value);
-        if (extintor.value == 0) {
-            console.log("Ejecuta al cargar ");
-            showSolucion.classList.add('d-none');
+        // Mostrar solo los extintores que pertenecen al área seleccionada
+        if (selectedSubArea !== "0") {
+            for (let i = 0; i < extintoresOptions.length; i++) {
+                const extintorSubArea = extintoresOptions[i].getAttribute("data-subarea");
+                if (extintorSubArea === selectedSubArea || extintoresOptions[i].value === "0") {
+                    extintoresOptions[i].style.display = ""; // Mostrar el extintor
+                }
+            }
         }
     }
-    //Validacion con respecto a las recargas de los extintores <--Empiezo
-ultRec.addEventListener('change', () => {
-    nuevafecha = ultRec.value.split('-');
-    nuevafecha[0]++;
-    proxRec.value = nuevafecha.join('-');
-}); //<--Acabo
 
-
-const clearForm = () => {
-    area.value = 0;
-    //ext.value = null;
-    peso.value = null;
-    altura.value = null;
-    ultRec.value = null;
-    proxRec.value = null;
-    extintor.value = 0;
-
-    //inlineRadio1.value = " ";
-
-    const radios = radioGroup.querySelectorAll('input[type="radio"]');
-    radios.forEach(radio => {
-        radio.checked = false;
+    // Agregar un controlador de eventos para el cambio en el dropdown list de áreas
+    subArea.addEventListener('change', function() {
+        filterExtintoresBySubArea();
+        extintor.value = "0"; // Restablecer el valor del extintor
     });
 
-}
-
-const forma = document.getElementById('newExtintor');
-//Modelo el  formulario
-forma.addEventListener('submit', async(e) => {
-    e.preventDefault();
-    const form = new FormData();
-    form.append('area', area.value);
-    form.append('extintor', extintor.value);
-    //form.append('extintor', ext.value);
-    form.append('txtPeso', peso.value);
-    form.append('txtAltura', altura.value);
-    form.append('fechaProxRec', proxRec.value);
-    form.append('fechaUltRec', ultRec.value);
-
-
-    /*joshua*/
-    const pregun1 = document.querySelector('input[name="pregunta1"]:checked');
-    const pregun2 = document.querySelector('input[name="pregunta2"]:checked');
-    const pregun3 = document.querySelector('input[name="pregunta3"]:checked');
-    const pregun4 = document.querySelector('input[name="pregunta4"]:checked');
-    const pregun5 = document.querySelector('input[name="pregunta5"]:checked');
-    const pregun6 = document.querySelector('input[name="pregunta6"]:checked');
-    const pregun7 = document.querySelector('input[name="pregunta7"]:checked');
-    const pregun8 = document.querySelector('input[name="pregunta8"]:checked');
-
-    if (pregun1 && pregun1.checked) {
-        form.append('pregunta1', pregun1.value);
-    } else {
-        form.append('pregunta1', '');
-    }
-    if (pregun2 && pregun2.checked) {
-        form.append('pregunta2', pregun2.value);
-    } else {
-        form.append('pregunta2', '');
-    }
-    if (pregun3 && pregun3.checked) {
-        form.append('pregunta3', pregun3.value);
-    } else {
-        form.append('pregunta3', '');
-    }
-    if (pregun4 && pregun4.checked) {
-        form.append('pregunta4', pregun4.value);
-    } else {
-        form.append('pregunta4', '');
-    }
-    if (pregun5 && pregun5.checked) {
-        form.append('pregunta5', pregun5.value);
-    } else {
-        form.append('pregunta5', '');
-    }
-    if (pregun6 && pregun6.checked) {
-        form.append('pregunta6', pregun6.value);
-    } else {
-        form.append('pregunta6', '');
-    }
-    if (pregun7 && pregun7.checked) {
-        form.append('pregunta7', pregun7.value);
-    } else {
-        form.append('pregunta7', '');
-    }
-    if (pregun8 && pregun8.checked) {
-        form.append('pregunta8', pregun8.value);
-    } else {
-        form.append('pregunta8',  '');    
+    // Ocultar extintores al cargar la página
+    var extintoresOptions = extintor.getElementsByTagName("option");
+    for (var i = 0; i < extintoresOptions.length; i++) {
+        extintoresOptions[i].style.display = "none";
     }
 
-    /*aqui termina joshua*/
-    const res = await fetch('/SSST/Extintores', {
-        method: 'POST',
-        body: form,
-
+    ultRec.addEventListener('change', () => {
+        let nuevafecha = ultRec.value.split('-');
+        nuevafecha[0] = (parseInt(nuevafecha[0]) + 1).toString();
+        proxRec.value = nuevafecha.join('-');
     });
 
-    const msg = await res.json();
-    if (res.status != 200) {
-        showToast({ title: "Error", text: msg.res, icon: "error" });
-    } else {
-        ///err 
+    const clearForm = () => {
+        subArea.value = "0";
+        peso.value = "";
+        altura.value = "";
+        ultRec.value = "";
+        proxRec.value = "";
+        extintor.value = "0";
 
+        const radios = radioGroup.querySelectorAll('input[type="radio"]');
+        radios.forEach(radio => {
+            radio.checked = false;
+        });
+    };
 
-        clearForm();
-        showToast({ title: "Listo !!", text: "Se a guardado los datos del extintor", icon: "success" });
-    }
+    const form = document.getElementById('newExtintor');
+    form.addEventListener('submit', async(e) => {
+        e.preventDefault();
+        const formData = new FormData(form);
+        formData.append('subarea', subArea.value);
+        formData.append('extintor', extintor.value);
+        formData.append('txtPeso', peso.value);
+        formData.append('txtAltura', altura.value);
+        formData.append('fechaProxRec', proxRec.value);
+        formData.append('fechaUltRec', ultRec.value);
 
-});
+        const res = await fetch('/Extintores', {
+            method: 'POST',
+            body: formData,
+        });
 
-$("#generatePDF").click(() => {
-    window.location = "/PDF" + cadenaReport() + `&title=${format()}`;
-});
-$("#generateExcel").click(() => {
-    window.location = "/EXCEL" + cadenaReport();
-});
-
-const showToast = (msg) => {
-    swal({
-        title: msg.title,
-        text: msg.text,
-        icon: msg.icon
+        const msg = await res.json();
+        if (res.status != 200) {
+            showToast({ title: "Error", text: msg.res, icon: "error" });
+        } else {
+            clearForm();
+            showToast({ title: "Listo !!", text: "Se ha guardado los datos del extintor", icon: "success" });
+        }
     });
-}
+
+    const showToast = (msg) => {
+        swal({
+            title: msg.title,
+            text: msg.text,
+            icon: msg.icon
+        });
+    };
+
+    // Inicializar el filtro al cargar la página
+    filterExtintoresBySubArea();
+});

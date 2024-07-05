@@ -35,15 +35,16 @@ class ReportExtController extends Flight {
     
     public function index (){
         $this->checkAdmin();
-        $this->factory->getCatEx->table = 'cat_areas';
+        $this->factory->getCatEx->table = 'cat_sub_areas';
         $this->factory->getCatEx->logic = "and";
-        $areas = $this->factory->getCatEx->getAll();
+        $subAreas = $this->factory->getCatEx->getAll();
 
-        parent::render('ReportExt/index',['areas'=>$areas]);
+        parent::render('ReportExt/index',['subarea'=>$subAreas]);
     }
     private function ValidateRequest($request) :MReportExt {
-            $this->modelExtintor->fecha = trim($request['fecha']);
-            $this->modelExtintor->area = trim($request['area']);
+            $this->modelExtintor->fechaM = trim($request['fecha']);
+            $this->modelExtintor->fechaMax = trim($request['fechaMaxReport']);
+            $this->modelExtintor->subarea = trim($request['subarea']);
         return $this->modelExtintor;   
     }
     public function GetReportsExt() {
@@ -112,13 +113,11 @@ class ReportExtController extends Flight {
         $write =  \PhpOffice\PhpSpreadsheet\IOFactory::createWriter($spreadSheet,'Xlsx');
         $write->save('php://output');
 
-
-        //parent::json(['msg'=>"MEnsajes"]);
     }
     private function FormatDataExcel(array $datos):array{
          $newArray = array();
         foreach ($datos as $key) {
-           array_push($newArray,
+           array_push   ($newArray,
                                 [
                                     $key['id'],
                                     $this->pdf->dateFormat($key['fecha_reg']),
@@ -144,11 +143,4 @@ class ReportExtController extends Flight {
         return $value ? 'Sí' : 'No';
     }
 
-    public function dateFormat($fecha) {
-        if (!empty($fecha)) {
-            $jj = strtotime($fecha);
-            return date("d-m-Y", $jj);
-        }
-        return " ";
-    }
 }

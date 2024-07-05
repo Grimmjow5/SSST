@@ -36,7 +36,7 @@ class Login extends Flight{
                 parent::stop();
             }
 
-            $sql = "SELECT * FROM `cat_usuarios` WHERE `user`= ? AND `status`= 1;";
+            $sql = "SELECT * FROM cat_usuarios WHERE user= ? AND status= 1;";
             $stmt = $this->conexion->prepare($sql);
             $stmt->bindValue(1, $this->nameUser);
             $stmt->execute();
@@ -49,7 +49,7 @@ class Login extends Flight{
                     $_SESSION["nombre"] = $resultado["user"];
                     $_SESSION["apellidos"] = $resultado["last_name"];
                     $_SESSION["rol"] = $resultado["id_rol"]; // Guardar el rol en la sesión
-
+                    
                     parent::redirect('/home');
                 } else {
                     parent::render('Login', ['mensaje'=>'1']);

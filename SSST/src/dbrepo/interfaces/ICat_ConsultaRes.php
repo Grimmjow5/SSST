@@ -2,14 +2,14 @@
 
 namespace Almacen\Ssst\dbrepo\interfaces;
 
-
-
-
 use Almacen\Ssst\dbrepo\models\MRegistro;
 
 interface ICat_ConsultaRes{
 
     public function getAll();
+    public function getRol();
+    public Function getArea();
+    public function getSubArea();
 
     public function set_modelRes(MRegistro $model):bool;
     public function put_modelRes(MRegistro $model):bool;

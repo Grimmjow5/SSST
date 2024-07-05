@@ -2,7 +2,7 @@
 
 namespace Almacen\Ssst\routes;
 
-use Almacen\Ssst\controllers\RegristroController;
+use Almacen\Ssst\controllers\RegistroController;
 use Flight;
 use Almacen\Ssst\controllers\Login;
 
@@ -16,7 +16,7 @@ class Registro extends Flight{
         parent::route('GET /home',[$this->login,'RenderHome']);
 
 
-        $registro = new RegristroController();
+        $registro = new RegistroController();
         parent::route('GET /Registro',[$registro,'index']);
         parent::route('POST /Registro',[$registro,'postRegistro']);
         parent::route('GET /vista_usuario',[$registro,'getRegistro']);

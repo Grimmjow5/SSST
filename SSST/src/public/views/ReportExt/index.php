@@ -1,6 +1,6 @@
 <?php
-require 'src/public/views/components/Header.php';
-require 'src/public/views/components/Nav.php';
+require 'public/views/components/Header.php';
+require 'public/views/components/Nav.php';
 
 ?>
 
@@ -9,28 +9,33 @@ require 'src/public/views/components/Nav.php';
 <div class=" bg-light shadow-lg rounded p-4">
     <h4>Forma para genera Excel o PDF </h4>
         <form id="report"  class="row mt-4">
-           
-            <div class="col-12 col-md-6 mt-1">
-                <label for="" class="form-label" >Área</label>
-                <select name="" id="area"class="form-control">
-                    <option value="0" >Todas las Áreas</option>
+            <div class="col-12 col-md-12">
+                <label for="" class="form-label" >Subarea</label>
+                <select name="" id="subarea"class="form-control">
+                    <option value="0" >Todas las Subreas</option>
                         <?php
                             $opt = "";
-                            foreach ($areas as $item) {
-                                $opt .= "<option value='{$item["id_area"]}'>{$item["textArea"]}</option>";
+                            foreach ($subarea as $item) {
+                              $opt .= "<option value='{$item["id_subarea"]}'>{$item["textArea"]}</option>";
                             }
                             echo $opt;
                         ?>
                 </select>
             </div>
 
-
-            <div class="col-12 col-md-6  invisible">                
-                <label  class="form-label" >Fecha de  Registro</label>
+            <div class="col-6 col-md-6 mt-2">                
+                <label  class="form-label" >Fecha Minima de los Registros</label>
                 <input type="date" class="form-control" 
                     id="fecha" >
-                    <small class="ms-5">* Es la fecha de registro del formulario </small>
+                    <small class="ms-5">* Es la fecha como minima en la que se levanto el reporte </small>
             </div> 
+
+            <div class="col-6 col-md-6 mt-2">
+                <label for="" class="form-label">Fecha Máxima de los Reportes </label>
+                <input type="date" class="form-control" 
+                    id="fechaMaxReport">
+                    <small class="ms-5">* Es la fecha como máximo en la que se levanto el reporte </small>
+            </div>
 
 
             <div class="d-flex justify-content-evenly">
@@ -39,7 +44,7 @@ require 'src/public/views/components/Nav.php';
                     <h4>Generar Reporte </h4>
                 </button>
             </div>
-            <small>La generacion de todos estos reportes seran en base a la fecha</small>
+            <small>La generacion de todos estos reportes seran en base a la fecha y subarea</small>
         </form>
 
 </div>
@@ -79,5 +84,5 @@ require 'src/public/views/components/Nav.php';
 </div>
 <!--Div parte del body-->
 </div>
-<?php require 'src/public/views/components/Footer.php'; ?>
-<script src="src/public/views/ReportExt/reports.js"></script>
+<?php require 'public/views/components/Footer.php'; ?>
+<script src="../public/views/ReportExt/reports.js"></script>

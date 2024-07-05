@@ -24,9 +24,7 @@ class Catalogo extends Flight{
 
        parent::route('POST /Catalogo',[$catalogo,'postCatalogo']);
 
-       parent::route('GET /cat_catalogo',[$catalogo,'getCatalogo']);
-     
-       
+       parent::route('GET /cat_extintores',[$catalogo,'getCatalogo']);
 
     }
 }

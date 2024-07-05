@@ -2,19 +2,25 @@ const hoy = Date.now();
 const dateNow = new Date(hoy);
 dateNow.setMonth(dateNow.getMonth() <= 9 ? "0" + dateNow.getMonth() : dateNow.getMonth() + 1);
 
-const fecha = $("#fecha");
 const fechNow = `${dateNow.getFullYear()}-0${ dateNow.getMonth()+1}-${dateNow.getUTCDate()}`;
 
+const fecha = $("#fecha");
+fecha.attr({"max": fechNow});
 fecha.val(`${dateNow.getFullYear()}-0${dateNow.getMonth()+1}-01`);
+
+const dateMaxReport = $("#fechaMaxReport");
+dateMaxReport.attr({"max": fechNow});
+dateMaxReport.val(fechNow);
 
 
 //Elementos del DOM
-const area = $("#area");
-//const fecha = $("#fecha");
+const SubArea = $("#subarea");
+
 
 const cadenaReport = () => {
     const res = `?fecha=${fecha.val()}
-    &area=${area.val()}`;
+    &fechaMaxReport=${dateMaxReport.val()}
+    &subarea=${SubArea.val()}`;
     return res;
 }
 
@@ -22,9 +28,10 @@ $("#report").on('submit', async(e) => {
     e.preventDefault();
     try {
         tabla.clear().draw();
-        tabla.ajax.url("/SSST/Extintores/reports" + cadenaReport()).load();
+        tabla.ajax.url("/Extintores/reports" + cadenaReport()).load();
         formatE();
-
+        const da = await res.json();
+        console.log(da.data);
     } catch (error) {
         console.error(error);
     }
@@ -33,20 +40,15 @@ $("#report").on('submit', async(e) => {
 const textDescripcion = $("#textTitle");
 const formatE = () => {
 
-    /*if(fecha.val() != '' ){
-        text = `Riesgos reportados en ${fecha.val()} `;
-    }*/
-
     let text = "";
-    if (area.val() > 0) {
-        let areaText = $("#area option:selected").text();
-        text += ` ${areaText}`;
+    if (SubArea.val() > 0) {
+        let subareaText = $("#subarea option:selected").text();
+        text += ` ${subareaText} - ${fechNow}`;
     } else {
-        if (area.val() == 0) {
-            text = `Todas las areas - ${fechNow}`;
+        if (SubArea.val() == 0) {
+            text = `Todas las Subareas - ${fechNow}`;
         }
     }
-
     text = text.trim() + ".";
     textDescripcion.html(text);
     return text;
@@ -73,7 +75,12 @@ const tabla = new DataTable('#tableReport', {
         },
         {
             data: "fecha_reg",
-            className: "ids text-center"
+            className: "ids text-center",render:function(fecha){
+                let full = fecha.split(" ")[0].split("-");
+                let reverse = full.reverse();
+                let format = reverse.join("-");
+                return format;
+            } 
         },
         {
             data: "lugar_designado",
@@ -183,9 +190,10 @@ const tabla = new DataTable('#tableReport', {
 });
 
 $("#generatePDF").click(() => {
-    window.location = "/SSST/PDFex" + cadenaReport() + `&title=${formatE()}`;
+    const url = "/PDFex" + cadenaReport() + `&title=${formatE()}`;
+    window.open(url, '_blank');
 });
 
 $("#generateExcel").click(() => {
-    window.location = "/SSST/EXCELex" + cadenaReport();
+    window.location = "/EXCELex" + cadenaReport();
 });

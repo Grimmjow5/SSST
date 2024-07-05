@@ -7,7 +7,7 @@ class MExtintores {
     #Datos que ingresara el ususario
     public $id;
     public $idExtintor;
-    public $idArea;
+    public $idSubArea;
     public $lugarDesigando;
     public $accesoM;
     public $senalM;

@@ -9,7 +9,7 @@ use Almacen\Ssst\dbrepo\models\MReportRiesgo;
 class GetReports extends ConfigDb implements IReports {
     
     private string $dateRegistro;
-    private string $idArea;
+    private string $idSubArea;
     private string $dateSolution;
     private string $statusSolution;
 
@@ -20,15 +20,14 @@ class GetReports extends ConfigDb implements IReports {
        //Rango de resgistro del riesgo
         $this->dateRegistro = $this->validateDateReg($model->fechaMin, $model->fechaMax);
         //Rango de solución 
-       $this->dateSolution = $this->validateDateSolution($model->fechaMinSolucion, $model->fechaMaxSolucion,$model->estatus);
+        $this->dateSolution = $this->validateDateSolution($model->fechaMinSolucion, $model->fechaMaxSolucion,$model->estatus);
         //Área
-        $this->idArea = $model->area > 0 ?" AND id_area={$model->area}":" ";
+        $this->idSubArea = $model->subarea > 0 ?" AND id_sub={$model->subarea}":" ";
         //Estatus resportado o solucionado 
         $this->statusSolution = $model->estatus == 1 || $model->estatus == 0 ? "AND estatus={$model->estatus}":" ";
 
-        $sql = "SELECT * from mv_riesgos WHERE {$this->dateRegistro}  {$this->dateSolution} {$this->statusSolution} {$this->idArea} ;";
+        $sql = "SELECT * from mv_riesgos WHERE {$this->dateRegistro}  {$this->dateSolution} {$this->statusSolution} {$this->idSubArea} ;";
   
-
         $stmt = parent::prepare($sql);
 
         $stmt->execute();

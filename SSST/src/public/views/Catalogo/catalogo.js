@@ -1,4 +1,4 @@
-const area = document.getElementById('area');
+const subArea = document.getElementById('subarea');
 const extint = document.getElementById('nExtintor');
 const invent = document.getElementById('nInventario');
 const estatus = document.getElementById('estatus');
@@ -13,7 +13,7 @@ const toggleShow = () => {
 }
 
 const tabla = new DataTable('#tableExtintores', {
-    ajax: 'cat_catalogo',
+    ajax: 'cat_extintores',
     colReorder: true,
     pageLength: 25,
     language: {
@@ -29,7 +29,7 @@ const tabla = new DataTable('#tableExtintores', {
             className: "ids text-center"
         },
         {
-            data: "id_area",
+            data: "id_sub",
             className: "ids text-center"
         },
         {
@@ -78,7 +78,7 @@ const selectRow = async(dates) => {
     estatus.value = dates.estatus;
     invent.value = dates.num_inventario;
     exId.value = dates.id_extintor;
-    area.value = dates.id_area;
+    subArea.value = dates.id_sub;
     toggleShow();
 }
 
@@ -88,7 +88,7 @@ const clearForm = () => {
     invent.value = null;
     estatus.value = 2;
     exId.value = 0;
-    area.value = 0;
+    subArea.value = 0;
     toggleShow();
 }
 
@@ -97,13 +97,13 @@ const forma = document.getElementById('newExtintorCat');
 forma.addEventListener('submit', async(e) => {
     e.preventDefault();
     const form = new FormData();
-    //form.append('idExtintor', idEx.value);
+    
     form.append('nExtintor', extint.value);
     form.append('nInventario', invent.value);
     form.append('estatus', estatus.value);
     form.append('idExtintor', exId.value)
-    form.append('area', area.value);
-    const res = await fetch('/SSST/Catalogo', {
+    form.append('subarea', subArea.value);
+    const res = await fetch('/Catalogo', {
         method: 'POST',
         body: form,
 

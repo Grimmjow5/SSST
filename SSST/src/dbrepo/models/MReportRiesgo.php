@@ -7,7 +7,7 @@ class MReportRiesgo{
     public string $fechaMin;
     public string $fechaMax;
     public string $estatus;
-    public int $area;
+    public int $subarea;
     public string $fechaMinSolucion;
     public string $fechaMaxSolucion;
 } 

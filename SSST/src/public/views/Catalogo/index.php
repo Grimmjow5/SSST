@@ -1,6 +1,6 @@
 <?php
-require 'src/public/views/components/Header.php';
-require 'src/public/views/components/Nav.php';
+require 'public/views/components/Header.php';
+require 'public/views/components/Nav.php';
 
 ?>
 <div class="d-flex flex-column p-2 w-100" >
@@ -23,28 +23,28 @@ require 'src/public/views/components/Nav.php';
       </div>
 
       <div class="card-body">
-      </br>
         <form  id="newExtintorCat"   class="row">
         <input type="hidden" id="idExtintor" value="0">
 
         <div class="row">
         <div class="col-6" >
-        <label for="formGroupExampleInput" class="form-label">Area</label>
-        <select class="form-select" id="area" name="area">
-          <option value="0" selected>Selecciona un área</option>
-          <?php
-          $opt = "";
-          foreach ($areas as $item) {
-            $opt .= "<option value='{$item["id_area"]}'>{$item["textArea"]}</option>";
-          }
-          echo $opt;
-          ?>
-        </select>
-          </div>  
-          <div class="col-6" >
-            <label for="formGroupExampleInput" class="form-label">Numero de Extintor</label>
-            <input type="number" class="form-control" id="nExtintor" placeholder="Numero de Extintor">
-          </div>   
+          <label for="formGroupExampleInput" class="form-label">Subarea</label>
+            <select class="form-select" id="subarea" name="subarea">
+              <option value="0" selected>Selecciona una Subarea</option>
+              <?php
+              $opt = "";
+              foreach ($subArea as $item) {
+                $opt .=  "<option value='{$item["id_area"]}' data-area='{$item["id_user"]}'>{$item["textArea"]}</option>";
+              }
+              echo $opt;
+              ?>
+            </select>
+        </div> 
+          
+            <div class="col-6" >
+              <label for="formGroupExampleInput" class="form-label">Numero de Extintor</label>
+              <input type="number" class="form-control" id="nExtintor" placeholder="Numero de Extintor">
+            </div>   
           </div>
 
           <div class="col-md-6 col-12 mt-4">
@@ -86,7 +86,7 @@ require 'src/public/views/components/Nav.php';
             <thead>
               <tr>    
                 <th>No. Id</th>
-                <th>Area</th>
+                <th>SubArea</th>
                 <th>Numero Extintoristro</th>
                 <th>Numero Inventario</th>
                 <th>Estatus</th>
@@ -108,6 +108,6 @@ require 'src/public/views/components/Nav.php';
   }
   </style>
 
-<?php require 'src/public/views/components/Footer.php'; ?>
-<script src="src/public/views/Catalogo/catalogo.js"></script>
+<?php require 'public/views/components/Footer.php'; ?>
+<script src="../public/views/Catalogo/catalogo.js"></script>
 

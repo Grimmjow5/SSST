@@ -1,13 +1,13 @@
 <?php
-require 'src/public/views/components/Header.php';
-require 'src/public/views/components/Nav.php';
+require 'public/views/components/Header.php';
+require 'public/views/components/Nav.php';
 
 ?>
 
 <div  class="d-flex flex-column p-2 w-100">
 
 <div class=" bg-light shadow-lg rounded p-4">
-    <h4>Forma para generar, Excel o PDF </h4>
+    <h4>Forma para genera Excel o PDF </h4>
     <small>Preguntar si tambien sera requerido tomar en cuanta solo si esta solucionado</small>
         <form id="report"  class="row mt-4">
             <div class="col-12 col-md-6">                
@@ -18,25 +18,22 @@ require 'src/public/views/components/Nav.php';
             </div>
             <div class="col-12 col-md-6 content-fluid">
                 <label for="" class="form-label">Fecha Máxima de Reporte </label>
-                <input type="date" class="form-control" id="fechaMaxReport">
+                <input type="date" class="form-control" 
+                    id="fechaMaxReport">
                     <small class="ms-5">* Es la fecha como máximo en la que se levanto el reporte </small>
-               <!--  <div class="form-check form-switch">
-                   <input class="form-check-input" type="checkbox" role="switch" id="conSolucion">
-                    <label class="form-check-label" for="conSolucion">¿Filtrar con fecha de solución?</label>
-                </div> -->
             </div>
 
             <div class="col-12 col-md-6 mt-1">
-                <label for="" class="form-label" >Área</label>
-                <select name="" id="area"class="form-control">
-                    <option value="0" >Todas las Áreas</option>
-                     <?php
-          $opt = "";
-          foreach ($areas as $item) {
-            $opt .= "<option value='{$item["id_area"]}'>{$item["textArea"]}</option>";
-          }
-          echo $opt;
-          ?>
+                <label for="" class="form-label" >Subarea</label>
+                <select name="" id="subarea"class="form-control">
+                    <option value="0" >Todas las Subreas</option>
+                        <?php
+                            $opt = "";
+                            foreach ($subarea as $item) {
+                              $opt .= "<option value='{$item["id_subarea"]}'>{$item["textArea"]}</option>";
+                            }
+                            echo $opt;
+                        ?>
                 </select>
             </div>
 
@@ -97,20 +94,11 @@ require 'src/public/views/components/Nav.php';
           </tr>
         </thead>
         <tfoot>
-           <tr>    
-            <th>No. Id</th>
-            <th>Descripción</th>
-            <th>Fecha de Resgistro</th>
-            <th>Prioridad</th>
-            <th>Estatus</th>
-            <th>Solución</th>
-          </tr>
-        </tfoot>
       </table>
 
 </div>
 </div>
 <!--Div parte del body-->
 </div>
-<?php require 'src/public/views/components/Footer.php'; ?>
-<script src="src/public/views/Reports/reports.js"></script>
+<?php require 'public/views/components/Footer.php'; ?>
+<script src="../public/views/Reports/reports.js"></script>

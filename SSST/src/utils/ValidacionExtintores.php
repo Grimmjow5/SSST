@@ -12,15 +12,15 @@ class ValidacionExtintores extends MExtintores{
     }
 public function validate($request) : MExtintores {
     
-            if(empty($request['area']) || $request['area'] == 0 ){
-                  throw new Exception("Error de área, seleciona una");
+            if(empty($request['subarea']) || $request['subarea'] == 0 ){
+                  throw new Exception("Error de Subarea, seleciona una");
             }
-             $this->idArea = $request['area'];
+             $this->idSubArea = $request['subarea'];
 
            
            
              if(empty($request['extintor']) || $request['extintor'] == 0 ){
-               throw new Exception("Error de área, NuExtintor");
+               throw new Exception("Error de extintor, NuExtintor");
             }
             $this->idExtintor=$request['extintor'];
 

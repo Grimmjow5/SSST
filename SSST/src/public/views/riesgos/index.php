@@ -1,6 +1,6 @@
 <?php
-require 'src/public/views/components/Header.php';
-require 'src/public/views/components/Nav.php';
+require 'public/views/components/Header.php';
+require 'public/views/components/Nav.php';
 
 ?>
 <div class="d-flex flex-column p-2 w-100">
@@ -15,21 +15,20 @@ require 'src/public/views/components/Nav.php';
 </div>
     <form id="newRiesgo"  class="row" >
       <input type="hidden" id="idRiesgo" value="0">
-      <div class="col-md-6 mt-3">
-        <label for="inputEmail4" class="form-label">Área</label>
-        <select class="form-select" id="area">
-          <option value="0" selected>Selecciona un área</option>
-          <?php
-          $opt = "";
-          foreach ($areas as $item) {
-            $opt .= "<option value='{$item["id_area"]}'>{$item["textArea"]}</option>";
-          }
-          echo $opt;
-          ?>
-        </select>
-      </div>
             <!--Verificar que este número no exista en la base de datos-->
-
+            <div class="col-md-6 col-12 mt-1">
+              <label for="subarea" class="form-label">SubArea</label>
+                <select class="form-select" id="subarea" name="subarea" >
+                  <option value="0" selected>Selecciona una subarea</option>
+                    <?php
+                    $opt = "";
+                    foreach ($subArea as $item) {
+                      $opt .= "<option value='{$item["id_area"]}' data-area='{$item["id_user"]}'>{$item["textArea"]}</option>";
+                    }
+                    echo $opt;
+                    ?>
+                </select>
+        </div> 
       <div class="col-lg-12">
           <label class="form-label" for="exampleInput">Descripción de la situación de riesgo</label>          
           <textarea class="form-control" id="descripcion" ></textarea>
@@ -91,16 +90,6 @@ require 'src/public/views/components/Nav.php';
             <th>Solución</th>
           </tr>
         </thead>
-        <tfoot>
-           <tr>    
-            <th>No. Id</th>
-            <th>Descripción</th>
-            <th>Fecha de Resgistro</th>
-            <th>Prioridad</th>
-            <th>Estatus</th>
-            <th>Solución</th>
-          </tr>
-        </tfoot>
       </table>
     </div>
 </div>
@@ -127,5 +116,5 @@ require 'src/public/views/components/Nav.php';
     width: 9rem;
 }
 </style>
- <?php require 'src/public/views/components/Footer.php'; ?>
-<script src="src/public/views/riesgos/riesgos.js"></script>
+ <?php require 'public/views/components/Footer.php'; ?>
+<script src="../public/views/riesgos/riesgos.js"></script>

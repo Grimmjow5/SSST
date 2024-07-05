@@ -7,6 +7,7 @@ use Almacen\Ssst\config\ConfigDb;
 use Almacen\Ssst\dbrepo\models\MCatalogo; 
 use DateTime;
 use Exception;
+use PDO;
 
 class CatMain extends ConfigDb implements ICat_Cat {
     
@@ -20,6 +21,33 @@ class CatMain extends ConfigDb implements ICat_Cat {
         $stmt = parent::prepare($sql);
         $stmt->execute();
         return $stmt->fetchAll(parent::FETCH_ASSOC);              
+    }
+    
+    public function getSubArea(){
+        try {
+            $idUsuario = $_SESSION["id_usuario"];
+            // Usando sentencia preparada para la seguridad
+            $condicion = empty($this->rowVal) ? "WHERE id_user = :idUsuario" : $this->generate($this->rowVal);
+            
+            $sql = "SELECT * FROM {$this->table} {$condicion}";
+            
+            $stmt = $this->prepare($sql);
+            
+            // Asignar el parámetro si es necesario
+            if (empty($this->rowVal)) {
+                $stmt->bindParam(':idUsuario', $idUsuario, PDO::PARAM_INT);
+            }
+            
+            $stmt->execute();
+            
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch (\PDOException $e) {
+            // Manejar el error de la base de datos
+            echo "Error al ejecutar la consulta: " . $e->getMessage();
+            // Puedes registrar el error, mostrar un mensaje al usuario, o cualquier otra acción necesaria
+            return []; // Otra acción para manejar el fallo de la consulta
+        }
+   
     }
 
     private function generate(array $rowval): string {
@@ -45,7 +73,7 @@ class CatMain extends ConfigDb implements ICat_Cat {
                 throw new Exception("El número de inventario ya existe.");
             }
 
-            $sql = "CALL InsertCatExtintor(?, ?, ?, ?, ?)";
+            $sql = "CALL InsertCatExtintor(?, ?, ?, ?, ?, ?)";
             $dateNow = new DateTime();
 
             $stmt = parent::prepare($sql);
@@ -55,7 +83,9 @@ class CatMain extends ConfigDb implements ICat_Cat {
             $stmt->bindValue(2, $catalogo->fecha_registro); 
             $stmt->bindValue(3, $catalogo->num_extintor, \PDO::PARAM_INT);
             $stmt->bindValue(4, $catalogo->estatus, \PDO::PARAM_BOOL);
-            $stmt->bindValue(5, $catalogo->idArea, \PDO::PARAM_INT);
+            $catalogo->idRegUser = $_SESSION["id_usuario"];
+            $stmt->bindValue(5, $catalogo->idRegUser); 
+            $stmt->bindValue(6, $catalogo->idSubArea, \PDO::PARAM_INT);
 
             $stmt->execute();
         } catch (Exception $ex) {
@@ -81,10 +111,14 @@ class CatMain extends ConfigDb implements ICat_Cat {
             $stmt = parent::prepare($sql);
 
             $stmt->bindValue(1, $model->id, \PDO::PARAM_INT);
+
             $stmt->bindValue(2, $model->num_inventario, \PDO::PARAM_INT);
+
             $stmt->bindValue(3, $model->num_extintor, \PDO::PARAM_INT);
+            
             $stmt->bindValue(4, $model->estatus, \PDO::PARAM_BOOL);
-            $stmt->bindValue(5, $model->idArea, \PDO::PARAM_INT);
+            
+            $stmt->bindValue(5, $model->idSubArea, \PDO::PARAM_INT);
 
             $stmt->execute();
         } catch (Exception $ex) {

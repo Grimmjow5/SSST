@@ -8,20 +8,19 @@ use Almacen\Ssst\dbrepo\models\MReportExt;
 
 class GetReportsExt extends ConfigDb implements IReportsExt {
     
-    private string $dateRegistro;
-    private string $idArea;
+    private string $dateMRegistro;
+    private string $idSubArea;
 
 
     public function GetReportsExt(MReportExt $model){
        
        //Rango de resgistro del riesgo
-        $this->dateRegistro = $this->validateDateReg($model->fecha);
+        $this->dateMRegistro = $this->validateDateReg($model->fechaM, $model->fechaMax);
         //Área
-        $this->idArea = $model->area > 0 ?" AND id_area={$model->area}":" ";
+        $this->idSubArea = $model->subarea > 0 ?" AND id_sub={$model->subarea}":" ";
         
-        $sql = "SELECT * from reg_extintores WHERE {$this->dateRegistro} {$this->idArea} ;";
+        $sql = "SELECT * from reg_extintores WHERE {$this->dateMRegistro} {$this->idSubArea} ;";
   
-
         $stmt = parent::prepare($sql);
 
         $stmt->execute();
@@ -29,13 +28,22 @@ class GetReportsExt extends ConfigDb implements IReportsExt {
       
     }
    
-    private function validateDateReg(string $fecha):string{
+    private function validateDateReg(string $fechaM, string $fechaMax):string{
    
-        if(empty($fecha)){
-
-            return "date(fechaRegistro) >= '{$fecha} ";
+        if (empty($fechaM) &&  empty($fechaMax)) {
+            return " ";
         }
-        return $fecha;
+        if (!empty($fechaM) &&  empty($fechaMax)) {
+            return " date(fecha_reg) >= '{$fechaM}'";
+        }
+        if(empty($fechaM) &&  !empty($fechaMax)){
+            return " date(fecha_reg) <= '{$fechaMax}'";            
+        }
+
+        if(!empty($fechaM) &&  !empty($fechaMax)){
+            return " date(fecha_reg) >= '{$fechaM}' AND date(fecha_reg) <= '{$fechaMax}' ";
+        }
+        
     
     }
 }

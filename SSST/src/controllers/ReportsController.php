@@ -28,17 +28,26 @@ class ReportsController extends Flight {
         $this->factory->getReportes(new GetReports());
     }
     public function index (){
+        $this->checkAdmin();
         $this->factory->getCat->rowVal  = ["estatus"=>array(1)];
-        $this->factory->getCat->table = 'cat_areas';
+        $this->factory->getCat->table = 'cat_sub_areas';
         $this->factory->getCat->logic = "and";
-        $areas = $this->factory->getCat->getAll();
+        $subAreas = $this->factory->getCat->getAll();
 
-        parent::render('Reports/index',['areas'=>$areas]);
+        parent::render('Reports/index',['subarea'=>$subAreas]);
+    }
+
+    private function checkAdmin()
+    {
+        if (!isset($_SESSION["rol"]) || $_SESSION["rol"] !== 1) {
+            parent::halt(403, "Acceso denegado: Solo puede acceder personal autorizado .");
+        }
     }
     private function ValidateRequest($request) :MReportRiesgo {
+    
             $this->modelRiesgo->fechaMin = trim($request['fechaReport']);
             $this->modelRiesgo->fechaMax = trim($request['fechaMaxReport']);
-            $this->modelRiesgo->area = trim($request['area']);
+            $this->modelRiesgo->subarea = trim($request['subarea']);
             $this->modelRiesgo->estatus = trim($request['estatus']);
             $this->modelRiesgo->fechaMinSolucion =trim($request['fechaMinSolucion']);
             $this->modelRiesgo->fechaMaxSolucion = trim($request['fechaMaxSolucion']);
@@ -109,15 +118,14 @@ class ReportsController extends Flight {
         $write =  \PhpOffice\PhpSpreadsheet\IOFactory::createWriter($spreadSheet,'Xlsx');
         $write->save('php://output');
 
-
-        //parent::json(['msg'=>"MEnsajes"]);
     }
     private function FormatDataExcel(array $datos):array{
          $newArray = array();
         foreach ($datos as $key) {
            array_push($newArray,
                                 [
-                                    $key['id'],$this->pdf->dateFormat($key['fechaRegistro']),
+                                    $key['id'],
+                                    $this->pdf->dateFormat($key['fechaRegistro']),
                                     $key['text_Riesgo'],
                                     $key['prioridad'],
                                     $this->pdf->dateFormat($key['fecha_solucion']),

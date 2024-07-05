@@ -10,6 +10,7 @@ class MRegistro{
     public $Correo;
     public $Password;
     public $Estatus;
+    public $SubArea = [];
 
 
     public $idUser;

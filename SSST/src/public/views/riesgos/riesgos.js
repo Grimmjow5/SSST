@@ -1,4 +1,4 @@
-const area = document.getElementById('area');
+const subArea = document.getElementById('subarea');
 //const nRiesgo = document.getElementById('nRiesgo');
 const descripcion = document.getElementById('descripcion');
 const estatus = document.getElementById('estatus');
@@ -80,7 +80,7 @@ $('#tableRiesgos tbody').on('click', 'tr', async function() {
 
         let dates = tabla.row('.selected').data();
         console.log(dates);
-        area.focus();
+        subArea.focus();
         await selectRow(dates);
     }
 
@@ -89,7 +89,7 @@ $('#tableRiesgos tbody').on('click', 'tr', async function() {
 toggleShow();
 
 const selectRow = async(dates) => {
-    area.value = dates.id_area;
+    subArea.value = dates.id_sub;
     //Preguntar que onda con el numero de riesgo ya que se hace de manera automatica
     //nRiesgo.value = 210001202;
 
@@ -102,7 +102,7 @@ const selectRow = async(dates) => {
 }
 
 const clearForm = () => {
-    area.value = 0;
+    subArea.value = 0;
     //Preguntar que onda con el numero de riesgo ya que se hace de manera automatica
     //nRiesgo.value = null;
     descripcion.value = null;
@@ -118,14 +118,13 @@ const forma = document.getElementById('newRiesgo');
 forma.addEventListener('submit', async(e) => {
     e.preventDefault();
     const form = new FormData();
-    form.append('area', area.value);
-    //form.append('nRiesgo', nRiesgo.value);
+    form.append('subarea', subArea.value);
     form.append('descripcion', descripcion.value);
     form.append('estatus', estatus.value);
     form.append('prioridad', prioridad.value);
     form.append('solucion', solucion.value);
     form.append('idRiesgo', elId.value)
-    const res = await fetch('/SSST/riesgos', {
+    const res = await fetch('/riesgos', {
         method: 'POST',
         body: form,
 

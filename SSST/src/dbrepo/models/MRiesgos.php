@@ -6,7 +6,7 @@ class MRiesgos {
 
     #Datos que ingresara el ususario
     public $id;
-    public $idArea;
+    public $idSubArea;
     public $id_control;
     public $descripcion;
     public $prioridad;

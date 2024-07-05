@@ -31,7 +31,7 @@ class Extintores extends Flight{
         //Reportes
        $reportE = new ReportExtController();
        //Vista en la que se mostrara el lformulario para genera los reportes de riesgos 
-       parent::route('GET /extintoresr',[$reportE,'index']); 
+       parent::route('GET /Extintores/reportE',[$reportE,'index']); 
 
        parent::route('GET /Extintores/reports',[$reportE,'GetReportsExt']);
 

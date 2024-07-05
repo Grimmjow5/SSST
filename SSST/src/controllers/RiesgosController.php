@@ -23,27 +23,29 @@ class RiesgosController extends Flight{
         $this->repoRiesgos->getCatalogos(new RepoMain());
         $this->mriesgos = new ValMRiesgos();
     }
-    private function checkAdmin() {
-        if (!isset($_SESSION["rol"]) || $_SESSION["rol"] !== 1  && $_SESSION['rol'] !==2) {
-            parent::halt(403, "Acceso denegado: Solo los administradores pueden acceder.");
-        }
-    }   
+    
 
     public function index (){
-             $this->checkAdmin();   
+        
        
-      // $arr = array("valor"=>"valores");
        $this->repoRiesgos->getCat->rowVal = ["estatus"=>array(1)];
        $this->repoRiesgos->getCat->table = 'cat_areas';
+       if ($this->repoRiesgos->getCat->table == 'cat_areas') {
+        // Si la tabla es 'cat_areas', no añadir la condición 'estatus'
+            $this->repoRiesgos->getCat->rowVal = [];
+        }
        $this->repoRiesgos->getCat->logic = "and";
        $areas = $this->repoRiesgos->getCat->getAll();
-       parent::render('riesgos/index',['areas'=> $areas, 'error'=>""]);
+       $this->repoRiesgos->getCat->table = 'asignar_view';
+       $subArea = $this->repoRiesgos->getCat->getSubArea();
+
+       parent::render('riesgos/index',['areas'=> $areas, 'error'=>"",'subArea'=> $subArea]);
     }
 
     public function postRiesgo(){
         
       try{
-        $this->checkAdmin();   
+         
         
              $this->model = $this->mriesgos->validate($_REQUEST);
             $save = false;
@@ -61,20 +63,21 @@ class RiesgosController extends Flight{
             }
         
         }catch(Exception $ex){
-            //parent::view()->set('error', $ex->getMessage());
-            //echo $ex->getMessage();
-            //$areas = $this->repoRiesgos->getCat->get_Cat();
+            
             parent::json(['res'=> $ex->getMessage()],422);
         }
     }
     public function getRiesgos(){
         
+        $userId = $_SESSION["id_usuario"];
         $mes = new DateTime();
         $this->repoRiesgos->getCat->table = "mv_riesgos";
         $this->repoRiesgos->getCat->logic = "or";
-                
-        $this->repoRiesgos->getCat->rowVal = array(
-        "id_mes"=>array($mes->format("m")-1,  $mes->format("m") )); 
+            
+
+        $this->repoRiesgos->getCat->rowVal = [
+            "id_mes"=> [$mes->format("m")-1,  $mes->format("m")],'id_userReg' => [$userId]
+        ];
         $resul = $this->repoRiesgos->getCat->getAll();
         parent::json(['data'=>$resul]);
     }
