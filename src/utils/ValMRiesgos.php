@@ -1,0 +1,56 @@
+<?php
+namespace Almacen\Ssst\utils;
+use Almacen\Ssst\dbrepo\models\MRiesgos;
+use Exception;
+
+class ValMRiesgos extends MRiesgos{
+//Para poder regresar el tipo de objweto me pide que lo erede ;v 
+    public function validate($request):MRiesgos
+    {
+    
+    if(empty($request['subarea']) || $request['subarea'] == 0 ){
+        throw new Exception("Error de Subarea, seleciona una");
+     }
+     $this->idSubArea = $request['subarea'];
+     
+     if(empty($request['descripcion'])){
+        throw new Exception("Ingresa descripción del riesgo");
+     }
+     $this->descripcion = $request['descripcion'];
+
+     if($request['estatus'] != 0 && $request['estatus'] != 1){
+        throw new Exception("Error de estatus");
+     }
+     $this->estatus = $request['estatus'];
+     
+     if(empty($request['prioridad']) || $request['prioridad'] == 0){
+        throw new Exception("Ingresa la prioridad");
+     }
+    $this->prioridad = $request['prioridad'];
+
+    if($this->estatus == 1){
+        if(empty($request['solucion'])){
+            throw new Exception("Ingresa la solucion del problema");
+        }
+        $this->solucion = $request['solucion'];
+    }
+     $this->id = $request['idRiesgo'];
+     
+     $mo = new MRiesgos();
+     $mo = $this;
+     return $mo;
+     
+
+    }
+
+    private function val_id(int $id){
+        try {
+            if(empty($id)){
+            }
+        } catch (\Throwable $th) {
+            
+            //throw $th;
+        }        
+    }
+
+}
